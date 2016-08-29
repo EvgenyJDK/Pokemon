@@ -27,7 +27,6 @@ class PokemonViewModel {
            
             
             pokeObservable
-                .throttle(0.4, scheduler: MainScheduler.instance)
                 .flatMap{ (inputData : [String]) -> Observable <[String]?> in
                     
                     guard true else {
