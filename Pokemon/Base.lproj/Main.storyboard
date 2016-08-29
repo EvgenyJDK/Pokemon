@@ -32,7 +32,7 @@
                     </view>
                     <connections>
                         <outlet property="resultField" destination="0zf-ex-Ymo" id="09n-20-2ow"/>
-                        <outlet property="serachField" destination="cij-N2-xj6" id="8ow-bt-m41"/>
+                        <outlet property="searchField" destination="cij-N2-xj6" id="OEx-DX-Cjb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

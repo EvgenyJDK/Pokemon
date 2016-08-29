@@ -18,8 +18,9 @@ class ViewController: UIViewController {
     private let bag = DisposeBag()
 
     
-    @IBOutlet weak var searchField: UITextField!
+  
  
+    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var resultField: UITextField!
     
     override func viewDidLoad() {
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
         pokeViewModel.pokeName.asObservable()
             .bindTo(resultField.rx_text)
             .addDisposableTo(bag)
-            
+        
         
     }
     
