@@ -26,9 +26,11 @@ class PokemonApiService {
                 
                 var pokeUrls : [String] = []
                 
-                guard let result = json ["result"] as? [[String: AnyObject]] else {
+                guard let result = json ["result"] as? [[String: AnyObject]],
+                let name = result.first!["name"] as! [[String: AnyObject]]!	else {
                     
                     return pokeUrls
+                    
                 }
                 return pokeUrls
         }

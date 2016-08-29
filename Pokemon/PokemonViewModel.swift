@@ -20,14 +20,67 @@ class PokemonViewModel {
     private let bag = DisposeBag ()
     
     
-    var pokeObservable : Observable <String>? {
+    var pokeObservable : Observable <[String]>? {
+        
         
         didSet {
+           
             
-            self.pokeName.value = ""
+            pokeObservable
+                .throttle(0.4, scheduler: MainScheduler.instance)
+                .flatMap{ (inputData : [String]) -> Observable <[String]?> in
+                    
+                    guard true else {
+                        return Observable.just()
+                    }
+                    self.pokeName.value =  "New"
+                    return self.apiService.getAllPoke(inputData)
+                }
+
+                .subscribe(
+                    onNext: { text in
+                        
+                        self.pokeName.value = text
+                    },
+                    onError: { error in
+                        self.pokeName.value = "Response error"
+                    }
+                ).addDisposableTo(self.bag)
         }
+
+        
     }
+
+
+
+// ПРИМЕР
+
+
+//        didSet {
+//            translationObservable!
+//                .throttle(0.5, scheduler: MainScheduler.instance)
+//                .flatMapLatest{ (inputData : String) -> Observable <String> in
+//                    
+//                    guard inputData.characters.count > 2 else {
+//                        return Observable.just("")
+//                    }
+//                    
+//                    self.activityView.value =  true
+//                    return self.apiService.translateDataViaYandex(inputData)
+//                }
+//                .subscribe(
+//                    onNext: { text in
+//                        
+//                        self.translatedText.value = text
+//                        self.activityView.value =  false
+//                    },
+//                    onError: { error in
+//                        self.translatedText.value = "Response error"
+//                        self.activityView.value =  false
+//                    }
+//                ).addDisposableTo(self.bag)
+
+
     
     
     
-}
