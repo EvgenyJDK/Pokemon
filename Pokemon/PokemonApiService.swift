@@ -7,13 +7,27 @@
 //
 
 import Foundation
+import Alamofire
+import AlamofireObjectMapper
+import RxAlamofire
+import RxCocoa
+import RxSwift
 
 class PokemonApiService {
+
     
-    let a = 4
-    let b = 5
-    let c = 7
-    let d = 6
-    
-    
-}
+    func getAllPoke (inputData : String) -> Observable <String> {
+        
+        let url = "http://pokeapi.co/api/v2/pokemon/1/"
+
+        return  Alamofire.request(.POST, url)
+            .rx_responseJSON()
+            .map { (res: NSHTTPURLResponse, json: AnyObject) -> String in
+                
+             
+               
+                }
+                return "hello" as?  String
+        }
+    }
+

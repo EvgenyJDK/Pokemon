@@ -7,14 +7,37 @@
 //
 
 import UIKit
+import Foundation
+import RxSwift
+import RxCocoa
+
 
 class ViewController: UIViewController {
 
+    private let pokeViewModel = PokemonViewModel()
+    private let bag = DisposeBag()
+
+    
+    @IBOutlet weak var searchField: UITextField!
+ 
+    @IBOutlet weak var resultField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
+        pokeViewModel.pokeObservable = searchField.rx_text.asObservable()
+        
+        pokeViewModel.pokeName.asObservable()
+            .bindTo(resultField.rx_text)
+            .addDisposableTo(bag)
+            
+        
+    }
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
