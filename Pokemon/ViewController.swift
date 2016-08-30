@@ -16,9 +16,6 @@ class ViewController: UIViewController {
 
     private let pokeViewModel = PokemonViewModel()
     private let bag = DisposeBag()
-    private let apiService = PokemonApiService()
-    
-  
  
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var resultField: UITextField!
@@ -31,10 +28,8 @@ class ViewController: UIViewController {
         pokeViewModel.pokeName.asObservable()
             .bindTo(resultField.rx_text)
             .addDisposableTo(bag)
-
     }
-    
-   
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

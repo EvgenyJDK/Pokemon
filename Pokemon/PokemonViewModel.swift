@@ -23,7 +23,7 @@ class PokemonViewModel {
     var pokeObservable : Observable <String>? {
         
         didSet {
-            apiService.getNamePoke()
+            apiService.getPokemonName()
                 .subscribe(onNext: { (result : String) in
                     self.pokeName.value = result
                     },

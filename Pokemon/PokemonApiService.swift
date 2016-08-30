@@ -15,7 +15,7 @@ import RxSwift
 
 class PokemonApiService {
     
-    func getAllPoke () -> Observable <[String]> {
+    func getAllPokemonUrl () -> Observable <[String]> {
 
         let url = "http://pokeapi.co/api/v2/pokemon"
         
@@ -36,29 +36,9 @@ class PokemonApiService {
                 return pokeUrls
         }
     }
+   
     
-    
-    func getNameIdPoke () -> Observable <[String]> {
-        
-        let url = "http://pokeapi.co/api/v2/pokemon/1/"
-        
-        return  Alamofire.request(.GET, url)
-            .rx_responseJSON()
-            .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
-                
-                guard let name = json ["name"] as? String,
-                let weight = json ["weight"] as? Int
-                    else {
-                        print ("Error data")
-                        return []
-                }
-                print(name)
-                print (weight)
-                return []
-        }
-    }
-    
-    func getNamePoke () -> Observable <String> {
+    func getPokemonName () -> Observable <String> {
 
         let url = "http://pokeapi.co/api/v2/pokemon/1/"
         
@@ -75,9 +55,34 @@ class PokemonApiService {
                 return name
         }
     }
+    
+    
+    
+    func getPokemonDetails () -> Observable <[String]> {
+        
+        let url = "http://pokeapi.co/api/v2/pokemon/1/"
+        
+        return  Alamofire.request(.GET, url)
+            .rx_responseJSON()
+            .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
+                
+                guard let name = json ["name"] as? String,
+                    let weight = json ["weight"] as? Int
+                    else {
+                        print ("Error data")
+                        return []
+                }
+                print(name)
+                print (weight)
+                return []
+        }
+    }
 
     
 }
+
+
+
 
 
 //guard let weight = json ["weight"] as? Int
