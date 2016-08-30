@@ -16,36 +16,45 @@ import RxSwift
 class PokemonApiService {
 
     
+//    func getAllPoke () -> Void {
     func getAllPoke () -> Observable <[String]> {
         
         print ("in Method")
         
         let url = "http://pokeapi.co/api/v2/pokemon"
         
-        return  Alamofire.request(.GET, url)
+        return  Alamofire.request(.POST, url)
             .rx_responseJSON()
             .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
                 
-                print ("after request")
-                
                 var pokeUrls : [String] = []
                 
-                guard let result = json ["result"] as? [[String: AnyObject]],
-                let name = result.first!["name"] as! [[String: AnyObject]]!	else {
+                //                guard let count = json["count"] as? Int
+                guard let resultUrl = json ["results"] as? [[String: AnyObject]]
                     
                     
-                    print("after request")
-                    print ("\(pokeUrls)")
-                    print (pokeUrls)
-                    return pokeUrls
- 
-                    
+                    //                guard let result = json ["results"] as? [[String: AnyObject]],
+                    //                    let name = result.first?["name"] as? String
+                    ////                guard let name = json ["name"] as? String
+                    else {
+                        print("Error")
+                        return pokeUrls
                 }
 
-                print ("\(pokeUrls)")
-                print (pokeUrls)
+                for result in resultUrl {
+                    
+                    print ("Work")
+                    //                print (count)
+                    
+                    pokeUrls.append(String (result["url"]))
+                    print ("\(pokeUrls)")
+                    print (pokeUrls)
+                    
+
+                }
                 return pokeUrls
         }
     }
 }
+
 

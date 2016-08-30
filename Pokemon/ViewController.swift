@@ -27,9 +27,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-    apiService.getAllPoke()
+   apiService.getAllPoke()
+    .subscribe(onNext: { result in
+            print ("Hello")
+            })
         
-
 //        pokeViewModel.pokeObservable = searchField.rx_text.asObservable()
 //        
 //        pokeViewModel.pokeName.asObservable()

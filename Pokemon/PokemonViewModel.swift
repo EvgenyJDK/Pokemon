@@ -16,25 +16,20 @@ class PokemonViewModel {
     private let apiService = PokemonApiService ()
     
     let pokeName : Variable <String> = Variable ("")
+    let pokeNameList : Variable <[String]> = Variable ([""])
     
     private let bag = DisposeBag ()
 
-    
-    
-//    var pokeObservable : Observable <[String]>? {
-//        
-////        didSet {
-////            pokeObservable!
-////            
-////                })
-////                .subscribeNext { (inputData : [String]) -> Observable <[String]> in
-////                
-////                    guard inputData.characters.count > 2 else {
-////                        return Observable.just("")
-////                    }
-////
-////                    
-//            }                
+    var pokeObservable : Observable <[String]>? {
+        
+        didSet {
+            pokeObservable!
+                .subscribe(onNext: { (result : [String]) in
+                    self.pokeNameList.value = result
+                })
+                
+            .addDisposableTo(bag)
+            }
     
 //                .subscribeNext(onNext: (Self.poke) -> Void)
             
@@ -101,3 +96,4 @@ class PokemonViewModel {
     
     
     
+}
