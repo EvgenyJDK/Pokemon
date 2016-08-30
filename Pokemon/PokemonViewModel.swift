@@ -18,37 +18,55 @@ class PokemonViewModel {
     let pokeName : Variable <String> = Variable ("")
     
     private let bag = DisposeBag ()
-    
-    
-    var pokeObservable : Observable <[String]>? {
-        
-        
-        didSet {
-           
-            
-            pokeObservable
-                .flatMap{ (inputData : [String]) -> Observable <[String]?> in
-                    
-                    guard true else {
-                        return Observable.just()
-                    }
-                    self.pokeName.value =  "New"
-                    return self.apiService.getAllPoke(inputData)
-                }
 
-                .subscribe(
-                    onNext: { text in
-                        
-                        self.pokeName.value = text
-                    },
-                    onError: { error in
-                        self.pokeName.value = "Response error"
-                    }
-                ).addDisposableTo(self.bag)
-        }
+    
+    
+//    var pokeObservable : Observable <[String]>? {
+//        
+////        didSet {
+////            pokeObservable!
+////            
+////                })
+////                .subscribeNext { (inputData : [String]) -> Observable <[String]> in
+////                
+////                    guard inputData.characters.count > 2 else {
+////                        return Observable.just("")
+////                    }
+////
+////                    
+//            }                
+    
+//                .subscribeNext(onNext: (Self.poke) -> Void)
+            
+            
+//            
+//            pokeObservable
+//                .flatMap{ (inputData : String) -> Observable <[String]?> in
+//                    i
+//                    guard true else {
+//                        return Observable.just()
+//                    }
+//                    self.pokeName.value =  "New"
+//                    return self.apiService.getAllPoke(inputData)
+//                }
+//
+//                .subscribe(
+//                    onNext: { text in
+//                        
+//                        self.pokeName.value = text
+//                    },
+//                    onError: { error in
+//                        self.pokeName.value = "Response error"
+//                    }
+//                ).addDisposableTo(self.bag)
+//        }
 
         
     }
+
+
+
+
 
 
 

@@ -16,22 +16,34 @@ import RxSwift
 class PokemonApiService {
 
     
-    func getAllPoke (data : String) -> Observable <[String]> {
+    func getAllPoke () -> Observable <[String]> {
+        
+        print ("in Method")
         
         let url = "http://pokeapi.co/api/v2/pokemon"
         
-        return  Alamofire.request(.POST, url)
+        return  Alamofire.request(.GET, url)
             .rx_responseJSON()
-            .map { (res: NSHTTPURLResponse, json: AnyObject) -> [String] in
+            .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
+                
+                print ("after request")
                 
                 var pokeUrls : [String] = []
                 
                 guard let result = json ["result"] as? [[String: AnyObject]],
                 let name = result.first!["name"] as! [[String: AnyObject]]!	else {
                     
+                    
+                    print("after request")
+                    print ("\(pokeUrls)")
+                    print (pokeUrls)
                     return pokeUrls
+ 
                     
                 }
+
+                print ("\(pokeUrls)")
+                print (pokeUrls)
                 return pokeUrls
         }
     }

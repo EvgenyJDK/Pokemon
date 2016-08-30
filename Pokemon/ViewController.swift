@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 
     private let pokeViewModel = PokemonViewModel()
     private let bag = DisposeBag()
-
+    private let apiService = PokemonApiService()
     
   
  
@@ -25,12 +25,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        pokeViewModel.pokeObservable = searchField.rx_text.asObservable()
         
-        pokeViewModel.pokeName.asObservable()
-            .bindTo(resultField.rx_text)
-            .addDisposableTo(bag)
+        
+    apiService.getAllPoke()
+        
+
+//        pokeViewModel.pokeObservable = searchField.rx_text.asObservable()
+//        
+//        pokeViewModel.pokeName.asObservable()
+//            .bindTo(resultField.rx_text)
+//            .addDisposableTo(bag)
         
         
     }
