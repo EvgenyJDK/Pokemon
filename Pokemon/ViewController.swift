@@ -19,6 +19,7 @@ class ViewController: UIViewController {
    
     private let apiService = PokemonApiService()
     let pokemonUrl = "http://pokeapi.co/api/v2/pokemon/1/"
+    var urls : [String] = []
  
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var resultField: UITextField!
@@ -35,10 +36,16 @@ class ViewController: UIViewController {
         apiService.getPokemonDetails(pokemonUrl)
             .subscribe(onNext: { result in
 
+                self.urls = result
+                print (self.urls)
+                
             })
         
         apiService.getAllPokemonUrl()
         .subscribe(onNext: { result in
+           
+            print ("result")
+            print ("result = \(result)")
             
             })
     }

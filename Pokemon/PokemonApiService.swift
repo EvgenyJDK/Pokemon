@@ -23,18 +23,18 @@ class PokemonApiService {
             .rx_responseJSON()
             .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
                 
-                var pokeUrls : [String] = []
+                var pokemonUrls : [String] = []
                 
                 guard let resultUrl = json ["results"] as? [[String: AnyObject]]
                     else {
                         print("Error")
-                        return pokeUrls
+                        return pokemonUrls
                 }
                 for result in resultUrl {
-                    pokeUrls.append(String (result["url"]!))
+                    pokemonUrls.append(String (result["url"]!))
                 }
-                print (pokeUrls)
-                return pokeUrls
+//                print (pokemonUrls)
+                return pokemonUrls
         }
     }
 
