@@ -36,6 +36,11 @@ class ViewController: UIViewController {
             .subscribe(onNext: { result in
 
             })
+        
+        apiService.getAllPokemonUrl()
+        .subscribe(onNext: { result in
+            
+            })
     }
 
     

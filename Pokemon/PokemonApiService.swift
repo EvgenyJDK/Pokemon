@@ -31,8 +31,9 @@ class PokemonApiService {
                         return pokeUrls
                 }
                 for result in resultUrl {
-                    pokeUrls.append(String (result["url"]))
+                    pokeUrls.append(String (result["url"]!))
                 }
+                print (pokeUrls)
                 return pokeUrls
         }
     }
@@ -85,7 +86,7 @@ class PokemonApiService {
                 print ("Type = \(typeName)")
                 print ("Experience = \(experience)")
                 print("Height = \(height)")
-                print("Height = \(weight)")
+                print("Weight = \(weight)")
                 print ("Ability = \(abilityName)")
                 
                 return []
