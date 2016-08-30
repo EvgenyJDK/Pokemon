@@ -26,32 +26,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pokeViewModel.pokeObservable = searchField.rx_text.asObservable()
         
-        
-//   apiService.getAllPoke()
-//    .subscribe(onNext: { result in
-//            print ("Hello")
-//            })
+        pokeViewModel.pokeName.asObservable()
+            .bindTo(resultField.rx_text)
+            .addDisposableTo(bag)
 
-        apiService.getNameIdPoke()
-            .subscribe(onNext: { result in
-
-            })
-        
-        
-//        pokeViewModel.pokeObservable = searchField.rx_text.asObservable()
-//        
-//        pokeViewModel.pokeName.asObservable()
-//            .bindTo(resultField.rx_text)
-//            .addDisposableTo(bag)
-        
-        
     }
     
-    
-    
-    
-    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

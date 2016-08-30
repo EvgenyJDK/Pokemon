@@ -45,19 +45,51 @@ class PokemonApiService {
         return  Alamofire.request(.GET, url)
             .rx_responseJSON()
             .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
-          
-        guard let name = json ["name"] as? String
-            else {
-                print ("Error name")
-                return []
+                
+                guard let name = json ["name"] as? String,
+                let weight = json ["weight"] as? Int
+                    else {
+                        print ("Error data")
+                        return []
                 }
                 print(name)
+                print (weight)
                 return []
-                
         }
     }
     
+    func getNamePoke () -> Observable <String> {
+
+        let url = "http://pokeapi.co/api/v2/pokemon/1/"
+        
+        return  Alamofire.request(.GET, url)
+            .rx_responseJSON()
+            .map { (resp: NSHTTPURLResponse, json: AnyObject) -> String in
+                
+                guard let name = json ["name"] as? String
+                    else {
+                        print ("Error data")
+                        return ""
+                }
+                print(name)
+                return name
+        }
+    }
+
+    
 }
+
+
+//guard let weight = json ["weight"] as? Int
+//    else {
+//        print ("Weight Error")
+//        return nil
+//}
+//print (weight)
+//return weight
+//}
+
+
 
 
 //         guard let det = json ["forms"] as? [[String: AnyObject]],
