@@ -18,14 +18,17 @@ class PokemonApiService {
     func getAllPokemonUrl () -> Observable <[String]> {
 
         let url = "http://pokeapi.co/api/v2/pokemon"
+        let param = ["limit" : 5]
         
-        return  Alamofire.request(.GET, url)
+        return  Alamofire.request(.GET, url, parameters: param)
             .rx_responseJSON()
             .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
                 
                 var pokemonUrls : [String] = []
                 
                 guard let resultUrl = json ["results"] as? [[String: AnyObject]]
+//                    let pokemonName = json ["name"] as? String
+                
                     else {
                         print("Error")
                         return pokemonUrls
@@ -47,22 +50,22 @@ class PokemonApiService {
             .map { (resp: NSHTTPURLResponse, json: AnyObject) -> String in
                 
                 guard let id = json ["id"] as? Int,
-                let name = json ["name"] as? String
+                 let name = json ["name"] as? String
                      else {
                         print ("Error data")
                         return ""
                 }
                 print (id)
                 print (name)
-                return ""
+                return name
         }
     }
 
-    func getPokemonDetails(pokemonUrl : String) -> Observable <[String]> {
+    func getPokemonDetails(pokemonUrl : String) -> Observable <[String : String]> {
         
         return  Alamofire.request(.GET, pokemonUrl)
             .rx_responseJSON()
-            .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String] in
+            .map { (resp: NSHTTPURLResponse, json: AnyObject) -> [String : String] in
                 
                 guard
                     
@@ -80,16 +83,11 @@ class PokemonApiService {
                     
                     else {
                         print ("Error Details")
-                        return []
+                        return [:]
                 }
-                
-                print ("Type = \(typeName)")
-                print ("Experience = \(experience)")
-                print("Height = \(height)")
-                print("Weight = \(weight)")
-                print ("Ability = \(abilityName)")
-                
-                return []
+
+                return ["typeName" : typeName, "Experience" : String(experience), "Height" : String(height),
+                    "Weight" : String(weight), "Ability" : abilityName ]
         }
     }
 }

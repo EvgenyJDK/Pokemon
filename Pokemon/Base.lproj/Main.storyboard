@@ -27,11 +27,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6l0-02-2sc">
+                                <rect key="frame" x="154" y="309" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="resultField" destination="0zf-ex-Ymo" id="09n-20-2ow"/>
+                        <outlet property="resultIdField" destination="6l0-02-2sc" id="ItS-qg-ArJ"/>
                         <outlet property="searchField" destination="cij-N2-xj6" id="OEx-DX-Cjb"/>
                     </connections>
                 </viewController>

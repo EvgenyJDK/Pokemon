@@ -15,20 +15,21 @@ class PokemonViewModel {
     
     private let apiService = PokemonApiService ()
     
-    let pokeName : Variable <String> = Variable ("")
-    let pokeNameList : Variable <[String]> = Variable ([""])
+    let pokemonName : Variable <String> = Variable ("")
+    let pokemonNameList : Variable <[String]> = Variable ([""])
+    
 
     private let bag = DisposeBag ()
     
-    var pokeObservable : Observable <String>? {
+    var pokemonObservable : Observable <String>? {
         
         didSet {
             apiService.getPokemonPreview()
                 .subscribe(onNext: { (result : String) in
-                    self.pokeName.value = result
+                    self.pokemonName.value = result
                     },
                     onError: { error in
-                        self.pokeName.value = "Not found"
+                        self.pokemonName.value = "Not found"
                     }
                 ).addDisposableTo(bag)
         }
