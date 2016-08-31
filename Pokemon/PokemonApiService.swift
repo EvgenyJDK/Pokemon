@@ -15,6 +15,7 @@ import RxSwift
 
 class PokemonApiService {
     
+
     func getAllPokemonUrl () -> Observable <[String]> {
 
         let url = "http://pokeapi.co/api/v2/pokemon"
