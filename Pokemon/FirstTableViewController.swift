@@ -14,6 +14,7 @@ import RxCocoa
 class FirstTableViewController : UITableViewController {
     
     private let albumViewModel = AlbumViewModel()
+    private let bag = DisposeBag()
     
     @IBOutlet var allAlbumsView: UITableView!
     
@@ -23,10 +24,12 @@ class FirstTableViewController : UITableViewController {
         albumViewModel.albumList.asObservable()
             .subscribeNext { result in
         }
+        .addDisposableTo(bag)
         
         albumViewModel.userList.asObservable()
             .subscribeNext({ resultUser in
             })
+        .addDisposableTo(bag)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,12 +38,15 @@ class FirstTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UserCell
+        let tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UserCell
         
         tableCell.title.text = albumViewModel.albumList.value[indexPath.row].title
         tableCell.id.text = String(albumViewModel.albumList.value[indexPath.row].albumId!)
-        tableCell.userName.text = albumViewModel.userList.value[(Int(albumViewModel.albumList.value[indexPath.row].userId!)!)-1].name
         
+        let usrId = Int(albumViewModel.albumList.value[indexPath.row].userId!)
+        tableCell.userName.text = albumViewModel.userList.value[usrId!-1].name
+        
+        self.allAlbumsView.reloadData()
         return tableCell
     }
 }

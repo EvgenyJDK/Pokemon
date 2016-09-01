@@ -13,5 +13,5 @@ class Album {
     var albumId : Int?
     var title : String?
     var userId : String?
-    
+    var like : Bool?
 }

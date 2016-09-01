@@ -33,7 +33,7 @@ class AlbumApiService {
         
         for anItem in jsonAlbums as! [Dictionary <String, AnyObject>] {
             
-            var album = Album()
+            let album = Album()
             let albumId = anItem["id"] as! Int
             let title = anItem["title"] as! String
             let userId = anItem ["userId"] as! Int
@@ -57,7 +57,7 @@ class AlbumApiService {
         
         for anItem in jsonUsers as! [Dictionary <String, AnyObject>] {
             
-            var user = User()
+            let user = User()
             let userId = anItem["id"] as? Int
             let userName = anItem["username"] as? String
             
