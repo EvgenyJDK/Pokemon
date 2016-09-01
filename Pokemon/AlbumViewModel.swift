@@ -14,16 +14,20 @@ class AlbumViewModel {
     
     private let albumApiService = AlbumApiService()
     
-    let albumList : Variable <[String]> = Variable([""])
+//    let albumList : Variable <[String]> = Variable([""])
     
+    let albumList : Variable <[Album]> = Variable([])
+
     private let bag = DisposeBag()
+    
+    
     
     init () {
             
         albumApiService.getAllAlbums()
             .subscribe(onNext: { result in
                 self.albumList.value = result
-                print (self.albumList.value)
+//                print (self.albumList.value)
                 },
                 onError: { error in
                     self.albumList.value = []

@@ -16,6 +16,7 @@ import RxSwift
 class AlbumApiService {
   
     
+    
     //    let path = NSBundle.mainBundle().pathForResource("photos", ofType: "json")
     //    let data = NSData(contentsOfFile: path!)
     //    let json = NSJSONSerialization.JSONObjectWithData(data!, options: [])
@@ -25,7 +26,7 @@ class AlbumApiService {
     //    let json = NSJSONSerialization.JSONObjectWithData(data!, options: [])
 
    
-    func getAllAlbums () -> Observable<[String]> {
+    func getAllAlbums () -> Observable<[Album]> {
         
         
         let path = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
@@ -35,18 +36,32 @@ class AlbumApiService {
         print (json)
         
         var albumsTitle : [String] = []
+
+        var albumList : [Album] = []
         
         for anItem in json as! [Dictionary <String, AnyObject>] {
             
-            //        let userId = anItem["id"] as! Int
+            var album = Album()
+            let albumId = anItem["id"] as! Int
             let title = anItem["title"] as! String
+            let userId = anItem ["userId"] as! Int
             
-            //            pokemonUrls.append(String (result["url"]!))
-            
+            album.albumId = albumId
+            album.title = title
+            album.userId = String(userId)
+
+//            print(albumList)
+            albumList.append(album)
+//            print (albumList[0].title)
             albumsTitle.append(title)
         }
-        print (albumsTitle)
-        return Observable.just(albumsTitle)
+        
+//        print (albumList[3].title)
+        
+//        print (albumsTitle)
+//        return Observable.just(albumsTitle)
+
+        return Observable.just(albumList)
     }
 }
 

@@ -13,11 +13,8 @@ import RxCocoa
 
 class FirstTableViewController : UITableViewController {
 
-    private let albumApiService = AlbumApiService()
     private let albumViewModel = AlbumViewModel()
 
-    var titles : [String] = []
-    
     @IBOutlet var allAlbumsView: UITableView!
     
     override func viewDidLoad() {
@@ -25,9 +22,7 @@ class FirstTableViewController : UITableViewController {
         
         albumViewModel.albumList.asObservable()
         .subscribeNext { result in
-//            self.title = result[1]
-            print (result.count)
-            self.titles = result
+
         }
     }
    
@@ -39,8 +34,10 @@ class FirstTableViewController : UITableViewController {
         
         var tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! userCell
 
+        tableCell.title.text = albumViewModel.albumList.value[indexPath.row].title
+        tableCell.id.text = String(albumViewModel.albumList.value[indexPath.row].albumId!)
         
-        tableCell.title.text = albumViewModel.albumList.value[indexPath.row]
+//        tableCell.title.text = albumViewModel.albumList.value[indexPath.row]
 
         return tableCell
     }
