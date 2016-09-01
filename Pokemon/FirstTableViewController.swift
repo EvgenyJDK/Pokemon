@@ -30,6 +30,10 @@ class FirstTableViewController : UITableViewController {
             .subscribeNext({ resultUser in
             })
         .addDisposableTo(bag)
+        
+        
+        self.allAlbumsView.reloadData()
+
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +50,6 @@ class FirstTableViewController : UITableViewController {
         let usrId = Int(albumViewModel.albumList.value[indexPath.row].userId!)
         tableCell.userName.text = albumViewModel.userList.value[usrId!-1].name
         
-        self.allAlbumsView.reloadData()
         return tableCell
     }
 }
