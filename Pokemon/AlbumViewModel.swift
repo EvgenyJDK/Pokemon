@@ -13,25 +13,31 @@ import RxCocoa
 class AlbumViewModel {
     
     private let albumApiService = AlbumApiService()
-    
-//    let albumList : Variable <[String]> = Variable([""])
-    
+ 
     let albumList : Variable <[Album]> = Variable([])
+    let userList : Variable <[User]> = Variable([])
 
     private let bag = DisposeBag()
-    
-    
+ 
     
     init () {
-            
+        
         albumApiService.getAllAlbums()
-            .subscribe(onNext: { result in
-                self.albumList.value = result
-//                print (self.albumList.value)
+            .subscribe(onNext: { resultAlbum in
+                self.albumList.value = resultAlbum
                 },
-                onError: { error in
+                onError: { errorAlbum in
                     self.albumList.value = []
             }).addDisposableTo(bag)
         
+        
+        albumApiService.getUserName()
+            .subscribe(onNext: { (resultUser) in
+                self.userList.value = resultUser
+                print(self.userList.value[1].name)
+                }, onError: { errorUser in
+                    self.userList.value = []
+            })
+            .addDisposableTo(bag)
     }
 }

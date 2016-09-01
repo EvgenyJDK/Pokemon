@@ -14,32 +14,24 @@ import RxCocoa
 import RxSwift
 
 class AlbumApiService {
-  
-    
+
     
     //    let path = NSBundle.mainBundle().pathForResource("photos", ofType: "json")
     //    let data = NSData(contentsOfFile: path!)
     //    let json = NSJSONSerialization.JSONObjectWithData(data!, options: [])
 
-    //    let path = NSBundle.mainBundle().pathForResource("user", ofType: "json")
-    //    let data = NSData(contentsOfFile: path!)
-    //    let json = NSJSONSerialization.JSONObjectWithData(data!, options: [])
-
    
     func getAllAlbums () -> Observable<[Album]> {
+
+        let pathAlbums = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
+        let dataAlbums = NSData(contentsOfFile: pathAlbums!)
+        let jsonAlbums = try!NSJSONSerialization.JSONObjectWithData(dataAlbums!, options: [])
         
-        
-        let path = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
-        let data = NSData(contentsOfFile: path!)
-        let json = try!NSJSONSerialization.JSONObjectWithData(data!, options: [])
-        
-        print (json)
-        
-        var albumsTitle : [String] = []
+        print (jsonAlbums)
 
         var albumList : [Album] = []
         
-        for anItem in json as! [Dictionary <String, AnyObject>] {
+        for anItem in jsonAlbums as! [Dictionary <String, AnyObject>] {
             
             var album = Album()
             let albumId = anItem["id"] as! Int
@@ -49,40 +41,35 @@ class AlbumApiService {
             album.albumId = albumId
             album.title = title
             album.userId = String(userId)
-
-//            print(albumList)
             albumList.append(album)
-//            print (albumList[0].title)
-            albumsTitle.append(title)
         }
-        
-//        print (albumList[3].title)
-        
-//        print (albumsTitle)
-//        return Observable.just(albumsTitle)
-
         return Observable.just(albumList)
     }
+    
+    
+    func getUserName () -> Observable<[User]> {
+        
+        let pathUsers = NSBundle.mainBundle().pathForResource("users", ofType: "json")
+        let dataUsers = NSData(contentsOfFile: pathUsers!)
+        let jsonUsers = try!NSJSONSerialization.JSONObjectWithData(dataUsers!, options: [])
+        
+        var userList : [User] = []
+        
+        for anItem in jsonUsers as! [Dictionary <String, AnyObject>] {
+            
+            var user = User()
+            let userId = anItem["id"] as? Int
+            let userName = anItem["username"] as? String
+            
+            user.userId = userId
+            user.name = userName
+            userList.append(user)
+        }
+      return Observable.just(userList)
+    }
+    
+    
 }
 
-
-
-
-//    func getAllAlbums () -> Observable <String> {
-//
-//        var albums : [String] = []
-//
-//        let path = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
-//        let data = NSData(contentsOfFile: path!)
-//        let json = try!NSJSONSerialization.JSONObjectWithData(data!, options: [])
-//
-//        guard let result = json ["title"] as? String else {
-//            print ("Error")
-////            return ""
-//        }
-//
-//       print (result)
-//        return result
-//    }
 
 

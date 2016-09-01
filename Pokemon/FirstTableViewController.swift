@@ -20,10 +20,17 @@ class FirstTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        albumViewModel.albumList.asObservable()
+        let firstSequence = albumViewModel.albumList.asObservable()
         .subscribeNext { result in
 
         }
+        
+        let secondSequence = albumViewModel.userList.asObservable()
+            .subscribeNext({ resultUser in
+                print ("Hello")
+            })
+        
+         let bothSequence = Observable.of(firstSequence, secondSequence)
     }
    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,10 +39,14 @@ class FirstTableViewController : UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! userCell
+        var tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UserCell
 
         tableCell.title.text = albumViewModel.albumList.value[indexPath.row].title
         tableCell.id.text = String(albumViewModel.albumList.value[indexPath.row].albumId!)
+        
+        print (albumViewModel.userList.value[1].userName)
+        tableCell.userName.text = albumViewModel.userList.value[1].userName
+        
         
 //        tableCell.title.text = albumViewModel.albumList.value[indexPath.row]
 

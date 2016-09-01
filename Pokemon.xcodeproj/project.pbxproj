@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		584A83CA86632E3F9ADFFD71 /* Pods_PokemonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB6DE6021433C71BF56AB2A /* Pods_PokemonTests.framework */; };
 		5C3AE8E41D7834A6007D41BB /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3AE8E31D7834A6007D41BB /* Album.swift */; };
+		5C3AE8E61D7851A9007D41BB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3AE8E51D7851A9007D41BB /* User.swift */; };
 		5C3F8C3A1D76BE6D005BADCE /* PokemonPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F8C391D76BE6D005BADCE /* PokemonPreviewModel.swift */; };
 		5C3F8C3C1D76BE82005BADCE /* PokemonDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F8C3B1D76BE82005BADCE /* PokemonDetailsModel.swift */; };
 		5C3F8C431D76D61D005BADCE /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C3F8C401D76D61D005BADCE /* albums.json */; };
 		5C3F8C441D76D61D005BADCE /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C3F8C411D76D61D005BADCE /* photos.json */; };
 		5C3F8C451D76D61D005BADCE /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C3F8C421D76D61D005BADCE /* users.json */; };
-		5C3F8C491D76DD89005BADCE /* userCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F8C481D76DD89005BADCE /* userCell.swift */; };
+		5C3F8C491D76DD89005BADCE /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F8C481D76DD89005BADCE /* UserCell.swift */; };
 		5C3F8C4B1D76E143005BADCE /* FirstTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F8C4A1D76E143005BADCE /* FirstTableViewController.swift */; };
 		5C3F8C4D1D76E3C1005BADCE /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F8C4C1D76E3C1005BADCE /* SecondTableViewController.swift */; };
 		5C3F8C4F1D76E6FF005BADCE /* userLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3F8C4E1D76E6FF005BADCE /* userLikeCell.swift */; };
@@ -58,12 +59,13 @@
 		13843CAF8B67B23C2E93B9C0 /* Pods_PokemonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD5746E1E3FD72C0813BE72 /* Pods-PokemonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonUITests/Pods-PokemonUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C3AE8E31D7834A6007D41BB /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		5C3AE8E51D7851A9007D41BB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5C3F8C391D76BE6D005BADCE /* PokemonPreviewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonPreviewModel.swift; sourceTree = "<group>"; };
 		5C3F8C3B1D76BE82005BADCE /* PokemonDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailsModel.swift; sourceTree = "<group>"; };
 		5C3F8C401D76D61D005BADCE /* albums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = albums.json; sourceTree = "<group>"; };
 		5C3F8C411D76D61D005BADCE /* photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos.json; sourceTree = "<group>"; };
 		5C3F8C421D76D61D005BADCE /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
-		5C3F8C481D76DD89005BADCE /* userCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userCell.swift; sourceTree = "<group>"; };
+		5C3F8C481D76DD89005BADCE /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		5C3F8C4A1D76E143005BADCE /* FirstTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstTableViewController.swift; sourceTree = "<group>"; };
 		5C3F8C4C1D76E3C1005BADCE /* SecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
 		5C3F8C4E1D76E6FF005BADCE /* userLikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userLikeCell.swift; sourceTree = "<group>"; };
@@ -159,7 +161,7 @@
 		5C3F8C471D76DD5C005BADCE /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				5C3F8C481D76DD89005BADCE /* userCell.swift */,
+				5C3F8C481D76DD89005BADCE /* UserCell.swift */,
 				5C3F8C4A1D76E143005BADCE /* FirstTableViewController.swift */,
 				5C3F8C4C1D76E3C1005BADCE /* SecondTableViewController.swift */,
 				5C3F8C4E1D76E6FF005BADCE /* userLikeCell.swift */,
@@ -241,6 +243,7 @@
 			children = (
 				5C46070E1D743EA100FF9249 /* PokemonViewModel.swift */,
 				5C3F8C391D76BE6D005BADCE /* PokemonPreviewModel.swift */,
+				5C3AE8E51D7851A9007D41BB /* User.swift */,
 				5C3F8C3B1D76BE82005BADCE /* PokemonDetailsModel.swift */,
 				5C3F8C5A1D771BA9005BADCE /* AlbumViewModel.swift */,
 				5C3AE8E31D7834A6007D41BB /* Album.swift */,
@@ -518,11 +521,12 @@
 				5C3F8C4F1D76E6FF005BADCE /* userLikeCell.swift in Sources */,
 				5C46069F1D741C5900FF9249 /* ViewController.swift in Sources */,
 				5C3F8C3A1D76BE6D005BADCE /* PokemonPreviewModel.swift in Sources */,
+				5C3AE8E61D7851A9007D41BB /* User.swift in Sources */,
 				5C4606CE1D74208000FF9249 /* PokemonApiService.swift in Sources */,
 				5C46070F1D743EA100FF9249 /* PokemonViewModel.swift in Sources */,
 				5C3F8C571D76FD8B005BADCE /* AlbumPhotoCollectionViewCell.swift in Sources */,
 				5C3F8C3C1D76BE82005BADCE /* PokemonDetailsModel.swift in Sources */,
-				5C3F8C491D76DD89005BADCE /* userCell.swift in Sources */,
+				5C3F8C491D76DD89005BADCE /* UserCell.swift in Sources */,
 				5C3F8C531D76FAA0005BADCE /* AlbumApiService.swift in Sources */,
 				5C3F8C5B1D771BA9005BADCE /* AlbumViewModel.swift in Sources */,
 				5C3F8C4D1D76E3C1005BADCE /* SecondTableViewController.swift in Sources */,

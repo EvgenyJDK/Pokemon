@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class userCell : UITableViewCell {
+class UserCell : UITableViewCell {
     
 
     @IBOutlet weak var id: UILabel!
