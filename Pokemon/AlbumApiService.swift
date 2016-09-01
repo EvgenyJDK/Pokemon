@@ -67,8 +67,7 @@ class AlbumApiService {
         }
       return Observable.just(userList)
     }
-    
-    
+  
 }
 
 

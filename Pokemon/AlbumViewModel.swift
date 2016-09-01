@@ -30,9 +30,8 @@ class AlbumViewModel {
                     self.albumList.value = []
             }).addDisposableTo(bag)
         
-        
         albumApiService.getUserName()
-            .subscribe(onNext: { (resultUser) in
+            .subscribe(onNext: { resultUser in
                 self.userList.value = resultUser
                 print(self.userList.value[1].name)
                 }, onError: { errorUser in
