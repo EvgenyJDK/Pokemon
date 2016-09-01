@@ -73,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XRq-ON-ejM" customClass="userCell" customModule="Pokemon" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="XRq-ON-ejM" customClass="userCell" customModule="Pokemon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XRq-ON-ejM" id="AaC-4f-asP">
@@ -81,25 +81,25 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gp-lD-lv8">
-                                            <rect key="frame" x="51" y="11" width="108" height="21"/>
+                                            <rect key="frame" x="25" y="11" width="30" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cM-AQ-d4y">
-                                            <rect key="frame" x="160" y="11" width="34" height="21"/>
+                                            <rect key="frame" x="63" y="11" width="152" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mF-63-BbM">
-                                            <rect key="frame" x="271" y="11" width="45" height="21"/>
+                                            <rect key="frame" x="239" y="11" width="104" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KjE-ag-CbR">
-                                            <rect key="frame" x="499" y="6" width="51" height="31"/>
+                                            <rect key="frame" x="351" y="6" width="51" height="31"/>
                                             <connections>
                                                 <action selector="check:" destination="XRq-ON-ejM" eventType="valueChanged" id="g9h-7R-FIS"/>
                                             </connections>
@@ -143,7 +143,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c98-A1-89q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-208" y="110"/>
+            <point key="canvasLocation" x="-392" y="722"/>
         </scene>
         <!--Item-->
         <scene sceneID="EaP-WE-Pd4">
@@ -202,7 +202,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8W1-Ic-Eze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="508" y="110"/>
+            <point key="canvasLocation" x="472" y="714"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="eiQ-il-fyt">
@@ -219,7 +219,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="BS7-DC-xHZ" customClass="AlbumPhotoCollectionViewCell" customModule="Pokemon" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="188" height="182"/>
+                                <rect key="frame" x="0.0" y="0.0" width="188" height="182"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="188" height="182"/>
@@ -341,6 +341,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oya-DD-r2y"/>
+        <segue reference="w2P-KE-Vzl"/>
     </inferredMetricsTieBreakers>
 </document>

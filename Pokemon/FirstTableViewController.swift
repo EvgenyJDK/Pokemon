@@ -16,6 +16,8 @@ class FirstTableViewController : UITableViewController {
     private let albumApiService = AlbumApiService()
     private let albumViewModel = AlbumViewModel()
 
+    var titles : [String] = []
+    
     @IBOutlet var allAlbumsView: UITableView!
     
     override func viewDidLoad() {
@@ -23,23 +25,23 @@ class FirstTableViewController : UITableViewController {
         
         albumViewModel.albumList.asObservable()
         .subscribeNext { result in
-
-            self.title = result[1]
+//            self.title = result[1]
+            print (result.count)
+            self.titles = result
         }
+    }
+   
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return albumViewModel.albumList.value.count
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-//        
-//        override func tableView(<#T##tableView: UITableView##UITableView#>, numberOfRowsInSection: <#T##Int#>) -> Int {
-//            return 3
-//        }
-//        
-//        
-//        override func tableView(<#T##tableView: UITableView##UITableView#>, cellForRowAtIndexPath: <#T##NSIndexPath#>) -> UITableView  {
-//        
-//            let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-//            
-//            
-//        }
+        var tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! userCell
+
         
-  
+        tableCell.title.text = albumViewModel.albumList.value[indexPath.row]
+
+        return tableCell
     }
 }
