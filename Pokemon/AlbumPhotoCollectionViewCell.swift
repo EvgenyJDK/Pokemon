@@ -11,6 +11,7 @@ import UIKit
 class AlbumPhotoCollectionViewCell: UICollectionViewCell {
     
     
+    @IBOutlet weak var label: UILabel!
     
     @IBOutlet weak var imageViewLink: UIImageView!
     

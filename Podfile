@@ -24,7 +24,7 @@ pod 'AlamofireObjectMapper', '~> 3.0'
 pod 'RxSwift',    '~> 2.6.0'
 pod 'RxCocoa',    '2.6.0'
 pod 'RxAlamofire'
-
-
+pod 'SDWebImage', '~> 3.8'
+pod 'ImageLoader'
 
 end

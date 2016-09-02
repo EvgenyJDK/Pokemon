@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 class CollectionViewController: UICollectionViewController {
     
@@ -25,11 +26,15 @@ class CollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
         
-        var button = cell.viewWithTag(1) as! UILabel
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
         
-        button.text = Array [indexPath.row]
+      
+//        let button = cell.viewWithTag(1) as! UILabel
+//        
+//        button.text = Array [indexPath.row]
+        
+//        cell.v
         
         return cell
     }

@@ -10,11 +10,14 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import SDWebImage
+import ImageLoader
 
 class FirstTableViewController : UITableViewController {
     
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
+    private let photoCell = AlbumPhotoCollectionViewCell()
     
     @IBOutlet var allAlbumsView: UITableView!
     
@@ -44,12 +47,37 @@ class FirstTableViewController : UITableViewController {
         
         let tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UserCell
         
-        tableCell.title.text = albumViewModel.albumList.value[indexPath.row].title
-        tableCell.id.text = String(albumViewModel.albumList.value[indexPath.row].albumId!)
+        let album = albumViewModel.albumList.value[indexPath.row]
         
-        let usrId = Int(albumViewModel.albumList.value[indexPath.row].userId!)
-        tableCell.userName.text = albumViewModel.userList.value[usrId!-1].name
-        
+        tableCell.title.text = album.title
+        tableCell.id.text = String(album.albumId!)
+        tableCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
+
         return tableCell
     }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("showAlbumPhotos", sender: self)
+    }
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+      
+        if segue.identifier == "showAlbumPhotos" {
+            
+                        print ("transition")
+            
+//            let url = "http://cs623421.vk.me/623421649/1f74a/d9ACLtsR5DM.jpg"
+//            let url = "http://cs623421.vk.me/623421649/1f74a/d9ACLtsR5DM.jpg"
+            
+        photoCell.imageViewLink.load("http://placehold.it/600/b0f7cc")
+        photoCell.imageViewLink.sd_setImageWithURL(NSURL(string: "http://placehold.it/600/b0f7cc")!)
+
+
+        }
+
+    }
+    
+    
 }

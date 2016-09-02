@@ -25,8 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var resultField: UITextField!
     
     @IBOutlet weak var resultIdField: UITextField!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +39,7 @@ class ViewController: UIViewController {
             .subscribeNext { [weak self] (name : String) in
             self!.resultField.text = name
         }
+        .addDisposableTo(bag)
         
         
         //        dictionaryModel.translatedText.asObservable()
