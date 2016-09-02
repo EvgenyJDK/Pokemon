@@ -13,11 +13,27 @@ import RxCocoa
 class AlbumViewModel {
     
     private let albumApiService = AlbumApiService()
- 
+    private let bag = DisposeBag()
+    
     let albumList : Variable <[Album]> = Variable([])
     let userList : Variable <[User]> = Variable([])
 
-    private let bag = DisposeBag()
+
+    var indexRow : Observable<Int>? {
+  
+        didSet {
+            print(indexRow)
+            print ("before didset")
+            indexRow?.subscribe(onNext: { albumId in
+                
+                print("in didset =\(albumId)")
+                self.albumApiService.getAlbumDetails(albumId)
+                
+                })
+ 
+            print("Hello")
+        }
+    }
  
     
     init () {

@@ -34,12 +34,13 @@ class FirstTableViewController : UITableViewController {
             .subscribeNext({ resultUser in
             })
         .addDisposableTo(bag)
-        
-        
-
-
+  
+//        albumViewModel.indexRow?.asObservable()
+//        .subscribeNext({ resultId in
+// 
+//        })
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albumViewModel.albumList.value.count
     }
@@ -59,26 +60,19 @@ class FirstTableViewController : UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("showAlbumPhotos", sender: self)
-    }
 
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        self.albumViewModel.indexRow = Observable.just(indexPath.row)
+        print(indexPath.row)
+        
+        self.performSegueWithIdentifier("showAlbumPhotos", sender: nil)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
       
-        if segue.identifier == "showAlbumPhotos" {
-            
-                        print ("transition")
-            
-//            let url = "http://cs623421.vk.me/623421649/1f74a/d9ACLtsR5DM.jpg"
-//            let url = "http://cs623421.vk.me/623421649/1f74a/d9ACLtsR5DM.jpg"
-            
-        photoCell.imageViewLink.load("http://placehold.it/600/b0f7cc")
-        photoCell.imageViewLink.sd_setImageWithURL(NSURL(string: "http://placehold.it/600/b0f7cc")!)
-
-
-        }
-
-    }
-    
-    
+        let photoController : CollectionViewController = segue.destinationViewController as! CollectionViewController
+        
+                print ("transition")
+         }
+        
 }

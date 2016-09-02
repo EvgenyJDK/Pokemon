@@ -67,6 +67,29 @@ class AlbumApiService {
         }
       return Observable.just(userList)
     }
+    
+    func getAlbumDetails (albumId : Int) -> Observable<[Photo]> {
+        
+        print("IN Api service")
+        
+        let pathPhotos = NSBundle.mainBundle().pathForResource("photos", ofType: "json")
+        let dataPhotos = NSData(contentsOfFile: pathPhotos!)
+        let jsonPhotos = try!NSJSONSerialization.JSONObjectWithData(dataPhotos!, options: [])
+        
+        var albumDetails : [Photo] = []
+        
+        for anItem in jsonPhotos as! [Dictionary <String, AnyObject>] {
+            
+            let photo = Photo()
+            let photoUrl = anItem["url"] as? String
+        
+            photo.url = photoUrl
+            print(photoUrl)
+            albumDetails.append(photo)
+          
+        }
+      return Observable.just(albumDetails)
+    }
   
 }
 
