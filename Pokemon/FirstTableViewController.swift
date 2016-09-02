@@ -35,10 +35,7 @@ class FirstTableViewController : UITableViewController {
             })
         .addDisposableTo(bag)
   
-//        albumViewModel.indexRow?.asObservable()
-//        .subscribeNext({ resultId in
-// 
-//        })
+
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,8 +59,16 @@ class FirstTableViewController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        self.albumViewModel.indexRow = Observable.just(indexPath.row)
+//        self.albumViewModel.indexRow = Observable.just(indexPath.row)
         print(indexPath.row)
+        
+                albumViewModel.indexRow.asObservable()
+                .subscribeNext({ resultId in
+        
+                })
+        
+        
+        
         
         self.performSegueWithIdentifier("showAlbumPhotos", sender: nil)
     }

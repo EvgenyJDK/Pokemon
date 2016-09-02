@@ -19,20 +19,19 @@ class AlbumViewModel {
     let userList : Variable <[User]> = Variable([])
 
 
-    var indexRow : Observable<Int>? {
-  
-        didSet {
-            print(indexRow)
-            print ("before didset")
-            indexRow?.subscribe(onNext: { albumId in
-                
-                print("in didset =\(albumId)")
-                self.albumApiService.getAlbumDetails(albumId)
-                
-                })
- 
-            print("Hello")
-        }
+//    var indexRow : Observable<Int>? {
+     var indexRow : Variable<PhotoViewModel?> {
+        
+//        didSet {
+//            print(indexRow)
+//            print ("before didset")
+//            indexRow.subscribe(onNext: { albumId in
+//                
+//                print("in didset =\(albumId)")
+//                self.albumApiService.getAlbumDetails(albumId)
+//                })
+//            print("Hello")
+//        }
     }
  
     
