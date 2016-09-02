@@ -26,6 +26,7 @@ class FirstTableViewController : UITableViewController {
         
         albumViewModel.albumList.asObservable()
             .subscribeNext { result in
+                self.allAlbumsView.reloadData()
         }
         .addDisposableTo(bag)
         
@@ -35,7 +36,7 @@ class FirstTableViewController : UITableViewController {
         .addDisposableTo(bag)
         
         
-        self.allAlbumsView.reloadData()
+
 
     }
     
