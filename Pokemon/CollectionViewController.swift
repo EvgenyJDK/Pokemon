@@ -23,8 +23,6 @@ class CollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var image: UIImageView!
 
-//    var Array = ["sdsada", "sdasd", "sadasd", "dsfdsfdsf"]
-    
     override func viewDidLoad() {
         
 //        let width = (CGRectGetWidth(collectionView.frame))
@@ -43,18 +41,15 @@ class CollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return Array.count
          return (photoViewModel?.photo.value.count)!
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
  
         let photoCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! AlbumPhotoCollectionViewCell
 
 //        print ("CELL INDEX PATH ITEM = \(photoViewModel?.photo.value[indexPath.item])")
 //        print ("CELL = \(photoViewModel?.photo.value[indexPath.item].url)")
-        
         
         if let url = photoViewModel?.photo.value[indexPath.item].url {
             print(url)
@@ -66,12 +61,9 @@ class CollectionViewController: UICollectionViewController {
         
         let title = photoViewModel?.photo.value[indexPath.item].title
         print((title)!)
-       let t = photoCell.viewWithTag(1) as! UILabel
-        t.text = photoViewModel?.photo.value[indexPath.item].title
-        
-//        let button = cell.viewWithTag(1) as! UILabel
-//        button.text = Array [indexPath.row]
-        
+        let label = photoCell.viewWithTag(1) as! UILabel
+        label.text = photoViewModel?.photo.value[indexPath.item].title
+
         return photoCell
     }
     
