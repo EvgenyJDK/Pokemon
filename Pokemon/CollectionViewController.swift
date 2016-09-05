@@ -17,7 +17,10 @@ class CollectionViewController: UICollectionViewController {
     
     private let photoCell = AlbumPhotoCollectionViewCell()
     private let bag = DisposeBag()
-    private let leftAndRightPaddings : CGFloat = 8.0
+    
+//    private let leftAndRightPaddings : CGFloat = 32.0
+//    private let numberofItemsPerRow : CGFloat = 3.0
+//    private let heightAdjustment : CGFloat = 30.0
     
     var photoViewModel : PhotoViewModel?
     
@@ -25,7 +28,9 @@ class CollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         
-//        let width = (CGRectGetWidth(collectionView.frame))
+//        let width = (CGRectGetWidth(collectionView!.frame)) - leftAndRightPaddings / numberofItemsPerRow
+//        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+//        layout.itemSize = CGSizeMake(width, heightAdjustment)
         
         photoViewModel?.photo.asObservable()
             .subscribeNext({ (photo :[Photo]) in
@@ -36,9 +41,9 @@ class CollectionViewController: UICollectionViewController {
     }
     
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 3
-    }
+//    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          return (photoViewModel?.photo.value.count)!
@@ -58,9 +63,7 @@ class CollectionViewController: UICollectionViewController {
         else {
         print ("hello")
         }
-        
-        let title = photoViewModel?.photo.value[indexPath.item].title
-        print((title)!)
+
         let label = photoCell.viewWithTag(1) as! UILabel
         label.text = photoViewModel?.photo.value[indexPath.item].title
 

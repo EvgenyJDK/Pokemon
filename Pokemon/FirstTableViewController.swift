@@ -16,8 +16,6 @@ import ImageLoader
 class FirstTableViewController : UITableViewController {
     
     private let albumViewModel = AlbumViewModel()
-//    private let photoViewModel = PhotoViewModel()
-    
     private let bag = DisposeBag()
     private let photoCell = AlbumPhotoCollectionViewCell()
     
@@ -36,8 +34,6 @@ class FirstTableViewController : UITableViewController {
             .subscribeNext({ resultUser in
             })
         .addDisposableTo(bag)
-  
-
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,46 +53,19 @@ class FirstTableViewController : UITableViewController {
         return tableCell
     }
     
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-//        self.albumViewModel.indexRow = Observable.just(indexPath.row)
-        print(indexPath.row)
         albumViewModel.rowIndexChanged(indexPath.row)
-        
-//        albumViewModel.indexRow.asObservable()
-//            .subscribeNext({ resultId in
-////            self.photoViewModel. = albumViewModel
-//            })
-
         
         self.performSegueWithIdentifier("showAlbumPhotos", sender: nil)
     }
-    
-    
-    
- 
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-//        self.albumViewModel.indexRow = Observable.just(indexPath.row)
-//        print(indexPath.row)
-//   
-//        self.performSegueWithIdentifier("showAlbumPhotos", sender: nil)
-//    }
-
-    
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
       
         let photoController : CollectionViewController = segue.destinationViewController as! CollectionViewController
         
         photoController.photoViewModel = self.albumViewModel.photoViewModel.value
-//        print(self.albumViewModel.photoViewModel.value?.photo.value)
         print ("transition")
          }
-        
 }
