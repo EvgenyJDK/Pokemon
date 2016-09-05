@@ -82,9 +82,10 @@ class AlbumApiService {
             
             let photo = Photo()
             let photoUrl = anItem["url"] as? String
+            let photoTitle = anItem ["title"] as? String
         
             photo.url = photoUrl
-            print(photoUrl)
+            photo.title = photoTitle
             albumDetails.append(photo)
           
         }

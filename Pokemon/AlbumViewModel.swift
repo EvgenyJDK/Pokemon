@@ -18,28 +18,18 @@ class AlbumViewModel {
     let albumList : Variable <[Album]> = Variable([])
     let userList : Variable <[User]> = Variable([])
 
+    var albums : Variable<[Album]> = Variable([])
+    var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
 
-//    var indexRow : Observable<Int>? {
-     var indexRow : Variable<PhotoViewModel?> {
-        
-//        didSet {
-//            print(indexRow)
-//            print ("before didset")
-//            indexRow.subscribe(onNext: { albumId in
-//                
-//                print("in didset =\(albumId)")
-//                self.albumApiService.getAlbumDetails(albumId)
-//                })
-//            print("Hello")
-//        }
-    }
- 
     
+   
     init () {
         
         albumApiService.getAllAlbums()
             .subscribe(onNext: { resultAlbum in
                 self.albumList.value = resultAlbum
+                print ("INIT = \(self.albumList.value)")
+                
                 },
                 onError: { errorAlbum in
                     self.albumList.value = []
@@ -53,4 +43,31 @@ class AlbumViewModel {
             })
             .addDisposableTo(bag)
     }
+
+    func rowIndexChanged (rowIndex : Int) {
+        
+        print ("rowIndexChanged = \(self.albumList.value[rowIndex].title)")
+        print ("in rowindex = \(rowIndex)")
+        
+        self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
+        print (self.photoViewModel.value)
+    }
+
+    
+    
+    //    var indexRow : Observable<Int>? {
+    //        didSet {
+    //            print(indexRow)
+    //            print ("before didset")
+    //            indexRow?.subscribe(onNext: { albumId in
+    //
+    //                print("in didset =\(albumId)")
+    //                self.albumApiService.getAlbumDetails(albumId)
+    //                })
+    //            print("Hello")
+    //        }
+    //    }
+    
+    
+    
 }

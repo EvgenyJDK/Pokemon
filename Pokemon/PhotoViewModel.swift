@@ -15,16 +15,21 @@ class PhotoViewModel {
     private let albumApiService = AlbumApiService()
     private let bag = DisposeBag()
     
-    let albumList : Variable <[Album]> = Variable([])
-    let userList : Variable <[User]> = Variable([])
+    var albumDetails : Variable <Album> = Variable(Album())
+    var photo : Variable <[Photo]> = Variable([])
     
-    
-    
-//    let albumsPhotoImageLink : Variable <[Album]> = Variable([])
-//    let userList : Variable <[User]> = Variable([])
-
-    
-    
-    
-    
+    init (album : Album) {
+       
+        print ("PHOTO VIEW MODEL = \(album.title)")
+        self.albumDetails.value = album
+        self.albumDetails.asObservable()
+            .flatMapLatest { (albumDetails : Album) -> Observable<[Photo]> in
+                return self.albumApiService.getAlbumDetails(album.albumId!)
+            }
+            .subscribe(onNext: { (photo : [Photo]) in
+                self.photo.value = photo
+                }
+            ).addDisposableTo(bag)
+    }
 }
+    
