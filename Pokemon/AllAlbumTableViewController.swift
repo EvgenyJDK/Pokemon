@@ -16,8 +16,8 @@ class AllAlbumTableViewController: UITableViewController {
     
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
-//    private let photoCell = AlbumPhotoCollectionViewCell()
     private let photoCell = PhotoCollectionViewCell()
+    private let albumCell = AllAlbumCell()
     
     @IBOutlet var allAlbumsView: UITableView!
     
@@ -34,6 +34,12 @@ class AllAlbumTableViewController: UITableViewController {
             .subscribeNext({ resultUser in
             })
             .addDisposableTo(bag)
+        
+        albumViewModel.like?.asObservable()
+            .subscribeNext({ like in
+            print ("All switch are false")
+        })
+
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,6 +56,17 @@ class AllAlbumTableViewController: UITableViewController {
         tableCell.id.text = String(album.albumId!)
         tableCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
         
+//        tableCell.checkSwitch.on = false
+//        albumCell.checkSwitch.on = false
+        
+        tableCell.checkSwitch.rx_value.asObservable()
+            .subscribeNext {(<#T##onNext: (Bool) -> Void##(Bool) -> Void#>) in
+             self.albumViewModel.getLikedAlbums (indexPath.row)
+        }
+        .addDisposableTo(bag)
+        
+        
+        
         return tableCell
     }
     
@@ -57,7 +74,7 @@ class AllAlbumTableViewController: UITableViewController {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         albumViewModel.initPhotoModelByRowIndex(indexPath.row)
-        
+
         self.performSegueWithIdentifier("showAlbumPhotos", sender: nil)
     }
     

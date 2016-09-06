@@ -18,7 +18,14 @@ class AllAlbumCell: UITableViewCell {
     
     @IBOutlet weak var userName: UILabel!
     
+    @IBOutlet weak var checkSwitch: UISwitch!
+    
     @IBAction func check(sender: AnyObject) {
+        
+        
+//        checkSwitch.on = false
+//            (sender as! UISwitch).on
+//        dupSwitch.on = (sender as UISwitch).on
     }
     
 }

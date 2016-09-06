@@ -14,7 +14,7 @@ import ImageLoader
 
 class PhotoCollectionViewController : UICollectionViewController {
     
-    private let photoCell = PhotoCollectionViewCell()
+//    private let photoCell = PhotoCollectionViewCell()
     private let bag = DisposeBag()
     
     //    private let leftAndRightPaddings : CGFloat = 32.0

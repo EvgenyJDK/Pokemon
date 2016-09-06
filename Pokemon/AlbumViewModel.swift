@@ -18,8 +18,11 @@ class AlbumViewModel {
     let albumList : Variable <[Album]> = Variable([])
     let userList : Variable <[User]> = Variable([])
 
-    var albums : Variable<[Album]> = Variable([])
+//    var albums : Variable<[Album]> = Variable([])
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
+    
+//    var like : Variable <[Bool]> = Variable([])
+  
 
     init () {
         
@@ -46,6 +49,32 @@ class AlbumViewModel {
         self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
         print (self.photoViewModel.value)
     }
+    
+
+    var likedAlbums : Variable <[LikedAlbumViewModel]> = Variable([])
+ 
+    
+    func  getLikedAlbums(rowIndex : Int) {
+        print(rowIndex)
+
+        
+    }
+ 
+    
+    
+        var like : Observable <Bool>? {
+            didSet {
+                like?.subscribe(onNext: { (like) in
+                    print (like)
+//                    self.albumApiService.
+                    }
+                ).addDisposableTo(bag)
+            }
+//            return Observable.just(false)
+        }
+  
+
+    
     
     //    var indexRow : Observable<Int>? {
     //        didSet {

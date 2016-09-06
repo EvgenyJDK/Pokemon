@@ -124,6 +124,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="checkSwitch" destination="KjE-ag-CbR" id="817-i0-qhD"/>
                                     <outlet property="id" destination="5gp-lD-lv8" id="Pqv-zY-wbi"/>
                                     <outlet property="title" destination="7cM-AQ-d4y" id="m4g-oV-BXB"/>
                                     <outlet property="userName" destination="8mF-63-BbM" id="gD7-hy-br6"/>
@@ -360,6 +361,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oya-DD-r2y"/>
+        <segue reference="w2P-KE-Vzl"/>
     </inferredMetricsTieBreakers>
 </document>

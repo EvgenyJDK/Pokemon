@@ -26,13 +26,14 @@ class AlbumApiService {
         for anItem in jsonAlbums as! [Dictionary <String, AnyObject>] {
             
             let album = Album()
-            let albumId = anItem["id"] as! Int
-            let title = anItem["title"] as! String
+            let albumId = anItem ["id"] as! Int
+            let title = anItem ["title"] as! String
             let userId = anItem ["userId"] as! Int
             
             album.albumId = albumId
             album.title = title
             album.userId = String(userId)
+            album.like = false
             albumList.append(album)
         }
         return Observable.just(albumList)

@@ -35,6 +35,7 @@
 		5C60D0211D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */; };
 		5C60D0231D7EDD5C008A3BB3 /* AllAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */; };
 		5C60D0261D7EDF25008A3BB3 /* LikedAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0251D7EDF25008A3BB3 /* LikedAlbumCell.swift */; };
+		5C60D0281D7F1241008A3BB3 /* LikedAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0271D7F1241008A3BB3 /* LikedAlbumViewModel.swift */; };
 		CF4765F7C49E35D3958E503E /* Pods_Pokemon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15ECE990812906990AC844 /* Pods_Pokemon.framework */; };
 		DBD18C5025F5D0D943D1D5CC /* Pods_PokemonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13843CAF8B67B23C2E93B9C0 /* Pods_PokemonUITests.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +94,7 @@
 		5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAlbumCell.swift; sourceTree = "<group>"; };
 		5C60D0251D7EDF25008A3BB3 /* LikedAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedAlbumCell.swift; sourceTree = "<group>"; };
+		5C60D0271D7F1241008A3BB3 /* LikedAlbumViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedAlbumViewModel.swift; sourceTree = "<group>"; };
 		6D15ECE990812906990AC844 /* Pods_Pokemon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokemon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6AE1C3E0796FEAD3709158 /* Pods-PokemonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonUITests/Pods-PokemonUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B78CCC1EA8767652B4E65B12 /* Pods-Pokemon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pokemon/Pods-Pokemon.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,8 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */,
-				5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */,
 				5C60D0251D7EDF25008A3BB3 /* LikedAlbumCell.swift */,
+				5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -199,10 +201,10 @@
 			children = (
 				5C4606CC1D741F4E00FF9249 /* api */,
 				5C3F8C3F1D76D61D005BADCE /* data */,
-				5C60D0161D7EB1F8008A3BB3 /* viewModels */,
 				5C60D0141D7EB1D6008A3BB3 /* controllers */,
-				5C3F8C471D76DD5C005BADCE /* ui */,
 				5C46070D1D743E7E00FF9249 /* model */,
+				5C3F8C471D76DD5C005BADCE /* ui */,
+				5C60D0161D7EB1F8008A3BB3 /* viewModels */,
 				5C46069C1D741C5900FF9249 /* AppDelegate.swift */,
 				5C4606A01D741C5900FF9249 /* Main.storyboard */,
 				5C4606CA1D741D4600FF9249 /* Podfile */,
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				5C3F8C5A1D771BA9005BADCE /* AlbumViewModel.swift */,
+				5C60D0271D7F1241008A3BB3 /* LikedAlbumViewModel.swift */,
 				5C4B040B1D798BAD0099F514 /* PhotoViewModel.swift */,
 				5C3F8C3B1D76BE82005BADCE /* PokemonDetailsModel.swift */,
 				5C3F8C391D76BE6D005BADCE /* PokemonPreviewModel.swift */,
@@ -549,6 +552,7 @@
 				5C60D0211D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift in Sources */,
 				5C3F8C3C1D76BE82005BADCE /* PokemonDetailsModel.swift in Sources */,
 				5C60D01A1D7EB764008A3BB3 /* AllAlbumTableViewController.swift in Sources */,
+				5C60D0281D7F1241008A3BB3 /* LikedAlbumViewModel.swift in Sources */,
 				5C3F8C531D76FAA0005BADCE /* AlbumApiService.swift in Sources */,
 				5C4B040E1D79AE650099F514 /* Photo.swift in Sources */,
 				5C3F8C5B1D771BA9005BADCE /* AlbumViewModel.swift in Sources */,
