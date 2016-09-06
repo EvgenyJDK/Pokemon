@@ -166,10 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				5C3F8C481D76DD89005BADCE /* UserCell.swift */,
-				5C3F8C4A1D76E143005BADCE /* FirstTableViewController.swift */,
-				5C3F8C4C1D76E3C1005BADCE /* SecondTableViewController.swift */,
 				5C3F8C4E1D76E6FF005BADCE /* userLikeCell.swift */,
-				5C3F8C501D76E99D005BADCE /* CollectionViewController.swift */,
 				5C3F8C561D76FD8B005BADCE /* AlbumPhotoCollectionViewCell.swift */,
 			);
 			name = ui;
@@ -200,12 +197,13 @@
 		5C46069B1D741C5900FF9249 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
-				5C3F8C471D76DD5C005BADCE /* ui */,
-				5C3F8C3F1D76D61D005BADCE /* data */,
-				5C46070D1D743E7E00FF9249 /* model */,
 				5C4606CC1D741F4E00FF9249 /* api */,
+				5C3F8C3F1D76D61D005BADCE /* data */,
+				5C60D0161D7EB1F8008A3BB3 /* viewModels */,
+				5C60D0141D7EB1D6008A3BB3 /* controllers */,
+				5C3F8C471D76DD5C005BADCE /* ui */,
+				5C46070D1D743E7E00FF9249 /* model */,
 				5C46069C1D741C5900FF9249 /* AppDelegate.swift */,
-				5C46069E1D741C5900FF9249 /* ViewController.swift */,
 				5C4606A01D741C5900FF9249 /* Main.storyboard */,
 				5C4606CA1D741D4600FF9249 /* Podfile */,
 				5C4606A31D741C5900FF9249 /* Assets.xcassets */,
@@ -236,8 +234,8 @@
 		5C4606CC1D741F4E00FF9249 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				5C4606CD1D74208000FF9249 /* PokemonApiService.swift */,
 				5C3F8C521D76FAA0005BADCE /* AlbumApiService.swift */,
+				5C4606CD1D74208000FF9249 /* PokemonApiService.swift */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -245,16 +243,34 @@
 		5C46070D1D743E7E00FF9249 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				5C46070E1D743EA100FF9249 /* PokemonViewModel.swift */,
-				5C4B040D1D79AE650099F514 /* Photo.swift */,
-				5C3F8C391D76BE6D005BADCE /* PokemonPreviewModel.swift */,
-				5C3AE8E51D7851A9007D41BB /* User.swift */,
-				5C3F8C3B1D76BE82005BADCE /* PokemonDetailsModel.swift */,
-				5C3F8C5A1D771BA9005BADCE /* AlbumViewModel.swift */,
 				5C3AE8E31D7834A6007D41BB /* Album.swift */,
-				5C4B040B1D798BAD0099F514 /* PhotoViewModel.swift */,
+				5C4B040D1D79AE650099F514 /* Photo.swift */,
+				5C3AE8E51D7851A9007D41BB /* User.swift */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		5C60D0141D7EB1D6008A3BB3 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C3F8C4A1D76E143005BADCE /* FirstTableViewController.swift */,
+				5C3F8C4C1D76E3C1005BADCE /* SecondTableViewController.swift */,
+				5C3F8C501D76E99D005BADCE /* CollectionViewController.swift */,
+				5C46069E1D741C5900FF9249 /* ViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		5C60D0161D7EB1F8008A3BB3 /* viewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5C3F8C5A1D771BA9005BADCE /* AlbumViewModel.swift */,
+				5C4B040B1D798BAD0099F514 /* PhotoViewModel.swift */,
+				5C3F8C3B1D76BE82005BADCE /* PokemonDetailsModel.swift */,
+				5C3F8C391D76BE6D005BADCE /* PokemonPreviewModel.swift */,
+				5C46070E1D743EA100FF9249 /* PokemonViewModel.swift */,
+			);
+			name = viewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
