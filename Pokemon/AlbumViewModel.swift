@@ -21,15 +21,12 @@ class AlbumViewModel {
     var albums : Variable<[Album]> = Variable([])
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
 
-    
-   
     init () {
         
         albumApiService.getAllAlbums()
             .subscribe(onNext: { resultAlbum in
                 self.albumList.value = resultAlbum
                 print ("INIT = \(self.albumList.value)")
-                
                 },
                 onError: { errorAlbum in
                     self.albumList.value = []
@@ -44,16 +41,11 @@ class AlbumViewModel {
             .addDisposableTo(bag)
     }
 
-    func rowIndexChanged (rowIndex : Int) {
-        
-        print ("in rowindex = \(rowIndex)")
-        print ("rowIndexChangedTitle = \(self.albumList.value[rowIndex].title)")
+    func initPhotoModelByRowIndex (rowIndex : Int) {
         
         self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
         print (self.photoViewModel.value)
     }
-
-    
     
     //    var indexRow : Observable<Int>? {
     //        didSet {
@@ -67,7 +59,4 @@ class AlbumViewModel {
     //            print("Hello")
     //        }
     //    }
-    
-    
-    
 }

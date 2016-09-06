@@ -14,21 +14,13 @@ import RxCocoa
 import RxSwift
 
 class AlbumApiService {
-
     
-    //    let path = NSBundle.mainBundle().pathForResource("photos", ofType: "json")
-    //    let data = NSData(contentsOfFile: path!)
-    //    let json = NSJSONSerialization.JSONObjectWithData(data!, options: [])
-
-   
     func getAllAlbums () -> Observable<[Album]> {
-
+        
         let pathAlbums = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
         let dataAlbums = NSData(contentsOfFile: pathAlbums!)
         let jsonAlbums = try!NSJSONSerialization.JSONObjectWithData(dataAlbums!, options: [])
         
-        print (jsonAlbums)
-
         var albumList : [Album] = []
         
         for anItem in jsonAlbums as! [Dictionary <String, AnyObject>] {
@@ -65,12 +57,10 @@ class AlbumApiService {
             user.name = userName
             userList.append(user)
         }
-      return Observable.just(userList)
+        return Observable.just(userList)
     }
     
     func getAlbumDetails (albumId : Int) -> Observable<[Photo]> {
-        
-        print("IN Api service")
         
         let pathPhotos = NSBundle.mainBundle().pathForResource("photos", ofType: "json")
         let dataPhotos = NSData(contentsOfFile: pathPhotos!)
@@ -84,19 +74,15 @@ class AlbumApiService {
             let photoAlbumId = anItem ["albumId"] as? Int
             let photoUrl = anItem["url"] as? String
             let photoTitle = anItem ["title"] as? String
-        
-            if photoAlbumId == albumId {
             
-            photo.url = photoUrl
-            photo.title = photoTitle
+            if photoAlbumId == albumId {
+                photo.url = photoUrl
+                photo.title = photoTitle
                 albumDetails.append(photo)}
-            else {}
-               
-          
+            else { print ("Album doesn't match with request")}
         }
-      return Observable.just(albumDetails)
+        return Observable.just(albumDetails)
     }
-  
 }
 
 

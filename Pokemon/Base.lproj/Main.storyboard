@@ -84,13 +84,13 @@
         <!--Item-->
         <scene sceneID="sIs-9x-wcc">
             <objects>
-                <tableViewController id="RnW-MB-AaE" customClass="FirstTableViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RnW-MB-AaE" customClass="AllAlbumTableViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Lz-8t-TkR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="XRq-ON-ejM" customClass="UserCell" customModule="Pokemon" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="XRq-ON-ejM" customClass="AllAlbumCell" customModule="Pokemon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XRq-ON-ejM" id="AaC-4f-asP">
@@ -118,15 +118,15 @@
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KjE-ag-CbR">
                                             <rect key="frame" x="351" y="6" width="51" height="31"/>
                                             <connections>
-                                                <action selector="check:" destination="XRq-ON-ejM" eventType="valueChanged" id="g9h-7R-FIS"/>
+                                                <action selector="check:" destination="XRq-ON-ejM" eventType="valueChanged" id="Nho-SQ-S5J"/>
                                             </connections>
                                         </switch>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="id" destination="5gp-lD-lv8" id="VXF-Al-yRq"/>
-                                    <outlet property="title" destination="7cM-AQ-d4y" id="ogA-d4-dOH"/>
-                                    <outlet property="userName" destination="8mF-63-BbM" id="kba-Gf-81m"/>
+                                    <outlet property="id" destination="5gp-lD-lv8" id="Pqv-zY-wbi"/>
+                                    <outlet property="title" destination="7cM-AQ-d4y" id="m4g-oV-BXB"/>
+                                    <outlet property="userName" destination="8mF-63-BbM" id="gD7-hy-br6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -166,13 +166,13 @@
         <!--Item-->
         <scene sceneID="EaP-WE-Pd4">
             <objects>
-                <tableViewController id="hog-Lk-8Pl" customClass="SecondTableViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="hog-Lk-8Pl" customClass="LikedAlbumTableViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Gco-RK-Afl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JqC-7S-LKs" customClass="UserLikeCell" customModule="Pokemon" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JqC-7S-LKs" customClass="LikedAlbumCell" customModule="Pokemon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JqC-7S-LKs" id="GAx-eg-h1X">
@@ -200,9 +200,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="idLike" destination="ork-pj-ESk" id="HuH-xd-Yjm"/>
-                                    <outlet property="nameLike" destination="xxL-9Y-JjX" id="0w0-vx-xCt"/>
-                                    <outlet property="titleLike" destination="BU9-DW-UKr" id="fgJ-0d-QVw"/>
+                                    <outlet property="idLike" destination="ork-pj-ESk" id="COK-7v-8Ri"/>
+                                    <outlet property="nameLike" destination="xxL-9Y-JjX" id="YiW-YV-RW5"/>
+                                    <outlet property="titleLike" destination="BU9-DW-UKr" id="bh0-nV-1vJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -214,18 +214,18 @@
                     <tabBarItem key="tabBarItem" title="Item" id="Haz-Uh-rtp"/>
                     <navigationItem key="navigationItem" id="uYs-Qm-3Sq"/>
                     <connections>
-                        <outlet property="likesAlbumsView" destination="Gco-RK-Afl" id="gdm-wE-qg6"/>
+                        <outlet property="LikedAlbumView" destination="Gco-RK-Afl" id="CWG-Dp-OgA"/>
                         <segue destination="lvo-gc-n1P" kind="show" id="oya-DD-r2y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8W1-Ic-Eze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144" y="378"/>
+            <point key="canvasLocation" x="144" y="384"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Photo Collection View Controller-->
         <scene sceneID="eiQ-il-fyt">
             <objects>
-                <collectionViewController id="lvo-gc-n1P" customClass="CollectionViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="lvo-gc-n1P" customClass="PhotoCollectionViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pCa-X2-hPX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -236,7 +236,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="BS7-DC-xHZ" customClass="AlbumPhotoCollectionViewCell" customModule="Pokemon" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="BS7-DC-xHZ" customClass="PhotoCollectionViewCell" customModule="Pokemon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="125" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -257,8 +257,8 @@
                                 </view>
                                 <color key="backgroundColor" red="0.19296713060000001" green="0.77685358689999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="imageViewLink" destination="hcN-rm-QPT" id="ixf-bS-xFO"/>
-                                    <outlet property="label" destination="g6B-t6-2Th" id="SOw-IK-EoG"/>
+                                    <outlet property="imageViewLink" destination="hcN-rm-QPT" id="ja0-YY-bdq"/>
+                                    <outlet property="label" destination="g6B-t6-2Th" id="EOd-aX-qlJ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
