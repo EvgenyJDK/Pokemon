@@ -64,6 +64,19 @@
             </objects>
             <point key="canvasLocation" x="-1217" y="-1257"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6fH-lc-aGt">
+            <objects>
+                <navigationController id="pkR-Su-NAg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vPj-oj-unz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pAa-Qf-zea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-733" y="-720"/>
+        </scene>
         <!--Item-->
         <scene sceneID="sIs-9x-wcc">
             <objects>
@@ -270,7 +283,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kg4-8B-30W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-977" y="-196"/>
+            <point key="canvasLocation" x="-1243" y="0.0"/>
         </scene>
         <!--List-->
         <scene sceneID="i1u-QI-gRg">

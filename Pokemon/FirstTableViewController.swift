@@ -56,6 +56,7 @@ class FirstTableViewController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        print ("INDEXPATH.ROW = \(indexPath.row)")
         albumViewModel.rowIndexChanged(indexPath.row)
         
         self.performSegueWithIdentifier("showAlbumPhotos", sender: nil)

@@ -46,8 +46,8 @@ class AlbumViewModel {
 
     func rowIndexChanged (rowIndex : Int) {
         
-        print ("rowIndexChanged = \(self.albumList.value[rowIndex].title)")
         print ("in rowindex = \(rowIndex)")
+        print ("rowIndexChangedTitle = \(self.albumList.value[rowIndex].title)")
         
         self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
         print (self.photoViewModel.value)

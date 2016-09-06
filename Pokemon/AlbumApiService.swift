@@ -81,12 +81,17 @@ class AlbumApiService {
         for anItem in jsonPhotos as! [Dictionary <String, AnyObject>] {
             
             let photo = Photo()
+            let photoAlbumId = anItem ["albumId"] as? Int
             let photoUrl = anItem["url"] as? String
             let photoTitle = anItem ["title"] as? String
         
+            if photoAlbumId == albumId {
+            
             photo.url = photoUrl
             photo.title = photoTitle
-            albumDetails.append(photo)
+                albumDetails.append(photo)}
+            else {}
+               
           
         }
       return Observable.just(albumDetails)

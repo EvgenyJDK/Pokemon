@@ -20,6 +20,7 @@ class PhotoViewModel {
     
     init (album : Album) {
        
+        print ("PHOTO VIEW MODEL = \(album.albumId)")
         print ("PHOTO VIEW MODEL = \(album.title)")
         self.albumDetails.value = album
         self.albumDetails.asObservable()
