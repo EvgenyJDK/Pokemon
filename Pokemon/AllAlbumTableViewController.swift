@@ -58,6 +58,9 @@ class AllAlbumTableViewController: UITableViewController {
         
 //        tableCell.checkSwitch.on = false
         
+        tableCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
+        
+        
         tableCell.checkSwitch.rx_value.asObservable()
             .subscribeNext { (like : Bool) in
 //                print (like)

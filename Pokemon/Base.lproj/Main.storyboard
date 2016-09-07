@@ -162,7 +162,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c98-A1-89q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-632" y="378"/>
+            <point key="canvasLocation" x="-632" y="384"/>
         </scene>
         <!--Item-->
         <scene sceneID="EaP-WE-Pd4">
@@ -283,8 +283,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="KPt-xL-KKi" kind="relationship" relationship="viewControllers" id="OMd-Ne-5y0"/>
                         <segue destination="pkR-Su-NAg" kind="relationship" relationship="viewControllers" id="Lvx-lQ-68t"/>
+                        <segue destination="KPt-xL-KKi" kind="relationship" relationship="viewControllers" id="BeZ-Pm-jeY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kg4-8B-30W" userLabel="First Responder" sceneMemberID="firstResponder"/>

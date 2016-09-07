@@ -69,6 +69,30 @@ class AlbumViewModel {
         print ("MODEL after = \(self.albumList.value[rowIndex].like)")
         
 
+                print(albumList.value.count)
+        
+        for var i=0; i<100; i++ {
+            print (i)
+            print(albumList.value[i].like)
+        }
+        
+        
+//        print (self.albumList.value[1].like)
+        
+//        for var i=0; i<100; i++ {
+//            print("\(self.albumList.value[i].like)")
+//            if self.albumList.value[i].like {
+//                print(self.albumList.value[i].title)
+//                print(self.albumList.value[i].like)
+//            }
+//            
+//        }
+        
+
+        
+//        for val in albumList.value.count 
+        
+        
 //        likedAlbumViewModel.likeObservable?.asObservable()
 //            .subscribeNext{ (like :Bool) in
 //                print ("SUBSCRIBE")

@@ -12,7 +12,7 @@ import RxSwift
 //import RxCocoa
 
 class AllAlbumCell: UITableViewCell {
-  
+    
     
     private(set) var disposeBag = DisposeBag()
     
@@ -22,25 +22,24 @@ class AllAlbumCell: UITableViewCell {
         
         super.prepareForReuse()
     }
-    
+
     
     @IBOutlet weak var id: UILabel!
-    
     @IBOutlet weak var title: UILabel!
-    
     @IBOutlet weak var userName: UILabel!
-    
     @IBOutlet weak var checkSwitch: UISwitch!
-    
     @IBAction func check(sender: AnyObject) {
-        
-        
-  
-        
-//        checkSwitch.on = false
-//            (sender as! UISwitch).on
-//        dupSwitch.on = (sender as UISwitch).on
-        
+    
     }
+    
+    
+    func setupSwitch (like : Bool) {
+        
+        checkSwitch.on = like
+    }
+    
+    //        checkSwitch.on = false
+    //            (sender as! UISwitch).on
+    //        dupSwitch.on = (sender as UISwitch).on
     
 }
