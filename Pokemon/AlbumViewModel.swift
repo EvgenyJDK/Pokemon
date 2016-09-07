@@ -19,9 +19,7 @@ class AlbumViewModel {
     let userList : Variable <[User]> = Variable([])
 
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
-    
-//    var like : Variable <[Bool]> = Variable([])
-  
+    var likedAlbumViewModel : Variable<LikedAlbumViewModel?> = Variable(nil)
 
     init () {
         
@@ -48,50 +46,26 @@ class AlbumViewModel {
         self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
         print (self.photoViewModel.value)
     }
- 
 
-//    var likedAlbums : Variable <[LikedAlbumViewModel]> = Variable([])
- 
-    var likedAlbumViewModel : Variable<LikedAlbumViewModel?> = Variable(nil)
     
-    func  getLikedAlbums(rowIndex : Int, likeStatus : Bool) {
+    func  saveAlbumStatus(rowIndex : Int, likeStatus : Bool) {
         print(rowIndex)
         print (likeStatus)
-//        print (likedAlbums)
 
         print ("MODEL before = \(self.albumList.value[rowIndex].title)")
         print ("MODEL before = \(self.albumList.value[rowIndex].like)")
-//        self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
         
          self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
         
         print ("MODEL after = \(self.albumList.value[rowIndex].title)")
         print ("MODEL after = \(self.albumList.value[rowIndex].like)")
-        
-
-                print(albumList.value.count)
+        print(albumList.value.count)
         
         for var i=0; i<100; i++ {
             print (i)
             print(albumList.value[i].like)
         }
-        
-        
-//        print (self.albumList.value[1].like)
-        
-//        for var i=0; i<100; i++ {
-//            print("\(self.albumList.value[i].like)")
-//            if self.albumList.value[i].like {
-//                print(self.albumList.value[i].title)
-//                print(self.albumList.value[i].like)
-//            }
-//            
-//        }
-        
-
-        
-//        for val in albumList.value.count 
-        
+       
         
 //        likedAlbumViewModel.likeObservable?.asObservable()
 //            .subscribeNext{ (like :Bool) in
