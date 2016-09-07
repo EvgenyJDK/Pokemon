@@ -18,7 +18,6 @@ class AlbumViewModel {
     let albumList : Variable <[Album]> = Variable([])
     let userList : Variable <[User]> = Variable([])
 
-//    var albums : Variable<[Album]> = Variable([])
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
     
 //    var like : Variable <[Bool]> = Variable([])
@@ -49,43 +48,35 @@ class AlbumViewModel {
         self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
         print (self.photoViewModel.value)
     }
-    
-
-    var likedAlbums : Variable <[LikedAlbumViewModel]> = Variable([])
  
+
+//    var likedAlbums : Variable <[LikedAlbumViewModel]> = Variable([])
+ 
+    var likedAlbumViewModel : Variable<LikedAlbumViewModel?> = Variable(nil)
     
-    func  getLikedAlbums(rowIndex : Int) {
+    func  getLikedAlbums(rowIndex : Int, likeStatus : Bool) {
         print(rowIndex)
+        print (likeStatus)
+//        print (likedAlbums)
 
+        print ("MODEL before = \(self.albumList.value[rowIndex].title)")
+        print ("MODEL before = \(self.albumList.value[rowIndex].like)")
+//        self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
         
-    }
- 
-    
-    
-        var like : Observable <Bool>? {
-            didSet {
-                like?.subscribe(onNext: { (like) in
-                    print (like)
-//                    self.albumApiService.
-                    }
-                ).addDisposableTo(bag)
-            }
-//            return Observable.just(false)
-        }
+         self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
+        
+        print ("MODEL after = \(self.albumList.value[rowIndex].title)")
+        print ("MODEL after = \(self.albumList.value[rowIndex].like)")
+        
+
+//        likedAlbumViewModel.likeObservable?.asObservable()
+//            .subscribeNext{ (like :Bool) in
+//                print ("SUBSCRIBE")
+//            }
+//            .addDisposableTo(bag)
   
 
-    
-    
-    //    var indexRow : Observable<Int>? {
-    //        didSet {
-    //            print(indexRow)
-    //            print ("before didset")
-    //            indexRow?.subscribe(onNext: { albumId in
-    //
-    //                print("in didset =\(albumId)")
-    //                self.albumApiService.getAlbumDetails(albumId)
-    //                })
-    //            print("Hello")
-    //        }
-    //    }
-}
+        
+        }
+    }
+

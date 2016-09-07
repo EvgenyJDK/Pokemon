@@ -15,13 +15,15 @@ import RxSwift
 
 class AlbumApiService {
     
+    var albumList : [Album] = []
+    
     func getAllAlbums () -> Observable<[Album]> {
         
         let pathAlbums = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
         let dataAlbums = NSData(contentsOfFile: pathAlbums!)
         let jsonAlbums = try!NSJSONSerialization.JSONObjectWithData(dataAlbums!, options: [])
         
-        var albumList : [Album] = []
+//        var albumList : [Album] = []
         
         for anItem in jsonAlbums as! [Dictionary <String, AnyObject>] {
             
@@ -84,6 +86,35 @@ class AlbumApiService {
         }
         return Observable.just(albumDetails)
     }
+    
+//    func saveAlbumStatus (albumModel : Album, likeStatus : Bool) -> Observable <[Album]> {
+//        
+//        var albumStatus : [Album] = []
+//      
+//        print ("APISERVICE = \(albumModel.like)")
+//        print("APISERVICE = \(likeStatus)")
+//        
+//        albumModel.like = likeStatus
+//        print ("APISERVICE AFTER = \(albumModel.like)")
+//        
+//        return Observable.just(albumStatus)
+//    }
+    
+    
+    func saveAlbumStatus (albumModel : Album, likeStatus : Bool) -> Observable <Album> {
+        
+        print ("APISERVICE = \(albumModel.like)")
+        print("APISERVICE = \(albumModel.title)")
+        
+        albumModel.like = likeStatus
+        print ("APISERVICE AFTER = \(albumModel.like)")
+        
+        return Observable.just(albumModel)
+    }
+
+    
+    
+    
 }
 
 

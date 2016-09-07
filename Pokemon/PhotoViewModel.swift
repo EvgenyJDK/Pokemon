@@ -18,6 +18,8 @@ class PhotoViewModel {
     var albumDetails : Variable <Album> = Variable(Album())
     var photo : Variable <[Photo]> = Variable([])
     
+//    var like : Variable<Bool> = Variable(false)
+    
     init (album : Album) {
        
         print ("PHOTO VIEW MODEL = \(album.albumId)")

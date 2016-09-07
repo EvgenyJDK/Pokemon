@@ -16,8 +16,8 @@ class AllAlbumTableViewController: UITableViewController {
     
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
-    private let photoCell = PhotoCollectionViewCell()
-    private let albumCell = AllAlbumCell()
+//    private let photoCell = PhotoCollectionViewCell()
+//    private let albumCell = AllAlbumCell()
     
     @IBOutlet var allAlbumsView: UITableView!
     
@@ -35,10 +35,10 @@ class AllAlbumTableViewController: UITableViewController {
             })
             .addDisposableTo(bag)
         
-        albumViewModel.like?.asObservable()
-            .subscribeNext({ like in
-            print ("All switch are false")
-        })
+//        albumViewModel.like?.asObservable()
+//            .subscribeNext({ like in
+//            print ("All switch are false")
+//        })
 
     }
     
@@ -57,15 +57,21 @@ class AllAlbumTableViewController: UITableViewController {
         tableCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
         
 //        tableCell.checkSwitch.on = false
-//        albumCell.checkSwitch.on = false
         
         tableCell.checkSwitch.rx_value.asObservable()
-            .subscribeNext {(<#T##onNext: (Bool) -> Void##(Bool) -> Void#>) in
-             self.albumViewModel.getLikedAlbums (indexPath.row)
+            .subscribeNext { (like : Bool) in
+//                print (like)
+//                print(indexPath.row)
+//                print ("SWITCH = \(tableCell.checkSwitch.on.boolValue)")
+                
+                let a = self.albumViewModel.getLikedAlbums(indexPath.row, likeStatus: like)
+                
+//                return self.albumViewModel.getLikedAlbums(indexPath.row, likeStatus: like)
+//                print("AAAAA = \(a)")
+                
         }
-        .addDisposableTo(bag)
-        
-        
+        .addDisposableTo(tableCell.disposeBag)
+      
         
         return tableCell
     }
