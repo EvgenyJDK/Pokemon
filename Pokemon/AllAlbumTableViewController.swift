@@ -22,6 +22,14 @@ class AllAlbumTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        albumViewModel.albumList.asObservable()
+//            .subscribeNext { result in
+//                print ("FIRST")
+//                self.allAlbumsView.reloadData()
+//            }
+//            .addDisposableTo(bag)
+      
+        
         albumViewModel.albumList.asObservable()
             .subscribeNext { result in
                 self.allAlbumsView.reloadData()
@@ -50,6 +58,25 @@ class AllAlbumTableViewController: UITableViewController {
         
         let albumCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
         
+        
+        
+//        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
+//            .subscribeNext { (resultAlbum : [Album]?) in
+//                
+//                print ("SEC")
+//        }
+
+        
+//        let album = StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row]
+//        
+//        albumCell.title.text = album.title
+//        albumCell.id.text = String(album.albumId!)
+//        albumCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
+//        
+//        albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
+        
+      
+        
         let album = albumViewModel.albumList.value[indexPath.row]
         
         albumCell.title.text = album.title
@@ -57,6 +84,8 @@ class AllAlbumTableViewController: UITableViewController {
         albumCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
         
         albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
+        
+        
         
         albumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { (like : Bool) in

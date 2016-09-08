@@ -8,9 +8,20 @@
 
 import Foundation
 import UIKit
+import RxSwift
+//import RxCocoa
 
 class LikedAlbumCell : UITableViewCell {
   
+    
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        
+        self.disposeBag = DisposeBag()
+        
+        super.prepareForReuse()
+    }
     
     @IBOutlet weak var idLike: UILabel!
     @IBOutlet weak var titleLike: UILabel!

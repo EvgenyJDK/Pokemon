@@ -26,11 +26,13 @@ class AlbumViewModel {
 
     init () {
         
+        print("SECOND")
+        
         albumApiService.getAllAlbums()
             .subscribe(onNext: { resultAlbum in
                 self.albumList.value = resultAlbum
                 self.storageAlbumViewModel.value = resultAlbum
-                self.storageAlbumViewModel.value[2].like = true
+//                self.storageAlbumViewModel.value[2].like = true
                 print ("INIT = \(self.albumList.value)")
                 },
                 onError: { errorAlbum in
