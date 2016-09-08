@@ -41,24 +41,24 @@ class AllAlbumTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let tableCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
+        let albumCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
         
         let album = albumViewModel.albumList.value[indexPath.row]
         
-        tableCell.title.text = album.title
-        tableCell.id.text = String(album.albumId!)
-        tableCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
+        albumCell.title.text = album.title
+        albumCell.id.text = String(album.albumId!)
+        albumCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
         
 //        tableCell.checkSwitch.on = false
-        tableCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
+        albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
         
-        tableCell.checkSwitch.rx_value.asObservable()
+        albumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { (like : Bool) in
 //                  print ("SWITCH = \(tableCell.checkSwitch.on.boolValue)")
-                 self.albumViewModel.saveAlbumStatus(indexPath.row, likeStatus: like)
+                 self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
             }
-            .addDisposableTo(tableCell.disposeBag)
-        return tableCell
+            .addDisposableTo(albumCell.disposeBag)
+        return albumCell
     }
     
     

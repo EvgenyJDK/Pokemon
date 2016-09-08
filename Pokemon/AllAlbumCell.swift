@@ -28,6 +28,7 @@ class AllAlbumCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var checkSwitch: UISwitch!
+    @IBOutlet weak var likeSwitch: UISwitch!
     @IBAction func check(sender: AnyObject) {
     
     }
@@ -35,7 +36,7 @@ class AllAlbumCell: UITableViewCell {
     
     func setupSwitch (like : Bool) {
         
-        checkSwitch.on = like
+        likeSwitch.on = like
     }
     
     //        checkSwitch.on = false

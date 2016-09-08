@@ -124,8 +124,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="checkSwitch" destination="KjE-ag-CbR" id="817-i0-qhD"/>
                                     <outlet property="id" destination="5gp-lD-lv8" id="Pqv-zY-wbi"/>
+                                    <outlet property="likeSwitch" destination="KjE-ag-CbR" id="FS0-e2-iZN"/>
                                     <outlet property="title" destination="7cM-AQ-d4y" id="m4g-oV-BXB"/>
                                     <outlet property="userName" destination="8mF-63-BbM" id="gD7-hy-br6"/>
                                 </connections>
@@ -173,7 +173,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JqC-7S-LKs" customClass="LikedAlbumCell" customModule="Pokemon" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="likedCell" id="JqC-7S-LKs" customClass="LikedAlbumCell" customModule="Pokemon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JqC-7S-LKs" id="GAx-eg-h1X">
@@ -181,27 +181,34 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ork-pj-ESk">
-                                            <rect key="frame" x="73" y="11" width="15" height="21"/>
+                                            <rect key="frame" x="25" y="11" width="29" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU9-DW-UKr">
-                                            <rect key="frame" x="223" y="11" width="34" height="21"/>
+                                            <rect key="frame" x="63" y="11" width="157" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxL-9Y-JjX">
-                                            <rect key="frame" x="379" y="11" width="45" height="21"/>
+                                            <rect key="frame" x="239" y="11" width="104" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Tl-HI-j6R">
+                                            <rect key="frame" x="351" y="6" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="dislikeAction:" destination="JqC-7S-LKs" eventType="valueChanged" id="eHF-qW-HAf"/>
+                                            </connections>
+                                        </switch>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="idLike" destination="ork-pj-ESk" id="COK-7v-8Ri"/>
+                                    <outlet property="likeSwitch" destination="2Tl-HI-j6R" id="jLx-DS-f0s"/>
                                     <outlet property="nameLike" destination="xxL-9Y-JjX" id="YiW-YV-RW5"/>
                                     <outlet property="titleLike" destination="BU9-DW-UKr" id="bh0-nV-1vJ"/>
                                 </connections>
@@ -361,6 +368,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="w2P-KE-Vzl"/>
+        <segue reference="oya-DD-r2y"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -48,7 +48,7 @@ class AlbumViewModel {
     }
 
     
-    func  saveAlbumStatus(rowIndex : Int, likeStatus : Bool) {
+    func  saveAlbumStatusLike(rowIndex : Int, likeStatus : Bool) {
         print(rowIndex)
         print (likeStatus)
 
