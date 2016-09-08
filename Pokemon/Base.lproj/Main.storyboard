@@ -223,7 +223,7 @@
                     <navigationItem key="navigationItem" id="uYs-Qm-3Sq"/>
                     <connections>
                         <outlet property="LikedAlbumView" destination="Gco-RK-Afl" id="CWG-Dp-OgA"/>
-                        <segue destination="lvo-gc-n1P" kind="show" id="oya-DD-r2y"/>
+                        <segue destination="lvo-gc-n1P" kind="show" identifier="showAlbumPhotos2" id="oya-DD-r2y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8W1-Ic-Eze" userLabel="First Responder" sceneMemberID="firstResponder"/>

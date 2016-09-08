@@ -44,11 +44,20 @@ class  LikedAlbumTableViewController : UITableViewController {
         likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
         
         likedAlbumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
-        
-        
-        
+
         return likedAlbumCell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        albumViewModel.initPhotoModelByRowIndex(indexPath.row)
+        self.performSegueWithIdentifier("showAlbumPhotos2", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let photoController : PhotoCollectionViewController = segue.destinationViewController as! PhotoCollectionViewController
+        
+        photoController.photoViewModel = self.albumViewModel.photoViewModel.value
+    }
     
 }
