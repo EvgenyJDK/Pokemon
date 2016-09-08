@@ -22,6 +22,7 @@ class LikedAlbumViewModel {
     
     var albumDetails : Variable <Album> = Variable(Album())
 
+    
     init (likedAlbum : Album, likedStatus : Bool) {
         
         print ("LIKEDALBUM")

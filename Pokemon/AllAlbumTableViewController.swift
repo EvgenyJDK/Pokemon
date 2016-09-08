@@ -34,6 +34,13 @@ class AllAlbumTableViewController: UITableViewController {
             .addDisposableTo(bag)
     }
     
+    
+    override func viewWillDisappear(animated: Bool) {
+        albumViewModel.saveAlbumModelToStorage()
+    }
+    
+    
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albumViewModel.albumList.value.count
     }
@@ -49,12 +56,10 @@ class AllAlbumTableViewController: UITableViewController {
         albumCell.id.text = String(album.albumId!)
         albumCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
         
-//        tableCell.checkSwitch.on = false
         albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
         
         albumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { (like : Bool) in
-//                  print ("SWITCH = \(tableCell.checkSwitch.on.boolValue)")
                  self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
             }
             .addDisposableTo(albumCell.disposeBag)

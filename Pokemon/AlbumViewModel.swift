@@ -20,12 +20,17 @@ class AlbumViewModel {
 
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
     var likedAlbumViewModel : Variable<LikedAlbumViewModel?> = Variable(nil)
+    
+//    var storageAlbumViewModel : Variable <StorageAlbumViewModel?> = Variable(nil)
+        var storageAlbumViewModel : Variable <[Album]> = Variable([])
 
     init () {
         
         albumApiService.getAllAlbums()
             .subscribe(onNext: { resultAlbum in
                 self.albumList.value = resultAlbum
+                self.storageAlbumViewModel.value = resultAlbum
+                self.storageAlbumViewModel.value[2].like = true
                 print ("INIT = \(self.albumList.value)")
                 },
                 onError: { errorAlbum in
@@ -48,22 +53,37 @@ class AlbumViewModel {
     }
 
     
+    
+    func saveAlbumModelToStorage () {
+        
+        print ("SAVE = \(albumList.value.count)")
+        StorageAlbumViewModel.storageAlbumViewModel.value = self.albumList.value
+    }
+
+    
+    
     func  saveAlbumStatusLike(rowIndex : Int, likeStatus : Bool) {
         print(rowIndex)
         print (likeStatus)
 
         print ("MODEL before = \(self.albumList.value[rowIndex].title)")
         print ("MODEL before = \(self.albumList.value[rowIndex].like)")
+        print ("MODEL STORAGE before = \(self.storageAlbumViewModel.value[rowIndex].like)")
         
          self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
         
         print ("MODEL after = \(self.albumList.value[rowIndex].title)")
         print ("MODEL after = \(self.albumList.value[rowIndex].like)")
-        print(albumList.value.count)
+//        self.storageAlbumViewModel.value[rowIndex].like = self.albumList.value[rowIndex].like
+        
+//        StorageAlbumViewModel.storageAlbumViewModel.value![1].like = self.albumList.value[rowIndex].like
+        print ("MODEL STORAGE after = \(self.storageAlbumViewModel.value[rowIndex].like)")
+        print(storageAlbumViewModel.value.count)
         
         for var i=0; i<100; i++ {
             print (i)
             print(albumList.value[i].like)
+//            print (self.storageAlbumViewModel.value)
         }
        
         
@@ -72,9 +92,9 @@ class AlbumViewModel {
 //                print ("SUBSCRIBE")
 //            }
 //            .addDisposableTo(bag)
-  
-
-        
+   
         }
+    
+    
     }
 
