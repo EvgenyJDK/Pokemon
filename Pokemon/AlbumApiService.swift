@@ -87,16 +87,48 @@ class AlbumApiService {
     }
  
     
-    func saveAlbumStatus (albumModel : Album, likeStatus : Bool) -> Observable <Album> {
+//    func saveAlbumStatus (albumModel : Album, likeStatus : Bool) -> Observable <Album> {
+//        
+//        print ("APISERVICE = \(albumModel.like)")
+//        print("APISERVICE = \(albumModel.title)")
+//        
+//        albumModel.like = likeStatus
+//        print ("APISERVICE AFTER = \(albumModel.like)")
+//        
+//        return Observable.just(albumModel)
+//    }
+    
+    
+    let likedAlbumId : Variable<[Int]> = Variable([])
+    
+    func saveAlbumStatus (albumModel : Album, likeStatus : Bool) -> Observable <[Int]> {
         
-        print ("APISERVICE = \(albumModel.like)")
-        print("APISERVICE = \(albumModel.title)")
+//    var likedAlbumId : [Int] = []
         
-        albumModel.like = likeStatus
-        print ("APISERVICE AFTER = \(albumModel.like)")
-        
-        return Observable.just(albumModel)
+        if likeStatus {
+            likedAlbumId.value.append(albumModel.albumId!)
+        }
+        print("APISERVICE = \(likedAlbumId)")
+        return Observable.just(likedAlbumId.value)
     }
+    
+    
+    
+    
+    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) -> Observable<[Int]> {
+        
+        var likedAlbumId : [Int] = []
+      
+        if likeStatus {
+            likedAlbumId.append(albumId)
+        }
+        else {
+        }
+        
+        return Observable.just(likedAlbumId)
+    }
+    
+    
 }
 
 

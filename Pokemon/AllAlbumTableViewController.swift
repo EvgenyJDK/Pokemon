@@ -84,12 +84,11 @@ class AllAlbumTableViewController: UITableViewController {
         albumCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
         
         albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
-        
-        
-        
+
         albumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { (like : Bool) in
-                 self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
+//                 self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
+                self.albumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
             }
             .addDisposableTo(albumCell.disposeBag)
         return albumCell

@@ -16,20 +16,38 @@ class  LikedAlbumTableViewController : UITableViewController {
 
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
+//    private let likeAlbumViewModel = LikedAlbumViewModel()
     
     @IBOutlet weak var LikedAlbumView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
      
-     StorageAlbumViewModel.storageAlbumViewModel.asObservable()
-        .map { $0?.filter {$0.like!
-            }
+    
+        
+     StorageAlbumViewModel.storageLikedAlbumId
+        .asObservable()
+        .subscribeNext { (int :[Int]) in
+            print("LIKED CONTROLLER = \(int)")
+//            self.LikedAlbumView.reloadData()
         }
-        .subscribeNext { (subscribe : [Album]?) in
-            print("LIKED = \(subscribe![1].like) + \(subscribe![1].title)")
-            self.LikedAlbumView.reloadData()
-        }
+      
+   
+        
+        
+        
+//     StorageAlbumViewModel.storageAlbumViewModel.asObservable()
+//        .map { $0?.filter {$0.like!
+//            }
+//        }
+//        .subscribeNext { (subscribe : [Album]?) in
+//            print("LIKED = \(subscribe![1].like) + \(subscribe![1].title)")
+//            self.LikedAlbumView.reloadData()
+//        }
+  
+  
+        
+        
         
 //        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
 //            .subscribeNext { (result : [Album]?) in

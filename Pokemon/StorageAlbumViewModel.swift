@@ -17,7 +17,8 @@ class StorageAlbumViewModel {
     
     static var storageLikedAlbumViewModel : Variable<[Album?]> = Variable([])
     
-   
+    static var storageLikedAlbumId : Variable <[Int]> = Variable ([])
+    
     
 //    private func filter () {
 //    
