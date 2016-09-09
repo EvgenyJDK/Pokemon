@@ -15,4 +15,18 @@ class StorageAlbumViewModel {
 //    static var storageAlbumViewModel : Variable<[LikedAlbumViewModel]?> = Variable([])
     static var storageAlbumViewModel : Variable<[Album]?> = Variable([])
     
+    static var storageLikedAlbumViewModel : Variable<[Album?]> = Variable([])
+    
+//    private func filter () {
+//    
+//    StorageAlbumViewModel.storageAlbumViewModel.asObservable()
+//        .filter({ (<#[Album?]#>) -> Bool in
+//            <#code#>
+//        })
+//        .map { (_: [Album?]) -> Observable<Album> in
+//            
+//        }
+//    
+//    }
+    
 }

@@ -21,45 +21,36 @@ class  LikedAlbumTableViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print (" LIKED = \(albumViewModel.albumList.value.count)")
-//         print (" LIKED = \(albumViewModel.albumList.value[2].like)")
-        
-//        print (albumViewModel.storageAlbumViewModel.value.count)
-//        print (" LIKED = \(albumViewModel.storageAlbumViewModel.value[2].title)")
-//        print (" LIKED = \(albumViewModel.storageAlbumViewModel.value[2].like)")
-      
-//        .filter { $0?.containsString("query") ?? false }
-        
-//     StorageAlbumViewModel.storageAlbumViewModel.asObservable()
-//        .map { (result : [Album]?) -> Observable <Album> in
-//            StorageAlbumViewModel.storageAlbumViewModel.value![1].like
-//        }
-   
-        
-        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
-//            .filter { $0?.contains(<#T##predicate: (Album) throws -> Bool##(Album) throws -> Bool#>) -> Bool in
-//                <#code#>
-//            }
-////            .filter({ (result : [Album]?) -> Bool in
-////               
-////            })
-            .subscribeNext { (result : [Album]?) in
-            
-                self.LikedAlbumView.reloadData()
-                print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value?.count)")
-                 print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value!.isEmpty)")
-//                StorageAlbumViewModel.storageAlbumViewModel.value![1].like
+     
+     StorageAlbumViewModel.storageAlbumViewModel.asObservable()
+        .flatMap { (album: [Album]?) -> Observable <Album> in
+
+            return Observable.just(Album())
+        }
+        .filter { (album) -> Bool in
+            guard album.like == true else {
+                print("LIKED = \(album.like) + \(album.title)")
+                return false
+            }
+            print("LIKED = \(album.like) + \(album.title)")
+            return true
+        }
+        .subscribeNext { (result : Album) in
+            print("LIKED = \(result.like) + \(result.title)")
+            self.LikedAlbumView.reloadData()
         }
         
-        print ("LIKED = \(StorageAlbumViewModel.storageAlbumViewModel.value?.count)")
         
-//        albumViewModel.albumList.asObservable()
-//        .subscribeNext { result in
-//            self.LikedAlbumView.reloadData()
+//        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
+//            .subscribeNext { (result : [Album]?) in
+//                self.LikedAlbumView.reloadData()
+//                print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value?.count)")
+//                 print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value!.isEmpty)")
 //        }
-//        .addDisposableTo(bag)
+    
+        print ("LIKED = \(StorageAlbumViewModel.storageAlbumViewModel.value!.count)")
     }
+
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albumViewModel.albumList.value.count
@@ -82,11 +73,11 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
         likedAlbumCell.titleLike.text = likedAlbum.title
-//        likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
         likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
         
         likedAlbumCell.setupSwitch(StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like!)
 
+        
 //        }
 //        
 //        else {
@@ -99,17 +90,12 @@ class  LikedAlbumTableViewController : UITableViewController {
 //            
 //        }
         
-        
-        
+
         likedAlbumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { (like : Bool) in
                 self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
             }
             .addDisposableTo(likedAlbumCell.disposeBag)
-        
-        
-        
-        
         return likedAlbumCell
     }
     
@@ -124,5 +110,4 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         photoController.photoViewModel = self.albumViewModel.photoViewModel.value
     }
-    
 }

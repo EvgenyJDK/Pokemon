@@ -49,15 +49,12 @@ class AlbumViewModel {
     }
 
     func initPhotoModelByRowIndex (rowIndex : Int) {
-        
         self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
         print (self.photoViewModel.value)
     }
 
     
-    
     func saveAlbumModelToStorage () {
-        
         print ("SAVE = \(albumList.value.count)")
         StorageAlbumViewModel.storageAlbumViewModel.value = self.albumList.value
     }
@@ -76,7 +73,6 @@ class AlbumViewModel {
         
         print ("MODEL after = \(self.albumList.value[rowIndex].title)")
         print ("MODEL after = \(self.albumList.value[rowIndex].like)")
-//        self.storageAlbumViewModel.value[rowIndex].like = self.albumList.value[rowIndex].like
         
 //        StorageAlbumViewModel.storageAlbumViewModel.value![1].like = self.albumList.value[rowIndex].like
         print ("MODEL STORAGE after = \(self.storageAlbumViewModel.value[rowIndex].like)")
@@ -95,8 +91,6 @@ class AlbumViewModel {
 //            }
 //            .addDisposableTo(bag)
    
-        }
-    
-    
     }
+}
 
