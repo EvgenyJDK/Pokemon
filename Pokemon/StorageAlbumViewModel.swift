@@ -17,6 +17,8 @@ class StorageAlbumViewModel {
     
     static var storageLikedAlbumViewModel : Variable<[Album?]> = Variable([])
     
+   
+    
 //    private func filter () {
 //    
 //    StorageAlbumViewModel.storageAlbumViewModel.asObservable()

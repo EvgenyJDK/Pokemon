@@ -23,23 +23,13 @@ class  LikedAlbumTableViewController : UITableViewController {
         super.viewDidLoad()
      
      StorageAlbumViewModel.storageAlbumViewModel.asObservable()
-        .flatMap { (album: [Album]?) -> Observable <Album> in
-
-            return Observable.just(Album())
-        }
-        .filter { (album) -> Bool in
-            guard album.like == true else {
-                print("LIKED = \(album.like) + \(album.title)")
-                return false
+        .map { $0?.filter {$0.like!
             }
-            print("LIKED = \(album.like) + \(album.title)")
-            return true
         }
-        .subscribeNext { (result : Album) in
-            print("LIKED = \(result.like) + \(result.title)")
+        .subscribeNext { (subscribe : [Album]?) in
+            print("LIKED = \(subscribe![1].like) + \(subscribe![1].title)")
             self.LikedAlbumView.reloadData()
         }
-        
         
 //        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
 //            .subscribeNext { (result : [Album]?) in

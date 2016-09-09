@@ -81,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="-632" y="-484"/>
         </scene>
-        <!--Item-->
+        <!--ALL-->
         <scene sceneID="sIs-9x-wcc">
             <objects>
                 <tableViewController id="RnW-MB-AaE" customClass="AllAlbumTableViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,7 +136,7 @@
                             <outlet property="delegate" destination="RnW-MB-AaE" id="y5k-XH-zhJ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="mwj-Gl-6se"/>
+                    <tabBarItem key="tabBarItem" title="ALL" id="mwj-Gl-6se"/>
                     <navigationItem key="navigationItem" id="RKI-cX-a67"/>
                     <connections>
                         <outlet property="allAlbumsView" destination="9Lz-8t-TkR" id="MFb-cg-Ckv"/>
@@ -164,7 +164,7 @@
             </objects>
             <point key="canvasLocation" x="-632" y="384"/>
         </scene>
-        <!--Item-->
+        <!--LIKED-->
         <scene sceneID="EaP-WE-Pd4">
             <objects>
                 <tableViewController id="hog-Lk-8Pl" customClass="LikedAlbumTableViewController" customModule="Pokemon" customModuleProvider="target" sceneMemberID="viewController">
@@ -219,7 +219,7 @@
                             <outlet property="delegate" destination="hog-Lk-8Pl" id="Pkr-i1-SGc"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="Haz-Uh-rtp"/>
+                    <tabBarItem key="tabBarItem" title="LIKED" id="Haz-Uh-rtp"/>
                     <navigationItem key="navigationItem" id="uYs-Qm-3Sq"/>
                     <connections>
                         <outlet property="LikedAlbumView" destination="Gco-RK-Afl" id="CWG-Dp-OgA"/>
@@ -368,6 +368,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oya-DD-r2y"/>
+        <segue reference="w2P-KE-Vzl"/>
     </inferredMetricsTieBreakers>
 </document>
