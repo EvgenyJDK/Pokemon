@@ -26,9 +26,9 @@ class LikedAlbumViewModel {
 
    init (likedAlbum : Album, likedStatus : Bool) {
     
-        print ("LIKEDALBUM")
-        print (likedAlbum.albumId!)
-        print(likedStatus)
+//        print ("LIKEDALBUM")
+//        print (likedAlbum.albumId!)
+//        print(likedStatus)
  
 //    self.albumDetails.value = likedAlbumId
 //    self.albumDetails.asObservable()
@@ -45,9 +45,9 @@ class LikedAlbumViewModel {
             }
             .subscribe(onNext: { (likedAlbId : [Int]) in
                 self.likedAlbumId.value = likedAlbId
-                print("LIKE = \(self.likedAlbumId.value)")
+//                print("LIKE = \(self.likedAlbumId.value)")
                 StorageAlbumViewModel.storageLikedAlbumId.value = self.likedAlbumId.value
-                print (StorageAlbumViewModel.storageLikedAlbumId.value)
+//                print (StorageAlbumViewModel.storageLikedAlbumId.value)
                 }, onError: { (ErrorType) in
                     print ("Can't to like")
                 }

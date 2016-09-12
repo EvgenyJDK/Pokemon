@@ -64,14 +64,13 @@ class AlbumViewModel {
     var likeAlbId : Variable <Int> = Variable(0)
     var storageLikedAlbumId : Variable <[Int]> = Variable ([])
 
+    
     func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         
 //        print ("CHANGE ROW = \(rowIndex)")
 //        print ("CHANGE ALBUMID = \(self.albumList.value[rowIndex].albumId)")
         
         self.likeAlbId.value = self.albumList.value[rowIndex].albumId!
-//        print ("CHANGE likeAlbId.value = \(self.likeAlbId.value)")
-        
         self.likeAlbId.asObservable()
             .flatMapLatest { (likeAlbId : Int) -> Observable<Int> in
                 return self.albumApiService.changeAlbumStatusLike(self.likeAlbId.value, likeStatus : likeStatus )
@@ -88,47 +87,99 @@ class AlbumViewModel {
     
     func saveToAlbumStorage (liked : Bool, albumId : Int) {
         
-        let a = self.likedAlbumId.value
-        print("a = \(a)")
-
-        print("albumId = \(albumId)")
         if liked {
-            if albumId != 0 {
-                StorageAlbumViewModel.storageLikedAlbumId.value.append(albumId)
-                print ("storageLikedAlbumId AFTER = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
-            }
-            else {
-            }
+            AlbumStorage.storageLikedAlbumId.value.append(albumId)
         }
-        
-        else {
-            
+      
+/*        else {
             print(liked)
             print("a TO REMOVE = \(a)")
             print("albumId  TO REMOVE = \(albumId)")
             
             if a != 0 {
-                print ("TO REMOVE = \(StorageAlbumViewModel.storageLikedAlbumId.value.indexOf(albumId)!)")
-                StorageAlbumViewModel.storageLikedAlbumId.value.removeAtIndex(StorageAlbumViewModel.storageLikedAlbumId.value.indexOf(albumId)!)
-                
+                print ("TO REMOVE = \(AlbumStorage.storageLikedAlbumId.value.indexOf(albumId)!)")
+                AlbumStorage.storageLikedAlbumId.value.removeAtIndex(AlbumStorage.storageLikedAlbumId.value.indexOf(albumId)!)
             }
-            print ("storageLikedAlbumId AFTER = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
         }
-        print ("storageLikedAlbumId AFTER = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
+*/
+        print ("storageLikedAlbumId AFTER = \(AlbumStorage.storageLikedAlbumId.value)")
     }
-   
+
+    
    
     func saveAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
-        print("STATUS = \(likedAlbumViewModel.value)")
+//        print("STATUS = \(likedAlbumViewModel.value)")
         
 //        self.likedAlbumIdArray.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
 //       self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbumId : rowIndex, likedStatus : likeStatus)
     }
     
+    
+    
+    func getLikedAlbums () {
+        
+        
+    }
+    
+    
+    
+    
+    
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*if liked {
+                if albumId != 0 {
+    AlbumStorage.storageLikedAlbumId.value.append(albumId)
+                }
+                else {
+                }
+}
+
+*/
 
 
 

@@ -16,47 +16,27 @@ class  LikedAlbumTableViewController : UITableViewController {
 
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
-//    private let likeAlbumViewModel = LikedAlbumViewModel()
     
     @IBOutlet weak var LikedAlbumView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
      
-    
-        
-     StorageAlbumViewModel.storageLikedAlbumId
-        .asObservable()
-        .subscribeNext { (int :[Int]) in
-            print("LIKED CONTROLLER = \(int)")
-//            self.LikedAlbumView.reloadData()
+  
+    albumViewModel.storageLikedAlbumId.asObservable()
+        .subscribeNext { (albumId :[Int]) in
+            print("LIKED CONTROLLER = \(albumId)")
         }
-      
-   
-        
-        
-        
-//     StorageAlbumViewModel.storageAlbumViewModel.asObservable()
-//        .map { $0?.filter {$0.like!
-//            }
-//        }
-//        .subscribeNext { (subscribe : [Album]?) in
-//            print("LIKED = \(subscribe![1].like) + \(subscribe![1].title)")
-//            self.LikedAlbumView.reloadData()
-//        }
-  
-  
-        
-        
-        
-//        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
-//            .subscribeNext { (result : [Album]?) in
-//                self.LikedAlbumView.reloadData()
-//                print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value?.count)")
-//                 print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value!.isEmpty)")
-//        }
     
-        print ("LIKED = \(StorageAlbumViewModel.storageAlbumViewModel.value!.count)")
+        
+        
+        AlbumStorage.storageLikedAlbumId
+            .asObservable()
+            .subscribeNext { (int :[Int]) in
+                print("LIKED CONTROLLER = \(int)")
+            self.LikedAlbumView.reloadData()
+        }
+
     }
 
     
@@ -68,16 +48,13 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         let likedAlbumCell  = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! LikedAlbumCell
         
+        
         let likedAlbum = StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row]
-
+      
         
-//        if StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like {
+//        print("SUBS2")
+//        print((StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like)!)
         
-        print("SUBS2")
-        print((StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like)!)
-        
-        
-//        if ((StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like)!) {
         
         likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
         likedAlbumCell.titleLike.text = likedAlbum.title
@@ -85,19 +62,6 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         likedAlbumCell.setupSwitch(StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like!)
 
-        
-//        }
-//        
-//        else {
-//            likedAlbumCell.idLike.text = ""
-//            likedAlbumCell.titleLike.text = ""
-//            //        likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
-//            likedAlbumCell.nameLike.text = ""
-//            
-//            likedAlbumCell.setupSwitch(StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like!)
-//            
-//        }
-        
 
         likedAlbumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { (like : Bool) in
@@ -119,3 +83,107 @@ class  LikedAlbumTableViewController : UITableViewController {
         photoController.photoViewModel = self.albumViewModel.photoViewModel.value
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*     StorageAlbumViewModel.storageLikedAlbumId
+ .asObservable()
+ .subscribeNext { (int :[Int]) in
+ print("LIKED CONTROLLER = \(int)")
+ //            self.LikedAlbumView.reloadData()
+ }
+ */
+
+
+
+//     StorageAlbumViewModel.storageAlbumViewModel.asObservable()
+//        .map { $0?.filter {$0.like!
+//            }
+//        }
+//        .subscribeNext { (subscribe : [Album]?) in
+//            print("LIKED = \(subscribe![1].like) + \(subscribe![1].title)")
+//            self.LikedAlbumView.reloadData()
+//        }
+
+
+
+//        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
+//            .subscribeNext { (result : [Album]?) in
+//                self.LikedAlbumView.reloadData()
+//                print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value?.count)")
+//                 print("SUBS = \(StorageAlbumViewModel.storageAlbumViewModel.value!.isEmpty)")
+//        }
+
+
+
+/*
+//        if StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like {
+
+print("SUBS2")
+print((StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like)!)
+
+
+//        if ((StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like)!) {
+
+likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
+likedAlbumCell.titleLike.text = likedAlbum.title
+likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
+
+likedAlbumCell.setupSwitch(StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like!)
+
+
+//        }
+//
+//        else {
+//            likedAlbumCell.idLike.text = ""
+//            likedAlbumCell.titleLike.text = ""
+//            //        likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
+//            likedAlbumCell.nameLike.text = ""
+//
+//            likedAlbumCell.setupSwitch(StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like!)
+//
+//        }
+*/
