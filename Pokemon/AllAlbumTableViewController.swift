@@ -86,9 +86,12 @@ class AllAlbumTableViewController: UITableViewController {
         albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
 
         albumCell.likeSwitch.rx_value.asObservable()
-            .subscribeNext { (like : Bool) in
+            .subscribeNext { [weak self] (like : Bool) in
 //                 self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
-                self.albumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
+                self!.albumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
+                
+                self!.albumViewModel.saveToAlbumStorage(like, albumId : Int(album.albumId!))
+                
             }
             .addDisposableTo(albumCell.disposeBag)
         return albumCell

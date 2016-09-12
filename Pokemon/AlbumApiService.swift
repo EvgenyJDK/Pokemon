@@ -112,10 +112,40 @@ class AlbumApiService {
         return Observable.just(likedAlbumId.value)
     }
     
+ 
+    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) -> Observable<Int> {
+        
+        print ("API CHANGE = \(albumId)")
+        print ("API CHANGESTATUS = \(likeStatus)")
+        
+        
+        //        var likedAlbumId : [Int] = []
+        var likedAlbumId : Int = 0
+        
+        if likeStatus {
+            //            likedAlbumId.append(albumId)
+            likedAlbumId = albumId
+            
+            //            StorageAlbumViewModel.storageLikedAlbumId.value.append(albumId)
+            //            print(StorageAlbumViewModel.storageLikedAlbumId.value)
+            
+        }
+        else {
+        }
+        
+        
+        return Observable.just(likedAlbumId)
+    }
+   
     
     
     
-    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) -> Observable<[Int]> {
+    
+    
+    
+    
+    
+/*    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) -> Observable<[Int]> {
         
         var likedAlbumId : [Int] = []
       
@@ -127,7 +157,8 @@ class AlbumApiService {
         
         return Observable.just(likedAlbumId)
     }
-    
+
+ */
     
 }
 

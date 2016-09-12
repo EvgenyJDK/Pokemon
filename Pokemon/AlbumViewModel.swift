@@ -20,10 +20,7 @@ class AlbumViewModel {
 
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
     var likedAlbumViewModel : Variable<LikedAlbumViewModel?> = Variable(nil)
-    
    
-    
-    
 //    var storageAlbumViewModel : Variable <StorageAlbumViewModel?> = Variable(nil)
         var storageAlbumViewModel : Variable <[Album]> = Variable([])
 
@@ -54,53 +51,117 @@ class AlbumViewModel {
         print (self.photoViewModel.value)
     }
 
+ 
     
     func saveAlbumModelToStorage () {
         print ("SAVE = \(albumList.value.count)")
         StorageAlbumViewModel.storageAlbumViewModel.value = self.albumList.value
-      
-//        StorageAlbumViewModel.storageLikedAlbumId.value
-    }
 
-     var likedAlbumIdArray : Variable <[Int]> = Variable ([])
-    var likedAlbumId : Variable <[Int]> = Variable([])
-    var likeAlbId : Variable <Int> = Variable(0)
+    }
+  
     
+    var likedAlbumId : Variable <Int> = Variable(0)
+    var likeAlbId : Variable <Int> = Variable(0)
+    var storageLikedAlbumId : Variable <[Int]> = Variable ([])
+
     func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         
-        self.likeAlbId.value = rowIndex
+//        print ("CHANGE ROW = \(rowIndex)")
+//        print ("CHANGE ALBUMID = \(self.albumList.value[rowIndex].albumId)")
+        
+        self.likeAlbId.value = self.albumList.value[rowIndex].albumId!
+//        print ("CHANGE likeAlbId.value = \(self.likeAlbId.value)")
+        
         self.likeAlbId.asObservable()
-            
-            .flatMapLatest { (likedAlbumId : Int) -> Observable<[Int]> in
-                return self.albumApiService.changeAlbumStatusLike(rowIndex, likeStatus : likeStatus )
+            .flatMapLatest { (likeAlbId : Int) -> Observable<Int> in
+                return self.albumApiService.changeAlbumStatusLike(self.likeAlbId.value, likeStatus : likeStatus )
             }
-            .subscribe(onNext: { (likedAlbId : [Int]) in
+            .subscribe(onNext: { (likedAlbId : Int) in
                 self.likedAlbumId.value = likedAlbId
-                print("likedAlbumId.value = \(self.likedAlbumId.value)")
-                StorageAlbumViewModel.storageLikedAlbumId.value = self.likedAlbumId.value
-                print ("STORAGE = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
+//                print("likedAlbumId.value = \(self.likedAlbumId.value)")
                 }, onError: { (ErrorType) in
                     print ("Can't to like")
                 }
             ).addDisposableTo(bag)
-        
-        print ("STORAGE = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
     }
     
     
-    
-    
+    func saveToAlbumStorage (liked : Bool, albumId : Int) {
+        
+        let a = self.likedAlbumId.value
+        print("a = \(a)")
+
+        print("albumId = \(albumId)")
+        if liked {
+            if albumId != 0 {
+                StorageAlbumViewModel.storageLikedAlbumId.value.append(albumId)
+                print ("storageLikedAlbumId AFTER = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
+            }
+            else {
+            }
+        }
+        
+        else {
+            
+            print(liked)
+            print("a TO REMOVE = \(a)")
+            print("albumId  TO REMOVE = \(albumId)")
+            
+            if a != 0 {
+                print ("TO REMOVE = \(StorageAlbumViewModel.storageLikedAlbumId.value.indexOf(albumId)!)")
+                StorageAlbumViewModel.storageLikedAlbumId.value.removeAtIndex(StorageAlbumViewModel.storageLikedAlbumId.value.indexOf(albumId)!)
+                
+            }
+            print ("storageLikedAlbumId AFTER = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
+        }
+        print ("storageLikedAlbumId AFTER = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
+    }
+   
+   
     func saveAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
         print("STATUS = \(likedAlbumViewModel.value)")
-//        self.likedAlbumIdArray.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
         
+//        self.likedAlbumIdArray.value = LikedAlbumViewModel(likedAlbum : albumList.value[rowIndex], likedStatus : likeStatus)
 //       self.likedAlbumViewModel.value = LikedAlbumViewModel(likedAlbumId : rowIndex, likedStatus : likeStatus)
     }
     
-    
-    
-    
+}
+
+
+
+
+
+
+
+/*    func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
+ 
+ self.likeAlbId.value = rowIndex
+ self.likeAlbId.asObservable()
+ 
+ .flatMapLatest { (likedAlbumId : Int) -> Observable<[Int]> in
+ return self.albumApiService.changeAlbumStatusLike(rowIndex, likeStatus : likeStatus )
+ }
+ .subscribe(onNext: { (likedAlbId : [Int]) in
+ self.likedAlbumId.value = likedAlbId
+ print("likedAlbumId.value = \(self.likedAlbumId.value)")
+ StorageAlbumViewModel.storageLikedAlbumId.value = self.likedAlbumId.value
+ print ("STORAGE = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
+ }, onError: { (ErrorType) in
+ print ("Can't to like")
+ }
+ ).addDisposableTo(bag)
+ 
+ print ("STORAGE = \(StorageAlbumViewModel.storageLikedAlbumId.value)")
+ }
+ */
+
+
+
+
+
+
+
 /*
     func  saveAlbumStatusLike(rowIndex : Int, likeStatus : Bool) {
 
@@ -130,15 +191,6 @@ class AlbumViewModel {
 //        }
        
  
-        
-        
-        
-//        likedAlbumViewModel.likeObservable?.asObservable()
-//            .subscribeNext{ (like :Bool) in
-//                print ("SUBSCRIBE")
-//            }
-//            .addDisposableTo(bag)
-   
 
-}
+
 
