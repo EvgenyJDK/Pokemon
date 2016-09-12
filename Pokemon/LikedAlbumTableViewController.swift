@@ -15,61 +15,81 @@ import ImageLoader
 class  LikedAlbumTableViewController : UITableViewController {
 
     private let albumViewModel = AlbumViewModel()
+   
+    private let likedAlbumViewModel = LikedAlbumViewModel()
     private let bag = DisposeBag()
     
     @IBOutlet weak var LikedAlbumView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+ 
+        likedAlbumViewModel.likedAlbumList.asObservable()
+            .subscribeNext { (likedAlb : [Album]) in
+                self.LikedAlbumView.reloadData()
+            }
+            .addDisposableTo(bag)
+        
+ 
+        
+        
   
-    albumViewModel.storageLikedAlbumId.asObservable()
-        .subscribeNext { (albumId :[Int]) in
-            print("LIKED CONTROLLER = \(albumId)")
-        }
-    
+//        likedAlbumViewModel.likedAlbumList.asObservable()
+//            .subscribe(onNext: { (likedAlbList : [Album]) in
+//            print(likedAlbList)
+//            })
         
-        
-        AlbumStorage.storageLikedAlbumId
-            .asObservable()
-            .subscribeNext { (int :[Int]) in
-                print("LIKED CONTROLLER = \(int)")
-            self.LikedAlbumView.reloadData()
-        }
+//    albumViewModel.storageLikedAlbumId.asObservable()
+//        .subscribeNext { (albumId :[Int]) in
+//            print("LIKED CONTROLLER = \(albumId)")
+//        }
+     
+//        AlbumStorage.storageLikedAlbumId
+//            .asObservable()
+//            .subscribeNext { (int :[Int]) in
+//                print("LIKED CONTROLLER = \(int)")
+//            self.LikedAlbumView.reloadData()
+//        }
 
+        
     }
 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return albumViewModel.albumList.value.count
+        return 5
+       
+//        return albumViewModel.albumList.value.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let likedAlbumCell  = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! LikedAlbumCell
         
-        
-        let likedAlbum = StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row]
-      
-        
-//        print("SUBS2")
-//        print((StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like)!)
-        
-        
-        likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
-        likedAlbumCell.titleLike.text = likedAlbum.title
-        likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
-        
-        likedAlbumCell.setupSwitch(StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like!)
 
-
-        likedAlbumCell.likeSwitch.rx_value.asObservable()
-            .subscribeNext { (like : Bool) in
-                self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
-            }
-            .addDisposableTo(likedAlbumCell.disposeBag)
+//        let likedAlbum = 
+        
+//        let likedAlbum = LikedAlbumViewModel.
+//       
+//        
+//        
+//        let likedAlbum = StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row]
+//      
+//        likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
+//        likedAlbumCell.titleLike.text = likedAlbum.title
+//        likedAlbumCell.nameLike.text = albumViewModel.userList.value[Int(likedAlbum.userId!)!-1].name
+//        
+//        likedAlbumCell.setupSwitch(StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row].like!)
+//
+//
+//        likedAlbumCell.likeSwitch.rx_value.asObservable()
+//            .subscribeNext { (like : Bool) in
+//                self.albumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
+//            }
+//            .addDisposableTo(likedAlbumCell.disposeBag)
         return likedAlbumCell
     }
+
+    
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)

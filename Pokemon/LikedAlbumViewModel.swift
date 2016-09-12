@@ -15,64 +15,107 @@ class LikedAlbumViewModel {
     private let albumApiService = AlbumApiService()
     private let bag = DisposeBag()
     
-    let albumStatus : Variable<Bool> = Variable(false)
-
-    var albumDetails : Variable <Album> = Variable(Album())
-    var likedAlbums : Variable <Album?> = Variable(nil)
-
-    var likedAlbumId : Variable <[Int]> = Variable([])
-    var likeAlbId : Variable <Int> = Variable(0)
+//    let albumStatus : Variable<Bool> = Variable(false)
+//
+//    var albumDetails : Variable <Album> = Variable(Album())
+//    var likedAlbums : Variable <Album?> = Variable(nil)
+//
+//    var likedAlbumId : Variable <[Int]> = Variable([])
+//    var likeAlbId : Variable <Int> = Variable(0)
     
 
-   init (likedAlbum : Album, likedStatus : Bool) {
-    
-//        print ("LIKEDALBUM")
-//        print (likedAlbum.albumId!)
-//        print(likedStatus)
- 
-//    self.albumDetails.value = likedAlbumId
-//    self.albumDetails.asObservable()
-//            .flatMapLatest { (albumDetails : Album) -> Observable<[Int]> in
-//                return self.albumApiService.saveAlbumStatus(likedAlbum, likeStatus : likedStatus )
-//    }
-
-    
-    self.likeAlbId.value = likedAlbum.albumId!
-        self.likeAlbId.asObservable()
-            
-            .flatMapLatest { (likedAlbumId : Int) -> Observable<[Int]> in
-                return self.albumApiService.saveAlbumStatus(likedAlbum, likeStatus : likedStatus )
-            }
-            .subscribe(onNext: { (likedAlbId : [Int]) in
-                self.likedAlbumId.value = likedAlbId
-//                print("LIKE = \(self.likedAlbumId.value)")
-                StorageAlbumViewModel.storageLikedAlbumId.value = self.likedAlbumId.value
-//                print (StorageAlbumViewModel.storageLikedAlbumId.value)
-                }, onError: { (ErrorType) in
-                    print ("Can't to like")
-                }
+    var likedAlbumList : Variable <[Album]> = Variable([])
     
     
+    
+    
+    init () {
+       
+        print("LIKED VIEWMODEL INIT")
+        
+        AlbumStorage.storageLikedAlbumId.asObservable()
+            .subscribeNext { (albumIds: Set<Int>) in
                 
-//            .flatMapLatest { (albumDetails : Album) -> Observable<Album> in
+                self.albumApiService.getLikedAlbums(albumIds)
+                
+//                self.likedAlbumList.value = albumIds
+        }
+        
+//        albumApiService.getLikedAlbums(likedAlbList)
+//            .subscribe(onNext: { (resultLikedAlbums : [Album]) in
+//            self.likedAlbumList.value = resultLikedAlbums
+//            },
+//            onError: { (ErrorType) in
+//            print ("Error")
+//            }
+//        ).addDisposableTo(bag)
+        
+  
+        
+        let a = albumApiService.getLikedAlbums([1, 2])
+        print(a)
+        
+        
+    }
+ 
+    
+    
+    
+    
+}
+    
+    
+    
+    
+//   init (likedAlbum : Album, likedStatus : Bool) {
+//    
+////        print ("LIKEDALBUM")
+////        print (likedAlbum.albumId!)
+////        print(likedStatus)
+// 
+////    self.albumDetails.value = likedAlbumId
+////    self.albumDetails.asObservable()
+////            .flatMapLatest { (albumDetails : Album) -> Observable<[Int]> in
+////                return self.albumApiService.saveAlbumStatus(likedAlbum, likeStatus : likedStatus )
+////    }
+//
+//    
+//    self.likeAlbId.value = likedAlbum.albumId!
+//        self.likeAlbId.asObservable()
+//            
+//            .flatMapLatest { (likedAlbumId : Int) -> Observable<[Int]> in
 //                return self.albumApiService.saveAlbumStatus(likedAlbum, likeStatus : likedStatus )
 //            }
-//            .subscribe(onNext: { (likedAlbums : Album) in
-//
-//                self.likedAlbums.value = likedAlbums
-//                print ("~~~~~~~~~~~~~~~~~~~~~~~~~~")
-//                print(self.likedAlbums.value?.title)
-//                print(self.likedAlbums.value?.like)
-//                },
-//                onError: { (ErrorType) in
+//            .subscribe(onNext: { (likedAlbId : [Int]) in
+//                self.likedAlbumId.value = likedAlbId
+////                print("LIKE = \(self.likedAlbumId.value)")
+//                StorageAlbumViewModel.storageLikedAlbumId.value = self.likedAlbumId.value
+////                print (StorageAlbumViewModel.storageLikedAlbumId.value)
+//                }, onError: { (ErrorType) in
 //                    print ("Can't to like")
 //                }
-
-                
-                
-                
-            ).addDisposableTo(bag)
-    }
+//    
+//    
+//                
+////            .flatMapLatest { (albumDetails : Album) -> Observable<Album> in
+////                return self.albumApiService.saveAlbumStatus(likedAlbum, likeStatus : likedStatus )
+////            }
+////            .subscribe(onNext: { (likedAlbums : Album) in
+////
+////                self.likedAlbums.value = likedAlbums
+////                print ("~~~~~~~~~~~~~~~~~~~~~~~~~~")
+////                print(self.likedAlbums.value?.title)
+////                print(self.likedAlbums.value?.like)
+////                },
+////                onError: { (ErrorType) in
+////                    print ("Can't to like")
+////                }
+//
+//                
+//                
+//                
+//            ).addDisposableTo(bag)
+//    }
 
     
     
@@ -91,5 +134,5 @@ class LikedAlbumViewModel {
 //        }
 //    }
 
-}
+
 

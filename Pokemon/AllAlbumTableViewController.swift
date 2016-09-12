@@ -21,14 +21,7 @@ class AllAlbumTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        albumViewModel.albumList.asObservable()
-//            .subscribeNext { result in
-//                print ("FIRST")
-//                self.allAlbumsView.reloadData()
-//            }
-//            .addDisposableTo(bag)
-      
+
         
         albumViewModel.albumList.asObservable()
             .subscribeNext { result in
@@ -41,13 +34,7 @@ class AllAlbumTableViewController: UITableViewController {
             })
             .addDisposableTo(bag)
     }
-    
-    
-    override func viewWillDisappear(animated: Bool) {
-        albumViewModel.saveAlbumModelToStorage()
-    }
-    
-    
+   
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albumViewModel.albumList.value.count
@@ -58,25 +45,7 @@ class AllAlbumTableViewController: UITableViewController {
         
         let albumCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
         
-        
-        
-//        StorageAlbumViewModel.storageAlbumViewModel.asObservable()
-//            .subscribeNext { (resultAlbum : [Album]?) in
-//                
-//                print ("SEC")
-//        }
-
-        
-//        let album = StorageAlbumViewModel.storageAlbumViewModel.value![indexPath.row]
-//        
-//        albumCell.title.text = album.title
-//        albumCell.id.text = String(album.albumId!)
-//        albumCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
-//        
-//        albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
-        
-      
-        
+ 
         let album = albumViewModel.albumList.value[indexPath.row]
         
         albumCell.title.text = album.title
@@ -87,16 +56,13 @@ class AllAlbumTableViewController: UITableViewController {
 
         albumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { [weak self] (like : Bool) in
-//                 self.albumViewModel.saveAlbumStatusLike(indexPath.row, likeStatus: like)
-                self!.albumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
-                
-                self!.albumViewModel.saveToAlbumStorage(like, albumId : Int(album.albumId!))
-                
+            self!.albumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
             }
             .addDisposableTo(albumCell.disposeBag)
         return albumCell
     }
     
+ 
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

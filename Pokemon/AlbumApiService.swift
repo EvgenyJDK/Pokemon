@@ -15,9 +15,8 @@ import RxSwift
 
 class AlbumApiService {
     
-   
     func getAllAlbums () -> Observable<[Album]> {
-        
+
         let pathAlbums = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
         let dataAlbums = NSData(contentsOfFile: pathAlbums!)
         let jsonAlbums = try!NSJSONSerialization.JSONObjectWithData(dataAlbums!, options: [])
@@ -37,7 +36,18 @@ class AlbumApiService {
             album.like = false
             albumList.append(album)
         }
-        return Observable.just(albumList)
+        
+        return Observable.just(albumList).flatMap { (value) -> Observable<[Album]> in
+            
+            return Observable.create({ (observer) -> Disposable in
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                    observer.onNext(value)
+                    observer.onCompleted()
+                });
+                
+                return NopDisposable.instance
+            })
+        }
     }
     
     
@@ -99,54 +109,68 @@ class AlbumApiService {
 //    }
     
  
-    
-    
-    let likedAlbumId : Variable<[Int]> = Variable([])
-    
-    func saveAlbumStatus (albumModel : Album, likeStatus : Bool) -> Observable <[Int]> {
-        
-//    var likedAlbumId : [Int] = []
-        
-        if likeStatus {
-            likedAlbumId.value.append(albumModel.albumId!)
-        }
-//        print("APISERVICE = \(likedAlbumId)")
-        return Observable.just(likedAlbumId.value)
-    }
-    
+  
  
-    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) -> Observable<Int> {
+    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) {
         
-//        print ("API CHANGE = \(albumId)")
-//        print ("API CHANGESTATUS = \(likeStatus)")
-//        var likedAlbumId : [Int] = []
-        
-        var likedAlbumId : Int = 0
+        var alb : Set <Int> = AlbumStorage.storageLikedAlbumId.value
         
         if likeStatus {
-//            likedAlbumId.append(albumId)
-            likedAlbumId = albumId
-            
-//            StorageAlbumViewModel.storageLikedAlbumId.value.append(albumId)
-//            print(StorageAlbumViewModel.storageLikedAlbumId.value)
+            alb.insert(albumId)
         }
         else {
+            alb.remove(albumId)
         }
-        return Observable.just(likedAlbumId)
+        AlbumStorage.storageLikedAlbumId.value = alb
     }
-   
+
     
-    
+    func getLikedAlbums (likedAlbList : Set <Int>) -> Observable<[Album]> {
+
+        return self.getAllAlbums()
+            .map{ (allAlbums : [Album]) -> [Album] in
+                return allAlbums.filter { (album) -> Bool in
+                    return likedAlbList.contains(album.albumId!)
+                }
+            }
+     
+       
+//        return getPhotos().map { (photos: [Photo]) -> [Photo] in
+//            return photos.filter{ (photo : Photo) -> Bool in
+//                return photo.albumId == album.id
+        
+        
+        
+//            .map { (allAlbums : [Album]) -> Observable<[Album]> in
+//                return for album in allAlbums {
+//                    if likedAlbList.contains(album.albumId!) {
+//                        likedAlbumList.append(album)
+//                    }
+//                }
+//                return likedAlbumList as! Observable
+//        }
+//        return likedAlbumList as! Observable
+
+    }
+}
  
+
+
+
+
+/*            .subscribeNext { (allAlbums : [Album]) in
+                allAlbumList = allAlbums
+                for album in allAlbumList {
+                    if likedAlbList.contains(album.albumId!) {
+                        likedAlbumList.append(album)
+                    }
+                }
+        }
+*/
+
     
     
-    
-    
-    
-    
-    
-    
-    
+  
     
     
 /*    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) -> Observable<[Int]> {
@@ -164,7 +188,7 @@ class AlbumApiService {
 
  */
     
-}
+
 
 
 

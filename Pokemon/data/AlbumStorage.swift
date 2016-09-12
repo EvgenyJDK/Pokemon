@@ -12,6 +12,6 @@ import RxCocoa
 
 class AlbumStorage {
     
-    static var storageLikedAlbumId : Variable <[Int]> = Variable ([])
+    static var storageLikedAlbumId : Variable < Set<Int> > = Variable ([])
     
 }
