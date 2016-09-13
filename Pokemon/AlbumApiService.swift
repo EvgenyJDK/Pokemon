@@ -32,7 +32,7 @@ class AlbumApiService {
             
             album.albumId = albumId
             album.title = title
-            album.userId = String(userId)
+            album.userId = userId
             album.like = false
             albumList.append(album)
         }
@@ -69,8 +69,9 @@ class AlbumApiService {
             user.name = userName
             userList.append(user)
         }
-        return Observable.just(userList)
+        return Observable.just(userList)       
     }
+    
     
     func getAlbumDetails (albumId : Int) -> Observable<[Photo]> {
         
@@ -95,21 +96,7 @@ class AlbumApiService {
         }
         return Observable.just(albumDetails)
     }
- 
-    
-//    func saveAlbumStatus (albumModel : Album, likeStatus : Bool) -> Observable <Album> {
-//        
-//        print ("APISERVICE = \(albumModel.like)")
-//        print("APISERVICE = \(albumModel.title)")
-//        
-//        albumModel.like = likeStatus
-//        print ("APISERVICE AFTER = \(albumModel.like)")
-//        
-//        return Observable.just(albumModel)
-//    }
-    
- 
-  
+
  
     func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) {
         
@@ -135,31 +122,64 @@ class AlbumApiService {
         }
     }
     
+
     
-//    func getUserLikedAlbums (userLikedAlbList : Set <Int>) -> Observable<[User]> {
-//        
-//        return self.getUserName()
-//            .map{ (allUsers : [User]) -> [User] in
-//            return allUsers.filter{ (user) -> Bool in
-//                return userLikedAlbList.contains(user.)
-//            }
-//        }
-//    }
-}
+    func getUsersByAlbum (albums : [Album]) -> Observable<[User]> {
+        
+        return albums.map{ (album : Album) -> Observable<User> in
+            return getUserNameByAlbum(album)
+            }.combineLatest{ (users : [User]) -> [User] in
+            return users
+        }
+    }
  
-
-//            .map { (allAlbums : [Album]) -> Observable<[Album]> in
-//                return for album in allAlbums {
-//                    if likedAlbList.contains(album.albumId!) {
-//                        likedAlbumList.append(album)
-//                    }
-//                }
-//                return likedAlbumList as! Observable
+    
+    func getUserNameByAlbum (album : Album) -> Observable<User> {
+        
+//        return getUserName().map{ (users : [User]) -> User in
+//            return (users.filter{ (user : User) -> Bool in
+//                return user.userId == album.userId
+//            }
+//            )
 //        }
-//        return likedAlbumList as! Observable
+        return album as! Observable<User>
+    }
+    
+
+    
+/*
+    func getLikedUserName (likedUserId : Set <Int>) -> Observable<[User]> {
+     
+        print("getLikedUserName")
+     
+        return self.getUserName()
+            .map{ (allUsers : [User]) -> [User] in
+                print("COUNT = \(allUsers.count)")
+                return allUsers.filter{ (user) -> Bool in
+                    print("username = \(user.userName)")
+                    return likedUserId.contains(user.userId!)
+                }
+        }
+    }
+*/
 
 
+    func getLikedUserName (likedUserId : Int) -> Observable<[User]> {
 
+        return self.getUserName()
+            .map{ (allUsers : [User]) -> [User] in
+                print("COUNT = \(allUsers.count)")
+                print("VALUE = \(allUsers[1].email)")
+            return allUsers
+//                .filter{ (user) -> Bool in
+//                return likedUserId == user.userId!
+                
+//            }
+        }
+    }
+
+ 
+}
 
 
 
@@ -175,25 +195,7 @@ class AlbumApiService {
 */
 
     
-    
-  
-    
-    
-/*    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) -> Observable<[Int]> {
-        
-        var likedAlbumId : [Int] = []
-      
-        if likeStatus {
-            likedAlbumId.append(albumId)
-        }
-        else {
-        }
-        
-        return Observable.just(likedAlbumId)
-    }
 
- */
-    
 
 
 

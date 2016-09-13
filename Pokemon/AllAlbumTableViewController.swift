@@ -50,7 +50,7 @@ class AllAlbumTableViewController: UITableViewController {
         
         albumCell.title.text = album.title
         albumCell.id.text = String(album.albumId!)
-        albumCell.userName.text = albumViewModel.userList.value[Int(album.userId!)!-1].name
+        albumCell.userName.text = albumViewModel.userList.value[album.userId!-1].name
         
         albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
 

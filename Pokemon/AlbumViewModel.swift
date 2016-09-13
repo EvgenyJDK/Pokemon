@@ -52,7 +52,7 @@ class AlbumViewModel {
 
     
     func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
-        AlbumApiService().changeAlbumStatusLike(rowIndex, likeStatus: likeStatus)
+        AlbumApiService().changeAlbumStatusLike(rowIndex+1, likeStatus: likeStatus)
 
     }
     

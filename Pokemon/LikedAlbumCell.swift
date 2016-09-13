@@ -15,6 +15,7 @@ class LikedAlbumCell : UITableViewCell {
   
     
     private(set) var disposeBag = DisposeBag()
+    private let likedAlbumViewModel = LikedAlbumViewModel()
     
     override func prepareForReuse() {
         
@@ -28,6 +29,8 @@ class LikedAlbumCell : UITableViewCell {
     @IBOutlet weak var nameLike: UILabel!
     @IBOutlet weak var likeSwitch: UISwitch!
     @IBAction func dislikeAction(sender: AnyObject) {
+
+        
     }
     
     
