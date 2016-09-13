@@ -49,8 +49,8 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         /* LOOP */
         likedAlbumCell.likeSwitch.rx_value.asObservable()
-            .subscribeNext { (like : Bool) in
-                self.likedAlbumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
+            .subscribeNext { [weak self] (like : Bool) in
+                self!.likedAlbumViewModel.changeAlbumStatusLike(indexPath.row, likeStatus: like)
             }
             .addDisposableTo(likedAlbumCell.disposeBag)
 

@@ -26,16 +26,28 @@ class LikedAlbumViewModel {
             }
             .subscribeNext { (likedAlbums :[Album]) in
                 self.likedAlbumList.value = likedAlbums
-                self.albumApiService.getUsersByAlbum(likedAlbums)
-                    .subscribeNext({ (users : [User]) in
-                    self.likedUserNameList.value = users
-                })
+//                self.albumApiService.getUsersByAlbum(likedAlbums)
+//                    .subscribeNext({ (users : [User]) in
+//                    self.likedUserNameList.value = users
+//                        print("LIKED INIT = \(self.likedUserNameList.value)")
+//                })
         }
         .addDisposableTo(bag)
+        
+        albumApiService.getUsersByAlbum(likedAlbumList.value)
+            .subscribeNext { (users :[User]) in
+            self.likedUserNameList.value = users
+                print(self.likedUserNameList.value)
+        }
+        .addDisposableTo(bag)
+        
+        
     }
 
     
     func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
+        print("LIKE MODEL = \(rowIndex)")
+        print("LIKE MODEL = \(likeStatus)")
         AlbumApiService().changeAlbumStatusLike(rowIndex+1, likeStatus: likeStatus)
     }
     

@@ -125,6 +125,8 @@ class AlbumApiService {
     
     func getUsersByAlbum (albums : [Album]) -> Observable<[User]> {
         
+        print(albums.count)
+        print("LOOKING")
         return albums.map{ (album : Album) -> Observable<User> in
             return getUserNameByAlbum(album)
             }.combineLatest{ (users : [User]) -> [User] in
