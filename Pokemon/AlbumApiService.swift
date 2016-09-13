@@ -147,6 +147,8 @@ class AlbumApiService {
     
 
     
+    
+    
 /*
     func getLikedUserName (likedUserId : Set <Int>) -> Observable<[User]> {
      
