@@ -126,21 +126,28 @@ class AlbumApiService {
 
     
     func getLikedAlbums (likedAlbList : Set <Int>) -> Observable<[Album]> {
-
+        
         return self.getAllAlbums()
             .map{ (allAlbums : [Album]) -> [Album] in
                 return allAlbums.filter { (album) -> Bool in
                     return likedAlbList.contains(album.albumId!)
                 }
-            }
-     
-       
-//        return getPhotos().map { (photos: [Photo]) -> [Photo] in
-//            return photos.filter{ (photo : Photo) -> Bool in
-//                return photo.albumId == album.id
-        
-        
-        
+        }
+    }
+    
+    
+//    func getUserLikedAlbums (userLikedAlbList : Set <Int>) -> Observable<[User]> {
+//        
+//        return self.getUserName()
+//            .map{ (allUsers : [User]) -> [User] in
+//            return allUsers.filter{ (user) -> Bool in
+//                return userLikedAlbList.contains(user.)
+//            }
+//        }
+//    }
+}
+ 
+
 //            .map { (allAlbums : [Album]) -> Observable<[Album]> in
 //                return for album in allAlbums {
 //                    if likedAlbList.contains(album.albumId!) {
@@ -151,9 +158,8 @@ class AlbumApiService {
 //        }
 //        return likedAlbumList as! Observable
 
-    }
-}
- 
+
+
 
 
 

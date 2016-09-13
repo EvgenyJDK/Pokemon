@@ -56,9 +56,7 @@ class  LikedAlbumTableViewController : UITableViewController {
 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-       
-//        return albumViewModel.albumList.value.count
+        return likedAlbumViewModel.likedAlbumList.value.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -66,6 +64,15 @@ class  LikedAlbumTableViewController : UITableViewController {
         let likedAlbumCell  = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! LikedAlbumCell
         
 
+        let likedAlbum = likedAlbumViewModel.likedAlbumList.value[indexPath.row]
+        
+        likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
+        
+        print (likedAlbum.albumId!)
+        likedAlbumCell.titleLike.text = likedAlbum.title
+        likedAlbumCell.nameLike.text = likedAlbumViewModel.likedAlbumList.value[Int(likedAlbum.userId!)!-1]
+        
+        
 //        let likedAlbum = 
         
 //        let likedAlbum = LikedAlbumViewModel.

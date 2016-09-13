@@ -25,32 +25,61 @@ class LikedAlbumViewModel {
     
 
     var likedAlbumList : Variable <[Album]> = Variable([])
-    
-    
-    
+    var userLikedAlbumList : Variable <[User]> = Variable([])
     
     init () {
-       
+        
         print("LIKED VIEWMODEL INIT")
         
         AlbumStorage.storageLikedAlbumId.asObservable()
-            .subscribeNext { (albumIds: Set<Int>) in
-                
-                self.albumApiService.getLikedAlbums(albumIds)
-                
-//                self.likedAlbumList.value = albumIds
+            .flatMapLatest{ (albumId : Set<Int>) -> Observable<[Album]> in
+                self.albumApiService.getLikedAlbums(albumId)
+            }
+            .subscribe(onNext: { (likedAlbums : [Album]) in
+                self.likedAlbumList.value = likedAlbums
+                }
+                , onError: { (ErrorType) in
+            }
+        ).addDisposableTo(bag)
+
+        
+        
+        
+        
+        AlbumStorage.storageLikedAlbumId.asObservable()
+            .flatMapLatest { (albumId : Set<Int>) -> Observable<[User]> in
+            self.albumApiService.getUserLikedAlbums(albumId)
         }
         
-//        albumApiService.getLikedAlbums(likedAlbList)
-//            .subscribe(onNext: { (resultLikedAlbums : [Album]) in
-//            self.likedAlbumList.value = resultLikedAlbums
-//            },
-//            onError: { (ErrorType) in
-//            print ("Error")
-//            }
-//        ).addDisposableTo(bag)
+        //            .map { (albumId : Set<Int>) -> [Album] in
+        //            return self.albumApiService.getLikedAlbums(albumId)
+        //        }
         
-  
+        
+        //            .subscribeNext { (likedAlbums : Observable<[Album]>) in
+        //            self.likedAlbumList.value = likedAlbums
+        //        }
+        
+        
+        
+        //            .subscribeNext { (albumIds: Set<Int>) in
+        //               self.albumApiService.getLikedAlbums(albumIds)
+        //               self.likedAlbumList.value = self.albumApiService.getLikedAlbums(albumIds)
+        
+        
+        //                self.likedAlbumList = albumIds
+        //        }
+        
+        //        albumApiService.getLikedAlbums(likedAlbList)
+        //            .subscribe(onNext: { (resultLikedAlbums : [Album]) in
+        //            self.likedAlbumList.value = resultLikedAlbums
+        //            },
+        //            onError: { (ErrorType) in
+        //            print ("Error")
+        //            }
+        //        ).addDisposableTo(bag)
+        
+        
         
         let a = albumApiService.getLikedAlbums([1, 2])
         print(a)
