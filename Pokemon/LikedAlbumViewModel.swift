@@ -27,6 +27,9 @@ class LikedAlbumViewModel {
             .subscribeNext { (likedAlbums :[Album]) in
                 self.likedAlbumList.value = likedAlbums
                 self.albumApiService.getUsersByAlbum(likedAlbums)
+                    .subscribeNext({ (users : [User]) in
+                    self.likedUserNameList.value = users
+                })
         }
         .addDisposableTo(bag)
     }

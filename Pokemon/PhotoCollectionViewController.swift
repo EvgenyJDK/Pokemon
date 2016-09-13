@@ -14,22 +14,14 @@ import ImageLoader
 
 class PhotoCollectionViewController : UICollectionViewController {
     
-//    private let photoCell = PhotoCollectionViewCell()
     private let bag = DisposeBag()
-    
-    //    private let leftAndRightPaddings : CGFloat = 32.0
-    //    private let numberofItemsPerRow : CGFloat = 3.0
-    //    private let heightAdjustment : CGFloat = 30.0
-    
+
     var photoViewModel : PhotoViewModel?
     
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
         
-        //        let width = (CGRectGetWidth(collectionView!.frame)) - leftAndRightPaddings / numberofItemsPerRow
-        //        let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        //        layout.itemSize = CGSizeMake(width, heightAdjustment)
         
         photoViewModel?.photo.asObservable()
             .subscribeNext({ (photo :[Photo]) in
@@ -38,10 +30,6 @@ class PhotoCollectionViewController : UICollectionViewController {
                 }
             ).addDisposableTo(bag)
     }
- 
-    //    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-    //        return 1
-    //    }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (photoViewModel?.photo.value.count)!
@@ -50,9 +38,6 @@ class PhotoCollectionViewController : UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let photoCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PhotoCollectionViewCell
-        
-        //        print ("CELL INDEX PATH ITEM = \(photoViewModel?.photo.value[indexPath.item])")
-        //        print ("CELL = \(photoViewModel?.photo.value[indexPath.item].url)")
         
         if let url = photoViewModel?.photo.value[indexPath.item].url {
             print(url)

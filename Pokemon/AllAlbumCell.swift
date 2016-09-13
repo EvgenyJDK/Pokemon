@@ -14,6 +14,7 @@ import RxSwift
 class AllAlbumCell: UITableViewCell {
     
     
+  
     private(set) var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
@@ -31,6 +32,7 @@ class AllAlbumCell: UITableViewCell {
     @IBOutlet weak var likeSwitch: UISwitch!
     @IBAction func check(sender: AnyObject) {
     
+ 
     }
     
     
