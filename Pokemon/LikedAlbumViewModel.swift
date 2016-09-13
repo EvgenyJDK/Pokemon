@@ -19,45 +19,23 @@ class LikedAlbumViewModel {
     var likedUserNameList : Variable <[User]> = Variable([])
     
     init () {
-        
-        print("LIKED VIEWMODEL INIT")
       
         AlbumStorage.storageLikedAlbumId.asObservable()
             .flatMap{ (albumId : Set<Int>) -> Observable<[Album]> in
                 return self.albumApiService.getLikedAlbums(albumId)
             }
-            
-//            .flatMap{ (albums : [Album]) -> Observable<[User]>in
-//                return self.albumApiService.getUsersByAlbum(albums)
-//            }
-//            .subscribeNext({ (users : [User]) in
-//                
-//            })
             .subscribeNext { (likedAlbums :[Album]) in
                 self.likedAlbumList.value = likedAlbums
+                self.albumApiService.getUsersByAlbum(likedAlbums)
         }
         .addDisposableTo(bag)
-        
-
-        //        AlbumStorage.storageLikedAlbumId.asObservable()
-        //            .flatMapLatest { (albumId : Set<Int>) -> Observable<[User]> in
-        //            self.albumApiService.getLikedUserName(albumId)
-        //        }
-        //            .subscribe(onNext: { (likedUsers : [User]) in
-        //            self.likedUserNameList.value = likedUsers
-        ////                print ("USERNAME = \(self.likedUserNameList.value[0].userName)")
-        //            }
-        //                , onError: { (ErrorType) in
-        //                }
-        //        ).addDisposableTo(bag)
     }
 
     
     func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         AlbumApiService().changeAlbumStatusLike(rowIndex+1, likeStatus: likeStatus)
-        
     }
- 
+    
 }
 
 

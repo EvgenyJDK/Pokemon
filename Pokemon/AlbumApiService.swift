@@ -121,7 +121,6 @@ class AlbumApiService {
                 }
         }
     }
-    
 
     
     func getUsersByAlbum (albums : [Album]) -> Observable<[User]> {
@@ -136,67 +135,17 @@ class AlbumApiService {
     
     func getUserNameByAlbum (album : Album) -> Observable<User> {
         
-//        return getUserName().map{ (users : [User]) -> User in
-//            return (users.filter{ (user : User) -> Bool in
-//                return user.userId == album.userId
-//            }
-//            )
-//        }
+        return getUserName().map{ (users : [User]) -> User in
+            return (users.filter{ (user : User) -> Bool in
+                return user.userId == album.userId
+            }
+            ).first!    
+        }
         return album as! Observable<User>
     }
-    
-
-    
-    
-    
-/*
-    func getLikedUserName (likedUserId : Set <Int>) -> Observable<[User]> {
-     
-        print("getLikedUserName")
-     
-        return self.getUserName()
-            .map{ (allUsers : [User]) -> [User] in
-                print("COUNT = \(allUsers.count)")
-                return allUsers.filter{ (user) -> Bool in
-                    print("username = \(user.userName)")
-                    return likedUserId.contains(user.userId!)
-                }
-        }
-    }
-*/
-
-
-    func getLikedUserName (likedUserId : Int) -> Observable<[User]> {
-
-        return self.getUserName()
-            .map{ (allUsers : [User]) -> [User] in
-                print("COUNT = \(allUsers.count)")
-                print("VALUE = \(allUsers[1].email)")
-            return allUsers
-//                .filter{ (user) -> Bool in
-//                return likedUserId == user.userId!
-                
-//            }
-        }
-    }
-
- 
 }
 
 
-
-
-/*            .subscribeNext { (allAlbums : [Album]) in
-                allAlbumList = allAlbums
-                for album in allAlbumList {
-                    if likedAlbList.contains(album.albumId!) {
-                        likedAlbumList.append(album)
-                    }
-                }
-        }
-*/
-
-    
 
 
 
