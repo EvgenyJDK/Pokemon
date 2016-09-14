@@ -31,22 +31,18 @@ class  LikedAlbumTableViewController : UITableViewController {
             }
             .addDisposableTo(bag)
         
-//        setupViewModel()
+//        setup()
     }
 
-    
-    private func setupViewModel() {
-        
-        likedAlbumViewModel.likedAlbumOne.asObservable()
-            .subscribeNext { (album : Album?) in
-                self.LikedAlbumView.reloadData()
-                
-                print("SUBSCRIBE = \(album)")
-        }
-        .addDisposableTo(bag)
-    }
-    
-    
+//    private func setup() {
+//        likedAlbumViewModel.likedAlbumOne.asObservable()
+//            .subscribeNext { (album : Album?) in
+//                self.LikedAlbumView.reloadData()
+//                print("SUBSCRIBE = \(album)")
+//        }
+//        .addDisposableTo(bag)
+//    }
+  
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likedAlbumViewModel.likedAlbumList.value.count
@@ -56,17 +52,6 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         let likedAlbumCell  = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! LikedAlbumCell
 
-        
-//        let likedAlbum = likedAlbumViewModel.likedAlbumOne.value
-//        
-//        print(likedAlbumViewModel.likedAlbumOne.value)
-//        
-//        likedAlbumCell.idLike.text = String(likedAlbum?.albumId)
-//        likedAlbumCell.titleLike.text = likedAlbum?.title
-        
-        
-        
-        
         let likedAlbum = likedAlbumViewModel.likedAlbumList.value[indexPath.row]
         
         likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
@@ -82,14 +67,17 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         
         /* LOOP */
-//         likedAlbumCell.likeSwitch.rx_value.asObservable()
-//            .subscribeNext { [weak self] (like : Bool) in
-//
-//                self!.likedAlbumViewModel.setAlbumStatusLike(indexPath.row, likeStatus: like)
-//            }
-//            .addDisposableTo(likedAlbumCell.disposeBag)
-        
+         likedAlbumCell.likeSwitch.rx_value.asObservable()
+            .subscribeNext { [weak self] (like : Bool) in
 
+                self!.likedAlbumViewModel.setAlbumStatusLike(indexPath.row, likeStatus: like)
+            }
+            .addDisposableTo(likedAlbumCell.disposeBag)
+
+//        let likedAlbum = likedAlbumViewModel.likedAlbumOne.value
+//        print(likedAlbumViewModel.likedAlbumOne.value)
+//        likedAlbumCell.idLike.text = String(likedAlbum?.albumId)
+//        likedAlbumCell.titleLike.text = likedAlbum?.title
 
         return likedAlbumCell
     }

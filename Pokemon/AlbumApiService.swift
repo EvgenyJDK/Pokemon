@@ -98,8 +98,7 @@ class AlbumApiService {
     }
 
     
-
-    func getLikedAlbum ( likedAlbumIds : Set <Int>) -> Observable<Album> {
+/*    func getLikedAlbum ( likedAlbumIds : Set <Int>) -> Observable<Album> {
         
         return self.getAllAlbums()
             .map({ (allAlbums : [Album]) -> Album in
@@ -108,9 +107,7 @@ class AlbumApiService {
             }).first!
         })
     }
-    
- 
-  
+*/
     
     func getLikedAlbums (likedAlbList : Set <Int>) -> Observable<[Album]> {
         
@@ -121,9 +118,7 @@ class AlbumApiService {
                 }
         }
     }
-
-    
-    
+ 
     func getUserNameByAlbum (album : Album) -> Observable<User> {
         
         return getUserName().map{ (users : [User]) -> User in
