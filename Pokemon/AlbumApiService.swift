@@ -123,28 +123,33 @@ class AlbumApiService {
     }
 
     
+    
+    func getUserNameByAlbum (album : Album) -> Observable<User> {
+        
+        return getUserName().map{ (users : [User]) -> User in
+            return (users.filter{ (user : User) -> Bool in
+                return user.userId! == album.userId!
+                }
+                ).first!
+        }
+    }
+
+    
+
+/*
     func getUsersByAlbum (albums : [Album]) -> Observable<[User]> {
         
-        print(albums.count)
-        print("LOOKING")
+        print("LOOKING = \(albums.count)")
+
         return albums.map{ (album : Album) -> Observable<User> in
             return getUserNameByAlbum(album)
             }.combineLatest{ (users : [User]) -> [User] in
             return users
         }
     }
- 
+*/
     
-    func getUserNameByAlbum (album : Album) -> Observable<User> {
-        
-        return getUserName().map{ (users : [User]) -> User in
-            return (users.filter{ (user : User) -> Bool in
-                return user.userId == album.userId
-            }
-            ).first!    
-        }
-        return album as! Observable<User>
-    }
+    
 }
 
 

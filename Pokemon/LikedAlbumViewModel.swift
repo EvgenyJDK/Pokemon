@@ -17,6 +17,8 @@ class LikedAlbumViewModel {
 
     var likedAlbumList : Variable <[Album]> = Variable([])
     var likedUserNameList : Variable <[User]> = Variable([])
+    var likedUserName : Variable<User?> = Variable(nil)
+    
     
     init () {
       
@@ -27,23 +29,27 @@ class LikedAlbumViewModel {
             .subscribeNext { (likedAlbums :[Album]) in
                 self.likedAlbumList.value = likedAlbums
 //                self.albumApiService.getUsersByAlbum(likedAlbums)
+//       
 //                    .subscribeNext({ (users : [User]) in
 //                    self.likedUserNameList.value = users
-//                        print("LIKED INIT = \(self.likedUserNameList.value)")
+//                         print("LIKED INIT = \(self.likedUserNameList.value)")
 //                })
         }
         .addDisposableTo(bag)
-        
-        albumApiService.getUsersByAlbum(likedAlbumList.value)
-            .subscribeNext { (users :[User]) in
-            self.likedUserNameList.value = users
-                print(self.likedUserNameList.value)
-        }
-        .addDisposableTo(bag)
-        
-        
     }
 
+    
+    func getUserName (likedAlbum : Album) {
+        
+        albumApiService.getUserNameByAlbum(likedAlbum)
+            .subscribeNext{ (user : User) in
+                print("GET ~~~~~~ = \(user.name)")
+                self.likedUserName.value = user
+            }
+            .addDisposableTo(bag)
+        
+    }
+    
     
     func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         print("LIKE MODEL = \(rowIndex)")

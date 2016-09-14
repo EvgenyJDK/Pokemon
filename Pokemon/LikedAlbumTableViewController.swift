@@ -25,12 +25,19 @@ class  LikedAlbumTableViewController : UITableViewController {
         super.viewDidLoad()
  
         likedAlbumViewModel.likedAlbumList.asObservable()
-            .subscribeNext { [weak self] (likedAlb : [Album]) in
+            .subscribeNext { [weak self] (likedAlbums : [Album]) in
                 self!.LikedAlbumView.reloadData()
             }
             .addDisposableTo(bag)
+        
+//        likedAlbumViewModel.likedUserNameList.asObservable()
+//            .subscribeNext { (likedUsers : [User]) in
+//                self.LikedAlbumView.reloadData()
+//        }
+//        .addDisposableTo(bag)
     }
 
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likedAlbumViewModel.likedAlbumList.value.count
@@ -44,8 +51,10 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
         likedAlbumCell.titleLike.text = likedAlbum.title
-        likedAlbumCell.nameLike.text = albumViewModel.userList.value[likedAlbum.userId!-1].name
-        
+//        likedAlbumCell.nameLike.text = albumViewModel.userList.value[likedAlbum.userId!-1].name
+        likedAlbumViewModel.getUserName(likedAlbum)
+        likedAlbumCell.nameLike.text = likedAlbumViewModel.likedUserName.value!.name
+
         
         /* LOOP */
         likedAlbumCell.likeSwitch.rx_value.asObservable()
@@ -57,8 +66,7 @@ class  LikedAlbumTableViewController : UITableViewController {
         return likedAlbumCell
     }
 
-    
-    
+ 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         albumViewModel.initPhotoModelByRowIndex(indexPath.row)

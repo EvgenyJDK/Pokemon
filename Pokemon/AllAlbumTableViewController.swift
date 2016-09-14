@@ -30,8 +30,8 @@ class AllAlbumTableViewController: UITableViewController {
             .addDisposableTo(bag)
         
         albumViewModel.userList.asObservable()
-            .subscribeNext({ resultUser in
-            })
+            .subscribeNext { resultUser in
+            }
             .addDisposableTo(bag)
     }
    
