@@ -49,8 +49,8 @@ class AlbumViewModel {
     }
 
     
-    func changeAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
-        AlbumApiService().changeAlbumStatusLike(rowIndex+1, likeStatus: likeStatus)
+    func setAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
+        AlbumStorage.setAlbumStatusLike(rowIndex+1, likeStatus: likeStatus)
 
     }
     

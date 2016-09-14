@@ -19,7 +19,7 @@ class AlbumApiService {
 
         let pathAlbums = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
         let dataAlbums = NSData(contentsOfFile: pathAlbums!)
-        let jsonAlbums = try!NSJSONSerialization.JSONObjectWithData(dataAlbums!, options: [])
+        let jsonAlbums = try! NSJSONSerialization.JSONObjectWithData(dataAlbums!, options: [])
         
         var albumList : [Album] = []
         
@@ -33,7 +33,7 @@ class AlbumApiService {
             album.albumId = albumId
             album.title = title
             album.userId = userId
-            album.like = false
+//            album.like = false
             albumList.append(album)
         }
         
@@ -55,7 +55,7 @@ class AlbumApiService {
         
         let pathUsers = NSBundle.mainBundle().pathForResource("users", ofType: "json")
         let dataUsers = NSData(contentsOfFile: pathUsers!)
-        let jsonUsers = try!NSJSONSerialization.JSONObjectWithData(dataUsers!, options: [])
+        let jsonUsers = try! NSJSONSerialization.JSONObjectWithData(dataUsers!, options: [])
         
         var userList : [User] = []
         
@@ -77,7 +77,7 @@ class AlbumApiService {
         
         let pathPhotos = NSBundle.mainBundle().pathForResource("photos", ofType: "json")
         let dataPhotos = NSData(contentsOfFile: pathPhotos!)
-        let jsonPhotos = try!NSJSONSerialization.JSONObjectWithData(dataPhotos!, options: [])
+        let jsonPhotos = try! NSJSONSerialization.JSONObjectWithData(dataPhotos!, options: [])
         
         var albumDetails : [Photo] = []
         
@@ -97,20 +97,20 @@ class AlbumApiService {
         return Observable.just(albumDetails)
     }
 
- 
-    func changeAlbumStatusLike(albumId : Int, likeStatus : Bool) {
-        
-        var alb : Set <Int> = AlbumStorage.storageLikedAlbumId.value
-        
-        if likeStatus {
-            alb.insert(albumId)
-        }
-        else {
-            alb.remove(albumId)
-        }
-        AlbumStorage.storageLikedAlbumId.value = alb
-    }
+    
 
+    func getLikedAlbum ( likedAlbumIds : Set <Int>) -> Observable<Album> {
+        
+        return self.getAllAlbums()
+            .map({ (allAlbums : [Album]) -> Album in
+                return allAlbums.filter({ (album : Album) -> Bool in
+                return likedAlbumIds.contains(album.albumId!)
+            }).first!
+        })
+    }
+    
+ 
+  
     
     func getLikedAlbums (likedAlbList : Set <Int>) -> Observable<[Album]> {
         
