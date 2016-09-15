@@ -18,17 +18,16 @@ class AlbumStorage {
     static func setAlbumStatusLike(albumId : Int, likeStatus : Bool) {
         
         var alb : Set <Int> = AlbumStorage.storageLikedAlbumId.value
-        
+
         if likeStatus {
             alb.insert(albumId)
         }
         else {
             alb.remove(albumId)
         }
-        
-        print(alb)
         AlbumStorage.storageLikedAlbumId.value = alb
         
+        print(alb)
     }
 
     

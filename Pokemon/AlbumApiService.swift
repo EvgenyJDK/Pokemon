@@ -111,12 +111,13 @@ class AlbumApiService {
     }
 */
     
-    func getLikedAlbums (likedAlbList : Set <Int>) -> Observable<[Album]> {
+    func getLikedAlbums (likedAlbumList : Set <Int>) -> Observable<[Album]> {
+        print("API SERVICE = \(likedAlbumList)")
         
         return self.getAllAlbums()
             .map{ (allAlbums : [Album]) -> [Album] in
                 return allAlbums.filter { (album) -> Bool in
-                    return likedAlbList.contains(album.albumId!)
+                    return likedAlbumList.contains(album.albumId!)
                 }
         }
     }

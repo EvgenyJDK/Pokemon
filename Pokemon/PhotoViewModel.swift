@@ -17,9 +17,21 @@ class PhotoViewModel {
     
     var albumDetails : Variable <Album> = Variable(Album())
     var photo : Variable <[Photo]> = Variable([])
-    
-//    var like : Variable<Bool> = Variable(false)
-    
+
+    init (cellViewModel : CellViewModel) {
+
+        self.albumDetails.value = cellViewModel.album
+        self.albumDetails.asObservable()
+            .flatMapLatest { (albumDetails : Album) -> Observable<[Photo]> in
+                return self.albumApiService.getAlbumDetails(cellViewModel.album.albumId!)
+            }
+            .subscribe(onNext: { (photo : [Photo]) in
+                self.photo.value = photo
+                }
+            ).addDisposableTo(bag)
+    }
+
+/*
     init (album : Album) {
        
         print ("PHOTO VIEW MODEL = \(album.albumId)")
@@ -34,5 +46,7 @@ class PhotoViewModel {
                 }
             ).addDisposableTo(bag)
     }
+*/
+
 }
     

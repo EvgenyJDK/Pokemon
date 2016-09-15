@@ -25,7 +25,6 @@ class CellViewModel {
             self.user = user
         }
         .addDisposableTo(bag)
-        
     }
     
     

@@ -18,10 +18,34 @@ class LikedAlbumViewModel {
     var likedAlbumList : Variable <[Album]> = Variable([])
     var likedUserNameList : Variable <[User]> = Variable([])
     
+    var likedCellViewModelList : Variable <[CellViewModel]> = Variable([])
+   
     var likedUserName : Variable<User?> = Variable(nil)
     var likedAlbumOne : Variable<Album?> = Variable(nil)
+
     
     init () {
+        
+        print("INIT LIKED")
+        
+        AlbumStorage.storageLikedAlbumId.asObservable()
+            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
+                //                print("INIT LIKED = \(likedAlbumId)")
+                return self.albumApiService.getLikedAlbums(likedAlbumId)
+                    .map{ (albums : [Album]) -> [CellViewModel] in
+                        return albums.map{ (album : Album) -> CellViewModel in
+                            
+                            print(album.title)
+                            return CellViewModel (album : album)
+                        }
+                }
+    
+        }
+    }
+    
+
+    
+/*    init () {
         
         AlbumStorage.storageLikedAlbumId.asObservable()
             .flatMap{ (albumId : Set<Int>) -> Observable<[Album]> in
@@ -30,6 +54,7 @@ class LikedAlbumViewModel {
             .subscribeNext { (likedAlbums :[Album]) in
                 print("Hi!!!!")
                 self.likedAlbumList.value = likedAlbums
+                print(likedAlbums)
 
 //                self.albumApiService.getUsersByAlbum(likedAlbums)
 //                    .subscribeNext({ (users : [User]) in
@@ -39,7 +64,9 @@ class LikedAlbumViewModel {
             }
             .addDisposableTo(bag)
     }
-
+*/
+    
+    
     func getUserNameByAlbum (likedAlbum : Album) {
         
         albumApiService.getUserNameByAlbum(likedAlbum)
@@ -48,7 +75,6 @@ class LikedAlbumViewModel {
                 self.likedUserName.value = user
             }
             .addDisposableTo(bag)
-        
     }
     
     

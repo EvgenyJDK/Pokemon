@@ -27,18 +27,15 @@ class AlbumViewModel {
         albumApiService.getAllAlbums()
             .map { (allAlbums : [Album]) -> [CellViewModel] in
                 return allAlbums.map { (album : Album) -> CellViewModel in
-//                    print(album)
                     return CellViewModel(album : album)
                 }
         }
             .subscribeNext { (cellViewModels : [CellViewModel]) in
-                print(cellViewModels.count)
             self.cellViewModelList.value = cellViewModels
         }
         .addDisposableTo(bag)
-        
-        
 
+        
 //        albumApiService.getAllAlbums()
 //            .subscribe(onNext: { resultAlbum in
 //                self.albumList.value = resultAlbum
@@ -59,14 +56,14 @@ class AlbumViewModel {
 
     
     func initPhotoModelByRowIndex (rowIndex : Int) {
-        self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
-        print (self.photoViewModel.value)
+        self.photoViewModel.value = PhotoViewModel (cellViewModel : cellViewModelList.value[rowIndex])
+//        self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
+//        print (self.photoViewModel.value)
     }
 
     
     func setAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         AlbumStorage.setAlbumStatusLike(rowIndex+1, likeStatus: likeStatus)
-
     }
     
 }

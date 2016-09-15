@@ -22,33 +22,33 @@ class AllAlbumTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-//        albumViewModel.albumList.asObservable()
-//            .subscribeNext { result in
-//                self.allAlbumsView.reloadData()
-//            }
-//            .addDisposableTo(bag)
-        
- 
-        
+
         albumViewModel.cellViewModelList.asObservable()
             .subscribeNext { (cellViewModels : [CellViewModel]) in
                 if cellViewModels.count > 0 {
-                  print(cellViewModels[10].album.title)
+                    print(cellViewModels[10].album.title)
                 }
-            self.allAlbumsView.reloadData()
-        }
-        .addDisposableTo(bag)
+                self.allAlbumsView.reloadData()
+            }
+            .addDisposableTo(bag)
 
         
-//        albumViewModel.userList.asObservable()
-//            .subscribeNext { resultUser in
-//            }
-//            .addDisposableTo(bag)
+/*        albumViewModel.albumList.asObservable()
+            .subscribeNext { result in
+                self.allAlbumsView.reloadData()
+            }
+            .addDisposableTo(bag)
+        
+        albumViewModel.userList.asObservable()
+            .subscribeNext { resultUser in
+            }
+            .addDisposableTo(bag) */
+        
     }
    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return albumViewModel.albumList.value.count
         return albumViewModel.cellViewModelList.value.count
     }
     
@@ -57,8 +57,13 @@ class AllAlbumTableViewController: UITableViewController {
         
         let albumCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
 
+        
         albumCell.setAlbumData(albumViewModel.cellViewModelList.value[indexPath.row])
+        
+//        albumCell.setAlbumDataA (albumViewModel.albumList.value[indexPath.row], index: indexPath.row)
 
+        
+        
         
 /*        let album = albumViewModel.albumList.value[indexPath.row]
         

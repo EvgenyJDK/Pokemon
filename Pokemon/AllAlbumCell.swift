@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 import RxSwift
-//import RxCocoa
+import RxCocoa
 
 class AllAlbumCell: UITableViewCell {
     
     private var cellViewModel : CellViewModel?
+    private var albumViewModel : AlbumViewModel?
+    
     private(set) var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
@@ -29,45 +31,29 @@ class AllAlbumCell: UITableViewCell {
     @IBOutlet weak var checkSwitch: UISwitch!
     
     @IBAction func setSwitch(sender: UISwitch) {
-        print("CELL = \(checkSwitch.on)")
+        print("AllAlbumCell setSwitch = \(checkSwitch.on)")
         cellViewModel?.setAlbumStatusLike(checkSwitch.on)
     }
 
     
     func setAlbumData (cellViewModel : CellViewModel) {
-        
-        print("SET")
+
         self.cellViewModel = cellViewModel
         
-        self.id.text = String (cellViewModel.album.albumId)
+        self.id.text = String (cellViewModel.album.albumId!)
         self.title.text = cellViewModel.album.title
         self.userName.text = cellViewModel.user!.name
-        
-
     }
     
     
-    
-    
-//    let album = albumViewModel.albumList.value[indexPath.row]
-//    
-//    albumCell.title.text = album.title
-//    albumCell.id.text = String(album.albumId!)
-//    albumCell.userName.text = albumViewModel.userList.value[album.userId!-1].name
-//    
-//    AlbumStorage.storageLikedAlbumId.asObservable()
-//    .subscribeNext { (set : Set<Int>) in
-//    albumCell.likeSwitch.setOn(set.contains(album.albumId!), animated: false)
-//    }.addDisposableTo(albumCell.disposeBag)
-//    //albumCell.setupSwitch(self.albumViewModel.albumList.value[indexPath.row].like!)
-//    
-//    albumCell.likeSwitch.rx_value.asObservable()
-//    .subscribeNext { [weak self] (like : Bool) in
-//    self!.albumViewModel.setAlbumStatusLike(indexPath.row, likeStatus: like)
+//    func setAlbumDataA (album : Album, index : Int) {
+//        
+//        print("setAlbumDataA")
+//        self.albumViewModel?.albumList.value[index].albumId = album.albumId
+//        self.albumViewModel?.albumList.value[index].title = album.title
 //    }
-//    .addDisposableTo(albumCell.disposeBag)
+
+
     
-    
-    
-    
-}
+ }
+

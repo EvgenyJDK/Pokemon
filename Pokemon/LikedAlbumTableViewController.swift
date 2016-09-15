@@ -24,25 +24,37 @@ class  LikedAlbumTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        likedAlbumViewModel.likedAlbumList.asObservable()
+        likedAlbumViewModel.likedCellViewModelList.asObservable()
+            .subscribeNext { (likedCellVMList :[CellViewModel]) in
+            self.LikedAlbumView.reloadData()
+        }
+        .addDisposableTo(bag)
+        
+        
+/*        likedAlbumViewModel.likedAlbumList.asObservable()
             .subscribeNext { [weak self] (likedAlbums : [Album]) in
+                print("LIKE CONTROLLER = \(likedAlbums)")
                 self!.LikedAlbumView.reloadData()
                 print(AlbumStorage.storageLikedAlbumId.value)
             }
             .addDisposableTo(bag)
         
-//        setup()
+        setup()     
+*/
+
     }
 
-//    private func setup() {
-//        likedAlbumViewModel.likedAlbumOne.asObservable()
-//            .subscribeNext { (album : Album?) in
-//                self.LikedAlbumView.reloadData()
-//                print("SUBSCRIBE = \(album)")
-//        }
-//        .addDisposableTo(bag)
-//    }
-  
+    
+/*    private func setup() {
+        likedAlbumViewModel.likedAlbumOne.asObservable()
+            .subscribeNext { (album : Album?) in
+                self.LikedAlbumView.reloadData()
+                print("SUBSCRIBE = \(album)")
+        }
+        .addDisposableTo(bag)
+    }
+*/
+
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likedAlbumViewModel.likedAlbumList.value.count
@@ -50,13 +62,23 @@ class  LikedAlbumTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let likedAlbumCell  = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! LikedAlbumCell
+        let likedAlbumCell = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! AllAlbumCell
+
+        
+        likedAlbumCell.setAlbumData(likedAlbumViewModel.likedCellViewModelList.value[indexPath.row])
+     
+//        likedAlbumCell.setAlbumDataA(likedAlbumViewModel.likedAlbumList.value[indexPath.row], index: indexPath.row)
+       
+
+        
+        
+/*        let likedAlbumCell  = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! LikedAlbumCell
 
         let likedAlbum = likedAlbumViewModel.likedAlbumList.value[indexPath.row]
         
         likedAlbumCell.idLike.text = String(likedAlbum.albumId!)
         likedAlbumCell.titleLike.text = likedAlbum.title
-//        likedAlbumCell.nameLike.text = albumViewModel.userList.value[likedAlbum.userId!-1].name
+        likedAlbumCell.nameLike.text = albumViewModel.userList.value[likedAlbum.userId!-1].name
         likedAlbumViewModel.getUserNameByAlbum(likedAlbum)
         likedAlbumCell.nameLike.text = likedAlbumViewModel.likedUserName.value!.name
 
@@ -66,7 +88,7 @@ class  LikedAlbumTableViewController : UITableViewController {
             }.addDisposableTo(likedAlbumCell.disposeBag)
         
         
-        /* LOOP */
+         LOOP 
          likedAlbumCell.likeSwitch.rx_value.asObservable()
             .subscribeNext { [weak self] (like : Bool) in
 
@@ -74,11 +96,11 @@ class  LikedAlbumTableViewController : UITableViewController {
             }
             .addDisposableTo(likedAlbumCell.disposeBag)
 
-//        let likedAlbum = likedAlbumViewModel.likedAlbumOne.value
-//        print(likedAlbumViewModel.likedAlbumOne.value)
-//        likedAlbumCell.idLike.text = String(likedAlbum?.albumId)
-//        likedAlbumCell.titleLike.text = likedAlbum?.title
-
+        let likedAlbum = likedAlbumViewModel.likedAlbumOne.value
+        print(likedAlbumViewModel.likedAlbumOne.value)
+        likedAlbumCell.idLike.text = String(likedAlbum?.albumId)
+        likedAlbumCell.titleLike.text = likedAlbum?.title
+*/
         return likedAlbumCell
     }
 
