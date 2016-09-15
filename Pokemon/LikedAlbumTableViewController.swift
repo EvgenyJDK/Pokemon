@@ -24,6 +24,7 @@ class  LikedAlbumTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        
         likedAlbumViewModel.likedCellViewModelList.asObservable()
             .subscribeNext { (likedCellVMList :[CellViewModel]) in
             self.LikedAlbumView.reloadData()
@@ -31,16 +32,16 @@ class  LikedAlbumTableViewController : UITableViewController {
         .addDisposableTo(bag)
         
         
-/*        likedAlbumViewModel.likedAlbumList.asObservable()
-            .subscribeNext { [weak self] (likedAlbums : [Album]) in
-                print("LIKE CONTROLLER = \(likedAlbums)")
-                self!.LikedAlbumView.reloadData()
-                print(AlbumStorage.storageLikedAlbumId.value)
-            }
-            .addDisposableTo(bag)
+//        likedAlbumViewModel.likedAlbumList.asObservable()
+//            .subscribeNext { [weak self] (likedAlbums : [Album]) in
+//                print("LIKE CONTROLLER = \(likedAlbums)")
+//                self!.LikedAlbumView.reloadData()
+//                print(AlbumStorage.storageLikedAlbumId.value)
+//            }
+//            .addDisposableTo(bag)
         
-        setup()     
-*/
+//        setup()     
+
 
     }
 
@@ -64,6 +65,7 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         let likedAlbumCell = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! AllAlbumCell
 
+        print("IN TBLE")
         
         likedAlbumCell.setAlbumData(likedAlbumViewModel.likedCellViewModelList.value[indexPath.row])
      

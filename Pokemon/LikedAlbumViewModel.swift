@@ -28,43 +28,90 @@ class LikedAlbumViewModel {
         
         print("INIT LIKED")
         
-        AlbumStorage.storageLikedAlbumId.asObservable()
-            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
-                //                print("INIT LIKED = \(likedAlbumId)")
-                return self.albumApiService.getLikedAlbums(likedAlbumId)
-                    .map{ (albums : [Album]) -> [CellViewModel] in
-                        return albums.map{ (album : Album) -> CellViewModel in
-                            
-                            print(album.title)
-                            return CellViewModel (album : album)
-                        }
-                }
-    
-        }
-    }
-    
-
-    
-/*    init () {
         
         AlbumStorage.storageLikedAlbumId.asObservable()
-            .flatMap{ (albumId : Set<Int>) -> Observable<[Album]> in
-                self.albumApiService.getLikedAlbums(albumId)
+            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
+                return self.albumApiService.getLikedAlbums(likedAlbumId)
+                
             }
-            .subscribeNext { (likedAlbums :[Album]) in
-                print("Hi!!!!")
-                self.likedAlbumList.value = likedAlbums
-                print(likedAlbums)
+            .map{ (albums : [Album]) -> [CellViewModel] in
+                return albums.map{ (album : Album) -> CellViewModel in
+                    
+                    print(album.title)
+                    return CellViewModel (album : album)
+                }
+            }
+            .subscribeNext { [unowned self] (cells: [CellViewModel]) in
+                self.likedCellViewModelList.value = cells
+        }
 
-//                self.albumApiService.getUsersByAlbum(likedAlbums)
-//                    .subscribeNext({ (users : [User]) in
-//                    self.likedUserNameList.value = users
-//                         print("LIKED INIT = \(self.likedUserNameList.value)")
+        
+        
+        
+        
+        
+        
+        
+//        AlbumStorage.storageLikedAlbumId.asObservable()
+//            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
+//                //                print("INIT LIKED = \(likedAlbumId)")
+//                
+//                 self.albumApiService.getLikedAlbums(likedAlbumId)
+//                }    .subscribeNext({ (album : [Album]) in
+//                    self.likedAlbumList.value = album
 //                })
-            }
-            .addDisposableTo(bag)
+//                
+//                
+//        }
+
+        
+       
+        
+        
+        
+        
+//        AlbumStorage.storageLikedAlbumId.asObservable()
+//            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
+//                //                print("INIT LIKED = \(likedAlbumId)")
+//                return self.albumApiService.getLikedAlbums(likedAlbumId)
+//                    .map{ (albums : [Album]) -> [CellViewModel] in
+//                        return albums.map{ (album : Album) -> CellViewModel in
+//                            print(album.title)
+//                            return CellViewModel (album : album)
+//                        }
+//                }
+//                    .subscribeNext{ [unowned self](cellViewModels : [CellViewModel]) in
+//                    self.likedCellViewModelList.value = cellViewModels
+//                }
+//                
+//                
+//    
+//        }
+        
     }
-*/
+    
+
+    
+//    init () {
+//        
+//        AlbumStorage.storageLikedAlbumId.asObservable()
+//            .flatMap{ (albumId : Set<Int>) -> Observable<[Album]> in
+//                self.albumApiService.getLikedAlbums(albumId)
+//            }
+//            .subscribeNext { (likedAlbums :[Album]) in
+//                print("Hi!!!!")
+//                self.likedAlbumList.value = likedAlbums
+//                print(likedAlbums)
+//
+////                self.albumApiService.getUsersByAlbum(likedAlbums)
+////                    .subscribeNext({ (users : [User]) in
+////                    self.likedUserNameList.value = users
+////                         print("LIKED INIT = \(self.likedUserNameList.value)")
+////                })
+//            }
+//            .addDisposableTo(bag)
+//    }
+
     
     
     func getUserNameByAlbum (likedAlbum : Album) {

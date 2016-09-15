@@ -60,6 +60,8 @@ class AllAlbumTableViewController: UITableViewController {
         
         albumCell.setAlbumData(albumViewModel.cellViewModelList.value[indexPath.row])
         
+        
+        
 //        albumCell.setAlbumDataA (albumViewModel.albumList.value[indexPath.row], index: indexPath.row)
 
         
