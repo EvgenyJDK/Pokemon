@@ -25,6 +25,8 @@ class AlbumStorage {
         else {
             alb.remove(albumId)
         }
+        
+        print(alb)
         AlbumStorage.storageLikedAlbumId.value = alb
         
     }

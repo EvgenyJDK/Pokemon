@@ -19,27 +19,42 @@ class AlbumViewModel {
     let userList : Variable <[User]> = Variable([])
 
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
-   
-
+    var cellViewModelList : Variable <[CellViewModel]> = Variable([])
+ 
     
     init () {
-
-        albumApiService.getAllAlbums()
-            .subscribe(onNext: { resultAlbum in
-                self.albumList.value = resultAlbum
-                print ("INIT = \(self.albumList.value)")
-                },
-                onError: { errorAlbum in
-                    self.albumList.value = []
-            }).addDisposableTo(bag)
         
-        albumApiService.getUserName()
-            .subscribe(onNext: { resultUser in
-                self.userList.value = resultUser
-                }, onError: { errorUser in
-                    self.userList.value = []
-            })
-            .addDisposableTo(bag)
+        albumApiService.getAllAlbums()
+            .map { (allAlbums : [Album]) -> [CellViewModel] in
+                return allAlbums.map { (album : Album) -> CellViewModel in
+//                    print(album)
+                    return CellViewModel(album : album)
+                }
+        }
+            .subscribeNext { (cellViewModels : [CellViewModel]) in
+                print(cellViewModels.count)
+            self.cellViewModelList.value = cellViewModels
+        }
+        .addDisposableTo(bag)
+        
+        
+
+//        albumApiService.getAllAlbums()
+//            .subscribe(onNext: { resultAlbum in
+//                self.albumList.value = resultAlbum
+//                print ("INIT = \(self.albumList.value)")
+//                },
+//                onError: { errorAlbum in
+//                    self.albumList.value = []
+//            }).addDisposableTo(bag)
+//        
+//        albumApiService.getUserName()
+//            .subscribe(onNext: { resultUser in
+//                self.userList.value = resultUser
+//                }, onError: { errorUser in
+//                    self.userList.value = []
+//            })
+//            .addDisposableTo(bag)
     }
 
     

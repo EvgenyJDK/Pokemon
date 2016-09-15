@@ -118,14 +118,14 @@
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KjE-ag-CbR">
                                             <rect key="frame" x="351" y="6" width="51" height="31"/>
                                             <connections>
-                                                <action selector="check:" destination="XRq-ON-ejM" eventType="valueChanged" id="Nho-SQ-S5J"/>
+                                                <action selector="setSwitch:" destination="XRq-ON-ejM" eventType="valueChanged" id="sDo-oo-NoM"/>
                                             </connections>
                                         </switch>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="checkSwitch" destination="KjE-ag-CbR" id="M4W-fz-41a"/>
                                     <outlet property="id" destination="5gp-lD-lv8" id="Pqv-zY-wbi"/>
-                                    <outlet property="likeSwitch" destination="KjE-ag-CbR" id="FS0-e2-iZN"/>
                                     <outlet property="title" destination="7cM-AQ-d4y" id="m4g-oV-BXB"/>
                                     <outlet property="userName" destination="8mF-63-BbM" id="gD7-hy-br6"/>
                                 </connections>

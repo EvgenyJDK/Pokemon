@@ -17,6 +17,8 @@ class AlbumApiService {
     
     func getAllAlbums () -> Observable<[Album]> {
 
+        print ("GET")
+        
         let pathAlbums = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
         let dataAlbums = NSData(contentsOfFile: pathAlbums!)
         let jsonAlbums = try! NSJSONSerialization.JSONObjectWithData(dataAlbums!, options: [])
