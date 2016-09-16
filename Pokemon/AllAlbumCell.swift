@@ -54,6 +54,16 @@ class AllAlbumCell: UITableViewCell {
 //        self.checkSwitch.setOn(status, animated: false)
      
         
+        AlbumStorage.storageLikedAlbumId.asObservable()
+            .map{ (likedSet : Set<Int>) -> Int in
+                return (likedSet.filter{ (likedOne : Int) -> Bool in
+                    self.checkSwitch.setOn(likedSet.contains(albumId), animated: false)
+                    return likedSet.contains(albumId)
+                }
+                ).first!
+                
+            }
+        
         
         self.likedAlbumViewModel?.switchLikeStatus.asObservable()
             .subscribeNext({ (likeStatus : Bool) in
