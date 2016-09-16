@@ -40,6 +40,7 @@ class AllAlbumCell: UITableViewCell {
         self.title.text = cellViewModel.album.title
         self.userName.text = cellViewModel.user!.name
         
+        
         self.cellViewModel!.switchLikeStatus.asObservable()
             .subscribeNext { (likeStatus : Bool) in
             self.checkSwitch.setOn(likeStatus, animated: false)

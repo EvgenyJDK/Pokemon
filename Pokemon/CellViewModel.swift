@@ -19,13 +19,10 @@ class CellViewModel {
 
 
     var switchLikeStatus : Observable<Bool> {
-        
-        return AlbumStorage.storageLikedAlbumId.asObservable()
-            .map{ (likedAlbumSet : Set<Int>) -> Int in
-                return (likedAlbumSet.filter{ (likedAlbumId : Int) -> Bool in
-                    return likedAlbumId == self.album.albumId!
-                    }
-                    ).first!
+ 
+    return AlbumStorage.storageLikedAlbumId.asObservable()
+            .map{ (liked : Set<Int>) -> Bool in
+            return liked.contains(self.album.albumId!)
         }
     }
 
