@@ -22,18 +22,14 @@ class PhotoCollectionViewController : UICollectionViewController {
     
     override func viewDidLoad() {
         
-        
         photoViewModel?.photo.asObservable()
-            .subscribeNext({ (photo :[Photo]) in
-                print ("COLLECTION = \(self.photoViewModel?.albumDetails.value.title)")
-                
-                }
-            ).addDisposableTo(bag)
+            .subscribeNext{ (photo :[Photo]) in
+            }
+            .addDisposableTo(bag)
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        print ("PhotoController = \(photoViewModel?.photo.value.count)")
+
         return (photoViewModel?.photo.value.count)!
     }
     
@@ -42,7 +38,6 @@ class PhotoCollectionViewController : UICollectionViewController {
         let photoCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PhotoCollectionViewCell
         
         if let url = photoViewModel?.photo.value[indexPath.item].url {
-            print(url)
             photoCell.imageViewLink.load(url)
         }
         else {
@@ -51,7 +46,6 @@ class PhotoCollectionViewController : UICollectionViewController {
         
         let label = photoCell.viewWithTag(1) as! UILabel
         label.text = photoViewModel?.photo.value[indexPath.item].title
-        
         return photoCell
     }
 }

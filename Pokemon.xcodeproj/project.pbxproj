@@ -30,7 +30,6 @@
 		5C60D01E1D7EC18C008A3BB3 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D01D1D7EC18C008A3BB3 /* PhotoCollectionViewController.swift */; };
 		5C60D0211D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */; };
 		5C60D0231D7EDD5C008A3BB3 /* AllAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */; };
-		5C60D0261D7EDF25008A3BB3 /* LikedAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0251D7EDF25008A3BB3 /* LikedAlbumCell.swift */; };
 		5C60D0281D7F1241008A3BB3 /* LikedAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0271D7F1241008A3BB3 /* LikedAlbumViewModel.swift */; };
 		5C689A731D8697A0009181EB /* AlbumStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C689A721D8697A0009181EB /* AlbumStorage.swift */; };
 		CF4765F7C49E35D3958E503E /* Pods_Pokemon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15ECE990812906990AC844 /* Pods_Pokemon.framework */; };
@@ -86,7 +85,6 @@
 		5C60D01D1D7EC18C008A3BB3 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAlbumCell.swift; sourceTree = "<group>"; };
-		5C60D0251D7EDF25008A3BB3 /* LikedAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedAlbumCell.swift; sourceTree = "<group>"; };
 		5C60D0271D7F1241008A3BB3 /* LikedAlbumViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedAlbumViewModel.swift; sourceTree = "<group>"; };
 		5C689A721D8697A0009181EB /* AlbumStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumStorage.swift; sourceTree = "<group>"; };
 		6D15ECE990812906990AC844 /* Pods_Pokemon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokemon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */,
-				5C60D0251D7EDF25008A3BB3 /* LikedAlbumCell.swift */,
 				5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */,
 			);
 			name = ui;
@@ -546,7 +543,6 @@
 				5C3D3F4C1D8A855500224199 /* CellViewModel.swift in Sources */,
 				5C60D01E1D7EC18C008A3BB3 /* PhotoCollectionViewController.swift in Sources */,
 				5C46069D1D741C5900FF9249 /* AppDelegate.swift in Sources */,
-				5C60D0261D7EDF25008A3BB3 /* LikedAlbumCell.swift in Sources */,
 				5C3AE8E41D7834A6007D41BB /* Album.swift in Sources */,
 				5C60D01C1D7EB7DC008A3BB3 /* LikedAlbumTableViewController.swift in Sources */,
 			);

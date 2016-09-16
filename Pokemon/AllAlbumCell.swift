@@ -27,10 +27,9 @@ class AllAlbumCell: UITableViewCell {
     @IBOutlet weak var checkSwitch: UISwitch!
     
     @IBAction func setSwitch(sender: UISwitch) {
-        print("AllAlbumCell setSwitch = \(checkSwitch.on)")
         cellViewModel?.setAlbumStatusLike(checkSwitch.on)
     }
-
+    
     
     override func prepareForReuse() {
         
@@ -38,7 +37,6 @@ class AllAlbumCell: UITableViewCell {
         super.prepareForReuse()
     }
 
-    
     
     func setAlbumData (cellViewModel : CellViewModel) {
         
@@ -50,50 +48,20 @@ class AllAlbumCell: UITableViewCell {
         
         
         let albumId = cellViewModel.album.albumId!
-//        let status = self.cellViewModel!.getSwitchLikeStatus(albumId)
-//        self.checkSwitch.setOn(status, animated: false)
-     
+        //        let status = self.cellViewModel!.getSwitchLikeStatus(albumId)
+        //        self.checkSwitch.setOn(status, animated: false)
+        
         
         AlbumStorage.storageLikedAlbumId.asObservable()
             .map{ (likedSet : Set<Int>) -> Int in
                 return (likedSet.filter{ (likedOne : Int) -> Bool in
                     self.checkSwitch.setOn(likedSet.contains(albumId), animated: false)
                     return likedSet.contains(albumId)
-                }
-                ).first!
+                    }
+                    ).first!
                 
-            }
-        
-        
-        self.likedAlbumViewModel?.switchLikeStatus.asObservable()
-            .subscribeNext({ (likeStatus : Bool) in
-                
-                
-            self.checkSwitch.setOn(likeStatus, animated: false)
-        })
- 
-        
-        
-//        self.cellViewModel?.switchLikeStatus
-//            .subscribeNext{ [weak self] (likeStatus : Bool) in
-//                self?.checkSwitch.setOn(likeStatus, animated: false)
-//        }
-     
-        
-        
-        
-//        self.cellViewModel?.switchLikeStatus.asObservable()
-//            .flatMap({ (Bool) -> ObservableConvertibleType in
-//                self.cellViewModel?.getSwitchLikeStatus(albumId)
-//            })
-//            .subscribeNext{ (likeStatus : Bool) in
-//                self.checkSwitch.setOn(false, animated: false)
-//            }
-//            .addDisposableTo(disposeBag)
-        
-        
+        }
     }
-
     
- }
+}
 

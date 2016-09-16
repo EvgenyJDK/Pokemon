@@ -17,6 +17,8 @@ class CellViewModel {
     private (set) var user : User? = nil
     private let bag = DisposeBag()
 
+   
+    
     
 //    var switchLikeStatus : Variable<Bool> = Variable(false)
 
@@ -50,10 +52,7 @@ class CellViewModel {
     
     
     func setAlbumStatusLike (likeStatus : Bool) {
-        
        let albumId = self.album.albumId!
-//        print("ALBUMID = \(albumId)")
-//        print(likeStatus)
         AlbumStorage.setAlbumStatusLike(albumId, likeStatus: likeStatus)
     }
     

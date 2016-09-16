@@ -16,15 +16,15 @@ class LikedAlbumViewModel {
 //    private let photoViewModel = PhotoViewModel()
     private let bag = DisposeBag()
 
-    var likedAlbumList : Variable <[Album]> = Variable([])
-    var likedUserNameList : Variable <[User]> = Variable([])
+//    var likedAlbumList : Variable <[Album]> = Variable([])
+//    var likedUserNameList : Variable <[User]> = Variable([])
     
     var likedCellViewModelList : Variable <[CellViewModel]> = Variable([])
     var photoViewModel : Variable <PhotoViewModel?> = Variable(nil)
     
     
     var likedUserName : Variable<User?> = Variable(nil)
-    var likedAlbumOne : Variable<Album?> = Variable(nil)
+//    var likedAlbumOne : Variable<Album?> = Variable(nil)
 
     
     var switchLikeStatus : Variable <Bool> = Variable(false)
