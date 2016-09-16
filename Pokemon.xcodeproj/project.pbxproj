@@ -11,7 +11,6 @@
 		5C3AE8E41D7834A6007D41BB /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3AE8E31D7834A6007D41BB /* Album.swift */; };
 		5C3AE8E61D7851A9007D41BB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3AE8E51D7851A9007D41BB /* User.swift */; };
 		5C3D3F4C1D8A855500224199 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D3F4B1D8A855500224199 /* CellViewModel.swift */; };
-		5C3D3F4E1D8A86AF00224199 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D3F4D1D8A86AF00224199 /* AlbumCell.swift */; };
 		5C3F8C431D76D61D005BADCE /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C3F8C401D76D61D005BADCE /* albums.json */; };
 		5C3F8C441D76D61D005BADCE /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C3F8C411D76D61D005BADCE /* photos.json */; };
 		5C3F8C451D76D61D005BADCE /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C3F8C421D76D61D005BADCE /* users.json */; };
@@ -62,7 +61,6 @@
 		5C3AE8E31D7834A6007D41BB /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		5C3AE8E51D7851A9007D41BB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5C3D3F4B1D8A855500224199 /* CellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
-		5C3D3F4D1D8A86AF00224199 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		5C3F8C401D76D61D005BADCE /* albums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = albums.json; sourceTree = "<group>"; };
 		5C3F8C411D76D61D005BADCE /* photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos.json; sourceTree = "<group>"; };
 		5C3F8C421D76D61D005BADCE /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 		5C3F8C471D76DD5C005BADCE /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				5C3D3F4D1D8A86AF00224199 /* AlbumCell.swift */,
 				5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */,
 				5C60D0251D7EDF25008A3BB3 /* LikedAlbumCell.swift */,
 				5C60D0201D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift */,
@@ -540,7 +537,6 @@
 				5C689A731D8697A0009181EB /* AlbumStorage.swift in Sources */,
 				5C3AE8E61D7851A9007D41BB /* User.swift in Sources */,
 				5C4B040C1D798BAD0099F514 /* PhotoViewModel.swift in Sources */,
-				5C3D3F4E1D8A86AF00224199 /* AlbumCell.swift in Sources */,
 				5C60D0211D7EC4EF008A3BB3 /* PhotoCollectionViewCell.swift in Sources */,
 				5C60D01A1D7EB764008A3BB3 /* AllAlbumTableViewController.swift in Sources */,
 				5C60D0281D7F1241008A3BB3 /* LikedAlbumViewModel.swift in Sources */,

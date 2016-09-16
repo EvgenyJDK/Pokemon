@@ -13,22 +13,22 @@ import RxCocoa
 class LikedAlbumViewModel {
     
     private let albumApiService = AlbumApiService()
+//    private let photoViewModel = PhotoViewModel()
     private let bag = DisposeBag()
 
     var likedAlbumList : Variable <[Album]> = Variable([])
     var likedUserNameList : Variable <[User]> = Variable([])
     
     var likedCellViewModelList : Variable <[CellViewModel]> = Variable([])
-   
+    var photoViewModel : Variable <PhotoViewModel?> = Variable(nil)
+    
+    
     var likedUserName : Variable<User?> = Variable(nil)
     var likedAlbumOne : Variable<Album?> = Variable(nil)
 
     
     init () {
-        
-        print("INIT LIKED")
-        
-        
+ 
         AlbumStorage.storageLikedAlbumId.asObservable()
             .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
                 return self.albumApiService.getLikedAlbums(likedAlbumId)
@@ -44,31 +44,7 @@ class LikedAlbumViewModel {
             .subscribeNext { [unowned self] (cells: [CellViewModel]) in
                 self.likedCellViewModelList.value = cells
         }
-
-        
-        
-        
-        
-        
-        
-        
-//        AlbumStorage.storageLikedAlbumId.asObservable()
-//            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
-//                //                print("INIT LIKED = \(likedAlbumId)")
-//                
-//                 self.albumApiService.getLikedAlbums(likedAlbumId)
-//                }    .subscribeNext({ (album : [Album]) in
-//                    self.likedAlbumList.value = album
-//                })
-//                
-//                
-//        }
-
-        
        
-        
-        
-        
         
 //        AlbumStorage.storageLikedAlbumId.asObservable()
 //            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
@@ -111,6 +87,13 @@ class LikedAlbumViewModel {
 //            }
 //            .addDisposableTo(bag)
 //    }
+
+    
+    func initPhotoModelByRowIndex (rowIndex : Int) {
+        self.photoViewModel.value = PhotoViewModel (cellViewModel : likedCellViewModelList.value[rowIndex])
+        //        self.photoViewModel.value = PhotoViewModel(album : albumList.value[rowIndex])
+        //        print (self.photoViewModel.value)
+    }
 
     
     

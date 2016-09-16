@@ -18,12 +18,7 @@ class AllAlbumCell: UITableViewCell {
     
     private(set) var disposeBag = DisposeBag()
     
-    override func prepareForReuse() {
-        
-        self.disposeBag = DisposeBag()
-        super.prepareForReuse()
-    }
-
+    
     
     @IBOutlet weak var id: UILabel!
     @IBOutlet weak var title: UILabel!
@@ -36,6 +31,14 @@ class AllAlbumCell: UITableViewCell {
     }
 
     
+    override func prepareForReuse() {
+        
+        self.disposeBag = DisposeBag()
+        super.prepareForReuse()
+    }
+
+    
+    
     func setAlbumData (cellViewModel : CellViewModel) {
 
         self.cellViewModel = cellViewModel
@@ -44,15 +47,6 @@ class AllAlbumCell: UITableViewCell {
         self.title.text = cellViewModel.album.title
         self.userName.text = cellViewModel.user!.name
     }
-    
-    
-//    func setAlbumDataA (album : Album, index : Int) {
-//        
-//        print("setAlbumDataA")
-//        self.albumViewModel?.albumList.value[index].albumId = album.albumId
-//        self.albumViewModel?.albumList.value[index].title = album.title
-//    }
-
 
     
  }

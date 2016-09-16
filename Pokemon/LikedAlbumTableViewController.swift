@@ -27,6 +27,10 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         likedAlbumViewModel.likedCellViewModelList.asObservable()
             .subscribeNext { (likedCellVMList :[CellViewModel]) in
+                
+                for var i=0; i<likedCellVMList.count; i++ {
+                    print(likedCellVMList[i].album.title)
+                }
             self.LikedAlbumView.reloadData()
         }
         .addDisposableTo(bag)
@@ -58,19 +62,14 @@ class  LikedAlbumTableViewController : UITableViewController {
 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return likedAlbumViewModel.likedAlbumList.value.count
+        return likedAlbumViewModel.likedCellViewModelList.value.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let likedAlbumCell = tableView.dequeueReusableCellWithIdentifier("likedCell", forIndexPath: indexPath) as! AllAlbumCell
-
-        print("IN TBLE")
+        let likedAlbumCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
         
         likedAlbumCell.setAlbumData(likedAlbumViewModel.likedCellViewModelList.value[indexPath.row])
-     
-//        likedAlbumCell.setAlbumDataA(likedAlbumViewModel.likedAlbumList.value[indexPath.row], index: indexPath.row)
-       
 
         
         
@@ -109,14 +108,15 @@ class  LikedAlbumTableViewController : UITableViewController {
  
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-//        albumViewModel.initPhotoModelByRowIndex(indexPath.row)
+        likedAlbumViewModel.initPhotoModelByRowIndex(indexPath.row)
+
         self.performSegueWithIdentifier("showAlbumPhotos2", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let photoController : PhotoCollectionViewController = segue.destinationViewController as! PhotoCollectionViewController
         
-//        photoController.photoViewModel = self.albumViewModel.photoViewModel.value
+        photoController.photoViewModel = self.likedAlbumViewModel.photoViewModel.value
     }
 }
 

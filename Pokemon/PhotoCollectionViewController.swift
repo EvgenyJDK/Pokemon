@@ -32,6 +32,8 @@ class PhotoCollectionViewController : UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        print ("PhotoController = \(photoViewModel?.photo.value.count)")
         return (photoViewModel?.photo.value.count)!
     }
     
