@@ -27,10 +27,16 @@ class LikedAlbumViewModel {
     var likedAlbumOne : Variable<Album?> = Variable(nil)
 
     
+    var switchLikeStatus : Variable <Bool> = Variable(false)
+    
+
+    
+    
     init () {
  
         AlbumStorage.storageLikedAlbumId.asObservable()
             .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
+                self.switchLikeStatus.value = false
                 return self.albumApiService.getLikedAlbums(likedAlbumId)
                 
             }
@@ -43,6 +49,7 @@ class LikedAlbumViewModel {
             }
             .subscribeNext { [unowned self] (cells: [CellViewModel]) in
                 self.likedCellViewModelList.value = cells
+                
         }
        
         

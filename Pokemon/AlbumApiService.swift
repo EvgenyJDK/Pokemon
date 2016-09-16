@@ -16,8 +16,6 @@ import RxSwift
 class AlbumApiService {
     
     func getAllAlbums () -> Observable<[Album]> {
-
-        print ("GET")
         
         let pathAlbums = NSBundle.mainBundle().pathForResource("albums", ofType: "json")
         let dataAlbums = NSData(contentsOfFile: pathAlbums!)
@@ -112,7 +110,7 @@ class AlbumApiService {
 */
     
     func getLikedAlbums (likedAlbumList : Set <Int>) -> Observable<[Album]> {
-        print("API SERVICE = \(likedAlbumList)")
+//        print("API SERVICE = \(likedAlbumList)")
         
         return self.getAllAlbums()
             .map{ (allAlbums : [Album]) -> [Album] in
@@ -133,6 +131,22 @@ class AlbumApiService {
     }
 
     
+    func getSwitchLikeStatusByAlbumId (albumId : Int) -> Bool {
+    
+        print("SWITCH STATUS")
+        return false
+ 
+        
+        
+//        return AlbumStorage.storageLikedAlbumId.value.asObservable()
+//            .map{ (likedAlbumId : Set<Int>) -> Int in
+//                return likedAlbumId.filter{ (<#Int#>) -> Bool in
+//                    return likedAlbumId.contains(albumId)
+//                }
+
+     
+ 
+    }
 
 /*
     func getUsersByAlbum (albums : [Album]) -> Observable<[User]> {

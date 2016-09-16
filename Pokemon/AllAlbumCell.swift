@@ -15,6 +15,7 @@ class AllAlbumCell: UITableViewCell {
     
     private var cellViewModel : CellViewModel?
     private var albumViewModel : AlbumViewModel?
+    private var likedAlbumViewModel : LikedAlbumViewModel?
     
     private(set) var disposeBag = DisposeBag()
     
@@ -40,12 +41,47 @@ class AllAlbumCell: UITableViewCell {
     
     
     func setAlbumData (cellViewModel : CellViewModel) {
-
+        
         self.cellViewModel = cellViewModel
         
         self.id.text = String (cellViewModel.album.albumId!)
         self.title.text = cellViewModel.album.title
         self.userName.text = cellViewModel.user!.name
+        
+        
+        let albumId = cellViewModel.album.albumId!
+//        let status = self.cellViewModel!.getSwitchLikeStatus(albumId)
+//        self.checkSwitch.setOn(status, animated: false)
+     
+        
+        
+        self.likedAlbumViewModel?.switchLikeStatus.asObservable()
+            .subscribeNext({ (likeStatus : Bool) in
+                
+                
+            self.checkSwitch.setOn(likeStatus, animated: false)
+        })
+ 
+        
+        
+//        self.cellViewModel?.switchLikeStatus
+//            .subscribeNext{ [weak self] (likeStatus : Bool) in
+//                self?.checkSwitch.setOn(likeStatus, animated: false)
+//        }
+     
+        
+        
+        
+//        self.cellViewModel?.switchLikeStatus.asObservable()
+//            .flatMap({ (Bool) -> ObservableConvertibleType in
+//                self.cellViewModel?.getSwitchLikeStatus(albumId)
+//            })
+//            .subscribeNext{ (likeStatus : Bool) in
+//                self.checkSwitch.setOn(false, animated: false)
+//            }
+//            .addDisposableTo(disposeBag)
+        
+        
     }
 
     

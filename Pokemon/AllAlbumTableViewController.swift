@@ -25,9 +25,9 @@ class AllAlbumTableViewController: UITableViewController {
 
         albumViewModel.cellViewModelList.asObservable()
             .subscribeNext { (cellViewModels : [CellViewModel]) in
-                if cellViewModels.count > 0 {
-                    print(cellViewModels[10].album.title)
-                }
+//                if cellViewModels.count > 0 {
+//                    print(cellViewModels[10].album.title)
+//                }
                 self.allAlbumsView.reloadData()
             }
             .addDisposableTo(bag)

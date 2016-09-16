@@ -27,10 +27,7 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         likedAlbumViewModel.likedCellViewModelList.asObservable()
             .subscribeNext { (likedCellVMList :[CellViewModel]) in
-                
-                for var i=0; i<likedCellVMList.count; i++ {
-                    print(likedCellVMList[i].album.title)
-                }
+
             self.LikedAlbumView.reloadData()
         }
         .addDisposableTo(bag)

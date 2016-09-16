@@ -16,6 +16,27 @@ class CellViewModel {
     private (set) var album : Album
     private (set) var user : User? = nil
     private let bag = DisposeBag()
+
+    
+//    var switchLikeStatus : Variable<Bool> = Variable(false)
+
+//    var switchLikeStatus : Observable<Bool> {
+//        didSet {
+//       
+//            return false.
+//            
+//            
+////            switchLikeStatus = false as! Observable <Bool>
+//        }
+//    }
+    
+    
+    func getSwitchLikeStatus(albumId : Int) -> Bool {
+        self.albumApiService.getSwitchLikeStatusByAlbumId(albumId)
+
+        return false
+    }
+
     
     init (album : Album) {
 
@@ -31,8 +52,8 @@ class CellViewModel {
     func setAlbumStatusLike (likeStatus : Bool) {
         
        let albumId = self.album.albumId!
-        print("ALBUMID = \(albumId)")
-        print(likeStatus)
+//        print("ALBUMID = \(albumId)")
+//        print(likeStatus)
         AlbumStorage.setAlbumStatusLike(albumId, likeStatus: likeStatus)
     }
     
