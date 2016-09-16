@@ -14,19 +14,15 @@ class LikedAlbumViewModel {
     
     private let albumApiService = AlbumApiService()
     private let bag = DisposeBag()
-
+    
     var likedCellViewModelList : Variable <[CellViewModel]> = Variable([])
     var photoViewModel : Variable <PhotoViewModel?> = Variable(nil)
-
-
-    var switchLikeStatus : Variable <Bool> = Variable(false)
-
+    
     
     init () {
- 
+        
         AlbumStorage.storageLikedAlbumId.asObservable()
             .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
-                self.switchLikeStatus.value = false
                 return self.albumApiService.getLikedAlbums(likedAlbumId)
             }
             .map{ (albums : [Album]) -> [CellViewModel] in
@@ -36,37 +32,19 @@ class LikedAlbumViewModel {
             }
             .subscribeNext { [unowned self] (cells: [CellViewModel]) in
                 self.likedCellViewModelList.value = cells
-        }
-        .addDisposableTo(bag)
+            }
+            .addDisposableTo(bag)
     }
-
+    
     
     func initPhotoModelByRowIndex (rowIndex : Int) {
         self.photoViewModel.value = PhotoViewModel (cellViewModel : likedCellViewModelList.value[rowIndex])
     }
-
-
+    
     
     func setAlbumStatusLike (rowIndex : Int, likeStatus : Bool) {
         AlbumStorage.setAlbumStatusLike(rowIndex+1, likeStatus: likeStatus)
     }
-    
-    
-    
-    //    var likedUserName : Variable<User?> = Variable(nil)
-    
-    
-    //    func getUserNameByAlbum (likedAlbum : Album) {
-    //
-    //        albumApiService.getUserNameByAlbum(likedAlbum)
-    //            .subscribeNext{ (user : User) in
-    //                print("GET ~~~~~~ = \(user.name)")
-    //                self.likedUserName.value = user
-    //            }
-    //            .addDisposableTo(bag)
-    //    }
-    
-    
 }
 
 

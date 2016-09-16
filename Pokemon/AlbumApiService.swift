@@ -105,13 +105,7 @@ class AlbumApiService {
                 ).first!
         }
     }
-
     
-    func getSwitchLikeStatusByAlbumId (albumId : Int) -> Bool {
-    
-        print("SWITCH STATUS")
-        return false
-      }
 }
 
 
