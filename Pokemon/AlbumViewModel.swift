@@ -13,13 +13,13 @@ import RxDataSources
 
 class AlbumViewModel {
     
-    var sections : Variable<[DataSection]> = Variable([])
     private let albumApiService = AlbumApiService()
     private let bag = DisposeBag()
 
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
     var cellViewModelList : Variable <[CellViewModel]> = Variable([])
  
+    var sections : Variable<[DataSection]> = Variable([])
     
     init () {
         

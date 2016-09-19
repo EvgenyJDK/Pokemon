@@ -45,13 +45,7 @@ class CellViewModel {
 }
     
 extension CellViewModel : IdentifiableType, Equatable {
-    
-    var hashValue : Int {
-        get {
-            return self.album.albumId!.hashValue + (user?.userId?.hashValue)!
-        }
-    }
-    
+
     var identity : String {
         return album.title!
     }
@@ -66,7 +60,14 @@ func ==(lhs: CellViewModel, rhs: CellViewModel) -> Bool {
 }
     
     
-    
+
+
+//    var hashValue : Int {
+//        get {
+//            return self.album.albumId!.hashValue + (user?.userId?.hashValue)!
+//        }
+//    }
+
     
     
 

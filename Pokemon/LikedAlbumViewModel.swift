@@ -18,6 +18,8 @@ class LikedAlbumViewModel {
     var likedCellViewModelList : Variable <[CellViewModel]> = Variable([])
     var photoViewModel : Variable <PhotoViewModel?> = Variable(nil)
     
+    var sections : Variable<[DataSection]> = Variable([])
+    
     
     init () {
         

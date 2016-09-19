@@ -18,7 +18,6 @@ class AllAlbumTableViewController: UITableViewController {
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
     
-    
     var dataSourceTable: RxTableViewSectionedAnimatedDataSource<DataSection>?
     
     @IBOutlet var allAlbumsView: UITableView!
@@ -31,7 +30,6 @@ class AllAlbumTableViewController: UITableViewController {
                 self.allAlbumsView.reloadData()
             }
             .addDisposableTo(bag)
-        
         
         self.allAlbumsView.delegate = nil
         self.allAlbumsView.dataSource = nil

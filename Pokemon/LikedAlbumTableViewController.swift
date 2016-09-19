@@ -11,11 +11,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ImageLoader
+import RxDataSources
 
 class  LikedAlbumTableViewController : UITableViewController {
 
     private let likedAlbumViewModel = LikedAlbumViewModel()
     private let bag = DisposeBag()
+    
+    var dataSourceTable: RxTableViewSectionedAnimatedDataSource<DataSection>?
     
     @IBOutlet weak var LikedAlbumView: UITableView!
     
@@ -27,6 +30,23 @@ class  LikedAlbumTableViewController : UITableViewController {
             self.LikedAlbumView.reloadData()
         }
         .addDisposableTo(bag)
+        
+       
+        self.LikedAlbumView.delegate = nil
+        self.LikedAlbumView.dataSource = nil
+        
+        LikedAlbumView
+            .rx_setDelegate(self)
+            .addDisposableTo(bag)
+        
+        let dataSourceTable = RxTableViewSectionedAnimatedDataSource<DataSection>()
+        
+        likedAlbumViewModel.sections.asObservable()
+            .bindTo(LikedAlbumView.rx_itemsWithDataSource(dataSourceTable))
+        
+        
+        
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
