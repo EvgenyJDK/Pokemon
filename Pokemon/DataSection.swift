@@ -20,7 +20,7 @@ extension DataSection : AnimatableSectionModelType {
         
         typealias Item = CellViewModel
         
-        var identify : String {
+        var identity : String {
             return header
         }
 

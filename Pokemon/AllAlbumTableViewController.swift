@@ -31,6 +31,8 @@ class AllAlbumTableViewController: UITableViewController {
             }
             .addDisposableTo(bag)
         
+        
+        
         self.allAlbumsView.delegate = nil
         self.allAlbumsView.dataSource = nil
         
@@ -41,29 +43,34 @@ class AllAlbumTableViewController: UITableViewController {
         let dataSource = RxTableViewSectionedAnimatedDataSource<DataSection>()
         
         albumViewModel.sections.asObservable()
-//        .bindTo(allAlbumsView.rx_itemsWithDataSource(dataSourceTable))
+        .bindTo(allAlbumsView.rx_itemsWithDataSource(dataSource))
+        .addDisposableTo(bag)
         
+        dataSource.configureCell = { (dataSource, tableView, indexPath, cellViewModel) in
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
+            cell.setAlbumData(cellViewModel)
+            
+            return cell
+        }
         
-        
-      
-        
-//            dataSource.configureCell = { ds, tv, ip, item in
-//            let cell = tv.dequeueReusableCell(withIdentifier: "Cell", for: ip)
-//            cell.textLabel?.text = "Item \(item.anInt): \(item.aString) - \(item.aCGPoint.x):\(item.aCGPoint.y)"
-//            return cell
-//            }
-        
-        
-        
-        
-        
+        allAlbumsView.rx_itemSelected.subscribeNext { (indexPath) in
+            self.albumViewModel.initPhotoModelByRowIndex(indexPath.row)
+            self.performSegueWithIdentifier("showAlbumPhotos", sender: indexPath)
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        .addDisposableTo(bag)
+        self.dataSource = dataSource
+ 
     }
    
     
     
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return albumViewModel.cellViewModelList.value.count
+//        return albumViewModel.cellViewModelList.value.count
+        return (albumViewModel.sections.value.first?.items.count)!
+
     }
     
     

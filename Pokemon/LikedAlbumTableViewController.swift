@@ -30,6 +30,7 @@ class  LikedAlbumTableViewController : UITableViewController {
             self.LikedAlbumView.reloadData()
         }
         .addDisposableTo(bag)
+   
         
        
         self.LikedAlbumView.delegate = nil
@@ -43,6 +44,19 @@ class  LikedAlbumTableViewController : UITableViewController {
         
         likedAlbumViewModel.sections.asObservable()
             .bindTo(LikedAlbumView.rx_itemsWithDataSource(dataSource))
+        .addDisposableTo(bag)
+        
+        
+        dataSource.configureCell = { dataSource, tableView, indexPath, cellViewModel in
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
+            cell.setAlbumData(cellViewModel)
+            
+            return cell
+        }
+        
+    
+        
         
         
         
