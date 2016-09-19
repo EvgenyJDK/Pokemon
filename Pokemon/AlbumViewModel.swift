@@ -29,10 +29,26 @@ class AlbumViewModel {
                     return CellViewModel(album : album)
                 }
         }
-            .subscribeNext { (cellViewModels : [CellViewModel]) in
-            self.cellViewModelList.value = cellViewModels
+            .map { (cells : [CellViewModel]) -> [DataSection] in
+                return [DataSection(header : "Favourite Albums", items: cells)]
+        }
+            .subscribeNext { (sections : [DataSection]) in
+            self.sections.value = sections
         }
         .addDisposableTo(bag)
+        
+
+        
+        //        albumApiService.getAllAlbums()
+        //            .map { (allAlbums : [Album]) -> [CellViewModel] in
+        //                return allAlbums.map { (album : Album) -> CellViewModel in
+        //                    return CellViewModel(album : album)
+        //                }
+        //        }
+        //            .subscribeNext { (cellViewModels : [CellViewModel]) in
+        //            self.cellViewModelList.value = cellViewModels
+        //        }
+        //        .addDisposableTo(bag)
     }
 
     
