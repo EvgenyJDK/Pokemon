@@ -9,9 +9,11 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class AlbumViewModel {
     
+    var sections : Variable<[DataSection]> = Variable([])
     private let albumApiService = AlbumApiService()
     private let bag = DisposeBag()
 

@@ -9,6 +9,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import RxDataSources
 
 class CellViewModel {
     
@@ -16,7 +17,6 @@ class CellViewModel {
     private (set) var album : Album
     private (set) var user : User? = nil
     private let bag = DisposeBag()
-
 
     var switchLikeStatus : Observable<Bool> {
  
@@ -42,5 +42,31 @@ class CellViewModel {
        let albumId = self.album.albumId!
         AlbumStorage.setAlbumStatusLike(albumId, likeStatus: likeStatus)
     }
-   
 }
+    
+extension CellViewModel : IdentifiableType, Equatable {
+    
+    var hashValue : Int {
+        get {
+            return self.album.albumId!.hashValue + (user?.userId?.hashValue)!
+        }
+    }
+    
+    var identity : String {
+        return album.title!
+    }
+}
+
+
+func ==(lhs: CellViewModel, rhs: CellViewModel) -> Bool {
+    
+    return lhs.album == rhs.album &&
+        lhs.user == rhs.user
+
+}
+    
+    
+    
+    
+    
+

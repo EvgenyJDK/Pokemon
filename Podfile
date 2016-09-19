@@ -26,5 +26,6 @@ pod 'RxCocoa',    '2.6.0'
 pod 'RxAlamofire'
 pod 'SDWebImage', '~> 3.8'
 pod 'ImageLoader'
+pod 'RxDataSources', '0.8.1'
 
 end

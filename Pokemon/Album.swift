@@ -8,9 +8,14 @@
 
 import Foundation
 
-class Album {
+class Album : Equatable {
     
     var albumId : Int?
     var title : String?
     var userId : Int?
+}
+
+
+func == (lhs: Album, rhs: Album) -> Bool {
+    return lhs.albumId == rhs.albumId
 }

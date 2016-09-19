@@ -32,6 +32,7 @@
 		5C60D0231D7EDD5C008A3BB3 /* AllAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */; };
 		5C60D0281D7F1241008A3BB3 /* LikedAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60D0271D7F1241008A3BB3 /* LikedAlbumViewModel.swift */; };
 		5C689A731D8697A0009181EB /* AlbumStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C689A721D8697A0009181EB /* AlbumStorage.swift */; };
+		5C7CB0B01D8FDFA600F3E8F7 /* DataSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7CB0AF1D8FDFA600F3E8F7 /* DataSection.swift */; };
 		CF4765F7C49E35D3958E503E /* Pods_Pokemon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15ECE990812906990AC844 /* Pods_Pokemon.framework */; };
 		DBD18C5025F5D0D943D1D5CC /* Pods_PokemonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13843CAF8B67B23C2E93B9C0 /* Pods_PokemonUITests.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		5C60D0221D7EDD5C008A3BB3 /* AllAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAlbumCell.swift; sourceTree = "<group>"; };
 		5C60D0271D7F1241008A3BB3 /* LikedAlbumViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedAlbumViewModel.swift; sourceTree = "<group>"; };
 		5C689A721D8697A0009181EB /* AlbumStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumStorage.swift; sourceTree = "<group>"; };
+		5C7CB0AF1D8FDFA600F3E8F7 /* DataSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSection.swift; sourceTree = "<group>"; };
 		6D15ECE990812906990AC844 /* Pods_Pokemon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokemon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6AE1C3E0796FEAD3709158 /* Pods-PokemonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonUITests/Pods-PokemonUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B78CCC1EA8767652B4E65B12 /* Pods-Pokemon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pokemon/Pods-Pokemon.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				5C3F8C471D76DD5C005BADCE /* ui */,
 				5C60D0161D7EB1F8008A3BB3 /* viewModels */,
 				5C46069C1D741C5900FF9249 /* AppDelegate.swift */,
+				5C7CB0AF1D8FDFA600F3E8F7 /* DataSection.swift */,
 				5C4606A01D741C5900FF9249 /* Main.storyboard */,
 				5C4606CA1D741D4600FF9249 /* Podfile */,
 				5C4606A31D741C5900FF9249 /* Assets.xcassets */,
@@ -541,6 +544,7 @@
 				5C4B040E1D79AE650099F514 /* Photo.swift in Sources */,
 				5C3F8C5B1D771BA9005BADCE /* AlbumViewModel.swift in Sources */,
 				5C3D3F4C1D8A855500224199 /* CellViewModel.swift in Sources */,
+				5C7CB0B01D8FDFA600F3E8F7 /* DataSection.swift in Sources */,
 				5C60D01E1D7EC18C008A3BB3 /* PhotoCollectionViewController.swift in Sources */,
 				5C46069D1D741C5900FF9249 /* AppDelegate.swift in Sources */,
 				5C3AE8E41D7834A6007D41BB /* Album.swift in Sources */,

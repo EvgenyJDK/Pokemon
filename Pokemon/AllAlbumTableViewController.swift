@@ -10,12 +10,16 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 import ImageLoader
 
 class AllAlbumTableViewController: UITableViewController {
     
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
+    
+    
+    var dataSourceTable: RxTableViewSectionedAnimatedDataSource<DataSection>?
     
     @IBOutlet var allAlbumsView: UITableView!
     
@@ -27,8 +31,38 @@ class AllAlbumTableViewController: UITableViewController {
                 self.allAlbumsView.reloadData()
             }
             .addDisposableTo(bag)
+        
+        
+        self.allAlbumsView.delegate = nil
+        self.allAlbumsView.dataSource = nil
+        
+        allAlbumsView
+        .rx_setDelegate(self)
+        .addDisposableTo(bag)
+        
+        let dataSourceTable = RxTableViewSectionedAnimatedDataSource<DataSection>()
+        
+        albumViewModel.sections.asObservable()
+        .bindTo(allAlbumsView.rx_itemsWithDataSource(dataSourceTable))
+        
+        
+        
+      
+        
+//            dataSource.configureCell = { ds, tv, ip, item in
+//            let cell = tv.dequeueReusableCell(withIdentifier: "Cell", for: ip)
+//            cell.textLabel?.text = "Item \(item.anInt): \(item.aString) - \(item.aCGPoint.x):\(item.aCGPoint.y)"
+//            return cell
+//            }
+        
+        
+        
+        
+        
     }
    
+    
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albumViewModel.cellViewModelList.value.count
