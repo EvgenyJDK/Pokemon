@@ -18,7 +18,7 @@ class  LikedAlbumTableViewController : UITableViewController {
     private let likedAlbumViewModel = LikedAlbumViewModel()
     private let bag = DisposeBag()
     
-    var dataSourceTable: RxTableViewSectionedAnimatedDataSource<DataSection>?
+    var dataSource: RxTableViewSectionedAnimatedDataSource<DataSection>?
     
     @IBOutlet weak var LikedAlbumView: UITableView!
     
@@ -39,10 +39,10 @@ class  LikedAlbumTableViewController : UITableViewController {
             .rx_setDelegate(self)
             .addDisposableTo(bag)
         
-        let dataSourceTable = RxTableViewSectionedAnimatedDataSource<DataSection>()
+        let dataSource = RxTableViewSectionedAnimatedDataSource<DataSection>()
         
         likedAlbumViewModel.sections.asObservable()
-            .bindTo(LikedAlbumView.rx_itemsWithDataSource(dataSourceTable))
+            .bindTo(LikedAlbumView.rx_itemsWithDataSource(dataSource))
         
         
         
