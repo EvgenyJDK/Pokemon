@@ -26,5 +26,8 @@ extension Photo : IdentifiableType, Equatable {
 
 func ==(lhs: Photo, rhs: Photo) -> Bool {
     
-    return true
+//    return true
+    return lhs.albumId == rhs.albumId &&
+        lhs.url == rhs.url
+    
 }

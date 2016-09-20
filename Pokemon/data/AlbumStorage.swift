@@ -15,7 +15,6 @@ class AlbumStorage {
     static var storageLikedAlbumId : Variable < Set<Int> > = Variable ([])
     
     static var switchLikeStatus : Variable<Bool> = Variable(false)
-    
 
     static func setAlbumStatusLike(albumId : Int, likeStatus : Bool) {
         
