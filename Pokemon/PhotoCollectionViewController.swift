@@ -49,8 +49,7 @@ class PhotoCollectionViewController : UICollectionViewController {
            
             photoCell.imageViewLink.load((self?.photoViewModel?.photoSection.value.first?.items[indexPath.row].url)!)
 
-            let label = photoCell.viewWithTag(1) as! UILabel
-            label.text = self!.photoViewModel?.photoSection.value.first?.items[indexPath.row].title
+            photoCell.label.text = self!.photoViewModel?.photoSection.value.first?.items[indexPath.row].title
             
             return photoCell
         }
