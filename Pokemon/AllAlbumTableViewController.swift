@@ -25,14 +25,6 @@ class AllAlbumTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-/*        albumViewModel.cellViewModelList.asObservable()
-            .subscribeNext { (cellViewModels : [CellViewModel]) in
-                self.allAlbumsView.reloadData()
-            }
-            .addDisposableTo(bag)
-*/
-        
-        
         self.allAlbumsView.delegate = nil
         self.allAlbumsView.dataSource = nil
         
@@ -67,29 +59,8 @@ class AllAlbumTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (albumViewModel.sections.value.first?.items.count)!
-/*        return albumViewModel.cellViewModelList.value.count                       */
-
-    }
-
-    
-    
-/*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let albumCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
-        albumCell.setAlbumData(albumViewModel.cellViewModelList.value[indexPath.row])
-        return albumCell
     }
  
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        albumViewModel.initPhotoModelByRowIndex(indexPath.row)
-        self.performSegueWithIdentifier("showAlbumPhotos", sender: nil)
-    }
-*/
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         let photoController : PhotoCollectionViewController = segue.destinationViewController as! PhotoCollectionViewController

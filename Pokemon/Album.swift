@@ -17,5 +17,5 @@ class Album : Equatable {
 
 
 func == (lhs: Album, rhs: Album) -> Bool {
-    return lhs.albumId == rhs.albumId
+    return lhs.albumId != rhs.albumId
 }

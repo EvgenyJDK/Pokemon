@@ -202,13 +202,13 @@
 				5C3F8C471D76DD5C005BADCE /* ui */,
 				5C60D0161D7EB1F8008A3BB3 /* viewModels */,
 				5C63A50D1D91303A00B17B1A /* AlbumSection.swift */,
+				5C63A50F1D91355300B17B1A /* PhotoSection.swift */,
 				5C46069C1D741C5900FF9249 /* AppDelegate.swift */,
 				5C4606A01D741C5900FF9249 /* Main.storyboard */,
 				5C4606CA1D741D4600FF9249 /* Podfile */,
 				5C4606A31D741C5900FF9249 /* Assets.xcassets */,
 				5C4606A51D741C5900FF9249 /* LaunchScreen.storyboard */,
 				5C4606A81D741C5900FF9249 /* Info.plist */,
-				5C63A50F1D91355300B17B1A /* PhotoSection.swift */,
 			);
 			path = Pokemon;
 			sourceTree = "<group>";

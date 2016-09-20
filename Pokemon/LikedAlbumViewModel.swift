@@ -39,23 +39,6 @@ class LikedAlbumViewModel {
             self.sections.value = sections
         }
         .addDisposableTo(bag)
-
-     
-        
-/*        AlbumStorage.storageLikedAlbumId.asObservable()
-            .flatMap { (likedAlbumId : Set<Int>) -> Observable<[Album]> in
-                return self.albumApiService.getLikedAlbums(likedAlbumId)
-            }
-            .map{ (albums : [Album]) -> [CellViewModel] in
-                return albums.map{ (album : Album) -> CellViewModel in
-                    return CellViewModel (album : album)
-                }
-            }
-            .subscribeNext { [unowned self] (cells: [CellViewModel]) in
-                self.likedCellViewModelList.value = cells
-            }
-            .addDisposableTo(bag)
- */
         
     }
     
@@ -63,8 +46,6 @@ class LikedAlbumViewModel {
     func initPhotoModelByRowIndex (rowIndex : Int) {
 
         self.photoViewModel.value = PhotoViewModel (cellViewModel : (sections.value.first?.items[rowIndex])!)
- /*       self.photoViewModel.value = PhotoViewModel (cellViewModel : likedCellViewModelList.value[rowIndex])   */
-        
     }
     
     

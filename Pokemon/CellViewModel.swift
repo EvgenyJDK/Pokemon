@@ -47,7 +47,7 @@ class CellViewModel {
 extension CellViewModel : IdentifiableType, Equatable {
 
     var identity : String {
-        return album.title!
+        return "Hello"
     }
 }
 

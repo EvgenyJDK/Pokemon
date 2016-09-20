@@ -25,14 +25,6 @@ class  LikedAlbumTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*        likedAlbumViewModel.likedCellViewModelList.asObservable()
-         .subscribeNext { (likedCellVMList :[CellViewModel]) in
-         self.LikedAlbumView.reloadData()
-         }
-         .addDisposableTo(bag)
-         */
-        
-        
         self.LikedAlbumView.delegate = nil
         self.LikedAlbumView.dataSource = nil
         
@@ -67,27 +59,8 @@ class  LikedAlbumTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (likedAlbumViewModel.sections.value.first?.items.count)!
-        /*        return likedAlbumViewModel.likedCellViewModelList.value.count     */
     }
-    
-    
-    /*    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     
-     let likedAlbumCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AllAlbumCell
-     likedAlbumCell.setAlbumData(likedAlbumViewModel.likedCellViewModelList.value[indexPath.row])
-     return likedAlbumCell
-     }
-     
-     
-     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-     
-     tableView.deselectRowAtIndexPath(indexPath, animated: false)
-     likedAlbumViewModel.initPhotoModelByRowIndex(indexPath.row)
-     self.performSegueWithIdentifier("showAlbumPhotos2", sender: nil)
-     }
-     */
-    
-    
+  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let photoController : PhotoCollectionViewController = segue.destinationViewController as! PhotoCollectionViewController

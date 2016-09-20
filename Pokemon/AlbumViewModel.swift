@@ -18,7 +18,6 @@ class AlbumViewModel {
 
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
     var cellViewModelList : Variable <[CellViewModel]> = Variable([])
- 
     var sections : Variable<[AlbumSection]> = Variable([])
     
     
@@ -38,18 +37,6 @@ class AlbumViewModel {
         }
         .addDisposableTo(bag)
         
-
-        
-        //        albumApiService.getAllAlbums()
-        //            .map { (allAlbums : [Album]) -> [CellViewModel] in
-        //                return allAlbums.map { (album : Album) -> CellViewModel in
-        //                    return CellViewModel(album : album)
-        //                }
-        //        }
-        //            .subscribeNext { (cellViewModels : [CellViewModel]) in
-        //            self.cellViewModelList.value = cellViewModels
-        //        }
-        //        .addDisposableTo(bag)
     }
 
     
