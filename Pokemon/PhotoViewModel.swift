@@ -39,15 +39,4 @@ class PhotoViewModel {
     }
 }
 
-extension PhotoViewModel : IdentifiableType, Equatable {
-    
-    var identity : String {
-        return "Photo"
-    }
-}
-
-func ==(lhs: PhotoViewModel, rhs: PhotoViewModel) -> Bool {
-    
-    return true
-}
 
