@@ -17,7 +17,7 @@ class AlbumViewModel {
     private let bag = DisposeBag()
 
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
-    var cellViewModelList : Variable <[CellViewModel]> = Variable([])
+//    var cellViewModelList : Variable <[CellViewModel]> = Variable([])
     var sections : Variable<[AlbumSection]> = Variable([])
     
     

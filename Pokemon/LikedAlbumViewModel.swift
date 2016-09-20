@@ -17,7 +17,7 @@ class LikedAlbumViewModel {
     
     var likedCellViewModelList : Variable <[CellViewModel]> = Variable([])
     var photoViewModel : Variable <PhotoViewModel?> = Variable(nil)
-    
+
     var sections : Variable<[AlbumSection]> = Variable([])
     
     
@@ -39,7 +39,6 @@ class LikedAlbumViewModel {
             self.sections.value = sections
         }
         .addDisposableTo(bag)
-        
     }
     
     

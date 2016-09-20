@@ -14,12 +14,10 @@ import RxDataSources
 class PhotoViewModel {
     
     private let albumApiService = AlbumApiService()
-//    private (set) var foto : Photo
     private let bag = DisposeBag()
     
     var albumDetails : Variable <Album> = Variable(Album())
-    var photo : Variable <[Photo]> = Variable([])
-
+//    var photo : Variable <[Photo]> = Variable([])
     var photoSection : Variable<[PhotoSection]> = Variable([])
 
     
@@ -38,22 +36,7 @@ class PhotoViewModel {
             self.photoSection.value = photoSections
         }
         .addDisposableTo(bag)
-        
-        
-        
-/*        self.albumDetails.value = cellViewModel.album
-        self.albumDetails.asObservable()
-            .flatMapLatest { (albumDetails : Album) -> Observable<[Photo]> in
-                return self.albumApiService.getAlbumDetails(cellViewModel.album.albumId!)
-            }
-            .subscribe(onNext: { (photo : [Photo]) in
-                self.photo.value = photo
-                }
-            ).addDisposableTo(bag)
- */
     }
- 
-
 }
 
 extension PhotoViewModel : IdentifiableType, Equatable {

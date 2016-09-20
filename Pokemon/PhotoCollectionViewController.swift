@@ -21,15 +21,8 @@ class PhotoCollectionViewController : UICollectionViewController {
     var collectionDataSource: RxCollectionViewSectionedAnimatedDataSource<PhotoSection>?
     
     @IBOutlet weak var image: UICollectionView!
-//    @IBOutlet weak var image: UIImageView!  /* UICollectionView! */
     
     override func viewDidLoad() {
-        
-/*        photoViewModel?.photo.asObservable()
-            .subscribeNext{ (photo :[Photo]) in
-            }
-            .addDisposableTo(bag)
-*/
         
         self.image.delegate = nil
         self.image.dataSource = nil
@@ -57,24 +50,5 @@ class PhotoCollectionViewController : UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (photoViewModel?.photoSection.value.first?.items.count)!
-/*        return (photoViewModel?.photo.value.count)!       */
     }
-    
-/*    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let photoCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PhotoCollectionViewCell
-        
-        if let url = photoViewModel?.photo.value[indexPath.item].url {
-            photoCell.imageViewLink.load(url)
-        }
-        else {
-            print ("There is no image")
-        }
-        
-        let label = photoCell.viewWithTag(1) as! UILabel
-        label.text = photoViewModel?.photo.value[indexPath.item].title
-        return photoCell
-    }
- */
-    
 }
