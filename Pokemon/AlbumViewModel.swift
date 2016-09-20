@@ -30,7 +30,7 @@ class AlbumViewModel {
                 }
         }
             .map { (cells : [CellViewModel]) -> [DataSection] in
-                return [DataSection(header : "Favourite Albums", items: cells)]
+                return [DataSection(header : "All Albums", items: cells)]
         }
             .subscribeNext { (sections : [DataSection]) in
             self.sections.value = sections
@@ -53,7 +53,7 @@ class AlbumViewModel {
 
     
     func initPhotoModelByRowIndex (rowIndex : Int) {
-        self.photoViewModel.value = PhotoViewModel (cellViewModel : cellViewModelList.value[rowIndex])
+        self.photoViewModel.value = PhotoViewModel (cellViewModel : (sections.value.first?.items[rowIndex])!)
     }
 
     

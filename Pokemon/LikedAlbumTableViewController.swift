@@ -25,12 +25,12 @@ class  LikedAlbumTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        likedAlbumViewModel.likedCellViewModelList.asObservable()
+/*        likedAlbumViewModel.likedCellViewModelList.asObservable()
             .subscribeNext { (likedCellVMList :[CellViewModel]) in
             self.LikedAlbumView.reloadData()
         }
         .addDisposableTo(bag)
-   
+*/
         
        
         self.LikedAlbumView.delegate = nil
