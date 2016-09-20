@@ -275,6 +275,9 @@
                             <outlet property="delegate" destination="lvo-gc-n1P" id="hYp-zJ-Efu"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <outlet property="image" destination="pCa-X2-hPX" id="y1r-ND-HXm"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHd-jA-G0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

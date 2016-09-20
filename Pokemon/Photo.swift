@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 class Photo {
     
@@ -14,4 +15,16 @@ class Photo {
     var title : String?
     var url : String?
 
+}
+
+extension Photo : IdentifiableType, Equatable {
+    
+    var identity : String {
+        return "Photo"
+    }
+}
+
+func ==(lhs: Photo, rhs: Photo) -> Bool {
+    
+    return true
 }
