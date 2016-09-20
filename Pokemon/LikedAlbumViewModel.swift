@@ -18,7 +18,7 @@ class LikedAlbumViewModel {
     var likedCellViewModelList : Variable <[CellViewModel]> = Variable([])
     var photoViewModel : Variable <PhotoViewModel?> = Variable(nil)
     
-    var sections : Variable<[DataSection]> = Variable([])
+    var sections : Variable<[AlbumSection]> = Variable([])
     
     
     init () {
@@ -32,10 +32,10 @@ class LikedAlbumViewModel {
                     return CellViewModel (album : album)
             }
         }
-            .map { (cells : [CellViewModel]) -> [DataSection] in
-                return [DataSection(header : "Liked Albums", items: cells)]
+            .map { (cells : [CellViewModel]) -> [AlbumSection] in
+                return [AlbumSection(header : "Liked Albums", items: cells)]
         }
-            .subscribeNext { (sections : [DataSection]) in
+            .subscribeNext { (sections : [AlbumSection]) in
             self.sections.value = sections
         }
         .addDisposableTo(bag)

@@ -18,7 +18,7 @@ class AllAlbumTableViewController: UITableViewController {
     private let albumViewModel = AlbumViewModel()
     private let bag = DisposeBag()
     
-    var dataSource: RxTableViewSectionedAnimatedDataSource<DataSection>?
+    var dataSource: RxTableViewSectionedAnimatedDataSource<AlbumSection>?
     
     @IBOutlet var allAlbumsView: UITableView!
     
@@ -40,7 +40,7 @@ class AllAlbumTableViewController: UITableViewController {
         .rx_setDelegate(self)
         .addDisposableTo(bag)
         
-        let dataSource = RxTableViewSectionedAnimatedDataSource<DataSection>()
+        let dataSource = RxTableViewSectionedAnimatedDataSource<AlbumSection>()
         
         albumViewModel.sections.asObservable()
         .bindTo(allAlbumsView.rx_itemsWithDataSource(dataSource))

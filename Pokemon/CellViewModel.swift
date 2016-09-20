@@ -58,15 +58,6 @@ func ==(lhs: CellViewModel, rhs: CellViewModel) -> Bool {
         lhs.user == rhs.user
 
 }
-    
-    
-
-
-//    var hashValue : Int {
-//        get {
-//            return self.album.albumId!.hashValue + (user?.userId?.hashValue)!
-//        }
-//    }
 
     
     

@@ -19,7 +19,8 @@ class AlbumViewModel {
     var photoViewModel : Variable<PhotoViewModel?> = Variable(nil)
     var cellViewModelList : Variable <[CellViewModel]> = Variable([])
  
-    var sections : Variable<[DataSection]> = Variable([])
+    var sections : Variable<[AlbumSection]> = Variable([])
+    
     
     init () {
         
@@ -29,10 +30,10 @@ class AlbumViewModel {
                     return CellViewModel(album : album)
                 }
         }
-            .map { (cells : [CellViewModel]) -> [DataSection] in
-                return [DataSection(header : "All Albums", items: cells)]
+            .map { (cells : [CellViewModel]) -> [AlbumSection] in
+                return [AlbumSection(header : "All Albums", items: cells)]
         }
-            .subscribeNext { (sections : [DataSection]) in
+            .subscribeNext { (sections : [AlbumSection]) in
             self.sections.value = sections
         }
         .addDisposableTo(bag)
