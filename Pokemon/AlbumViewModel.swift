@@ -23,7 +23,6 @@ class AlbumViewModel {
     
     init () {
         
-        print("init")
         albumApiService.getAllAlbums()
             .map { (allAlbums : [Album]) -> [CellViewModel] in
                 return allAlbums.map { (album : Album) -> CellViewModel in
